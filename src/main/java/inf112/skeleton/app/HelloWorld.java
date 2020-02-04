@@ -1,4 +1,5 @@
 package inf112.skeleton.app;
+
 import com.badlogic.gdx.ApplicationListener;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.GL20;
@@ -11,14 +12,39 @@ import com.badlogic.gdx.maps.tiled.renderers.OrthogonalTiledMapRenderer;
 public class HelloWorld implements ApplicationListener {
     private TiledMap map;
     private TiledMapTileLayer boardLayer;
+    private TiledMapTileLayer blueLayer;
+    private TiledMapTileLayer yellowLayer;
+    private TiledMapTileLayer flagLayer;
+    private TiledMapTileLayer repairLayer;
+    private TiledMapTileLayer wallLayer;
+    private TiledMapTileLayer holeLayer;
+    private TiledMapTileLayer playerStartLayer;
+
     OrthogonalTiledMapRenderer mapRenderer;
     OrthographicCamera camera;
+    //private final float UNIT_SCALE = 1/300;
+    private final String inputMap = "mainMap.tmx";
+    private final String auxMap = "testMap.tmx";
 
     @Override
     public void create() {
         TmxMapLoader mapLoader = new TmxMapLoader();
-        map = mapLoader.load("testMap.tmx");
-        boardLayer = (TiledMapTileLayer) map.getLayers().get("Board");
+
+        //Test map
+        map = mapLoader.load(auxMap);
+
+        //Main map
+        //map = mapLoader.load(inputMap);
+
+        boardLayer = (TiledMapTileLayer) map.getLayers().get("board");
+        blueLayer = (TiledMapTileLayer) map.getLayers().get("blue");
+        yellowLayer = (TiledMapTileLayer) map.getLayers().get("yellow");
+        flagLayer = (TiledMapTileLayer) map.getLayers().get("flag");
+        repairLayer = (TiledMapTileLayer) map.getLayers().get("repair");
+        wallLayer = (TiledMapTileLayer) map.getLayers().get("wall");
+        holeLayer = (TiledMapTileLayer) map.getLayers().get("hole");
+        playerStartLayer = (TiledMapTileLayer) map.getLayers().get("player_start");
+
         camera = new OrthographicCamera();
         camera.setToOrtho(false, 10, 10);
         camera.position.x = 5;
@@ -28,7 +54,6 @@ public class HelloWorld implements ApplicationListener {
     }
     @Override
     public void render() {
-
         Gdx.gl.glClearColor(1, 1, 1, 1);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
         mapRenderer.render();
