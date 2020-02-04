@@ -18,12 +18,12 @@ public class HelloWorld implements ApplicationListener {
     public void create() {
         TmxMapLoader mapLoader = new TmxMapLoader();
         map = mapLoader.load("testMap.tmx");
-        boardLayer = (TiledMapTileLayer) map.getLayers().get("testMap.tmx");
+        boardLayer = (TiledMapTileLayer) map.getLayers().get("Board");
         camera = new OrthographicCamera();
         camera.setToOrtho(false, 10, 10);
         camera.position.x = 5;
         camera.update();
-        mapRenderer = new OrthogonalTiledMapRenderer(map, 300);
+        mapRenderer = new OrthogonalTiledMapRenderer(map, (float) 1/300);
         mapRenderer.setView(camera);
     }
     @Override
