@@ -22,7 +22,7 @@ public class HelloWorld implements ApplicationListener {
 
     OrthogonalTiledMapRenderer mapRenderer;
     OrthographicCamera camera;
-    //private final float UNIT_SCALE = 1/300;
+
     private final String inputMap = "mainMap.tmx";
     private final String auxMap = "testMap.tmx";
 
@@ -49,6 +49,7 @@ public class HelloWorld implements ApplicationListener {
         camera.setToOrtho(false, 10, 10);
         camera.position.x = 5;
         camera.update();
+
         mapRenderer = new OrthogonalTiledMapRenderer(map, (float) 1/300);
         mapRenderer.setView(camera);
     }
@@ -65,10 +66,16 @@ public class HelloWorld implements ApplicationListener {
     }
     @Override
     public void resize(int width, int height) {
+        camera.position.set((width / 2), (height / 2), 0);
+        camera.viewportWidth = width;
+        camera.viewportHeight = height;
+        camera.update();
     }
+
     @Override
     public void pause() {
     }
+
     @Override
     public void resume() {
     }
