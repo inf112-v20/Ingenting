@@ -1,7 +1,7 @@
-#Obligatorisk oppgave 1: Prosjekt RoboRally - oppstart
+# Obligatorisk oppgave 1: Prosjekt RoboRally - oppstart
 
-## Deloppgave 1: Organiser teamet. X
-Gruppenavn: Team Ingenting
+## Deloppgave 1: Organiser teamet. 
+Som gruppenvan gikk vi for ingenting. Alle på gruppen har forholdvis like erfaringer, ettersom alle studerer inf-emner. Rolllene tildelte vi ut i fra hva som folk hadde mest lyst til fra begynnelsen av. Dette kan endres underveis i prosjektet visst vi ser noen egner seg bedre som noe annet.
 
 Navn: Ørjan Skårnes:
 ⋅⋅⋅Rolle: Programmerer
@@ -39,10 +39,15 @@ Navn: Marcus Teigene
 
 
 ## Deloppgave 2: Oversikt over forventet produkt
-Lage spesifikasjon som inneholder:
-⋅⋅⋅Kort beskrivelse av overordnede målet for applikasjonen.
-⋅⋅⋅Krav til spillet:
+Målet med RoboRally er å jobbe oss mot de kravene som kunden stiller. Vi skal ha spillfunksjoner som å oprette spiller, ha en robot som man kan gjøre forskellige operasjoner, muligheten til å interagere med andre objekter på brette. Vi skal også sitte lære oss å visulisere spillet ved hjelp av LibGDX og Tiled
+
+### Første iterasjons krav
+* Et brett
+* Viisualisert i LibGDX
+* En robot som kan beveges 
+
 ### Spiller
+Spiller skal kunne:
 * Miste liv
 * Programmere kort
 * Dø
@@ -72,44 +77,61 @@ Lage spesifikasjon som inneholder:
 * Gi ut kort, og fjerne kort.
 * Timer når det er en som ikke har programmert kortene.
 * Spille en runde
-* Liste over krav vi skal ha med i første iterasjon:
-* Brett
-* Minst ett element på brettet.
-* Vise forventet element
-* vise forventet størrelse.
+
+### Runde
+* Består av faser
+* velg 5 programeringskort
+* Kort blir utført etter hva prioritet de har
+* Muligheten for power down
+* Samle  inn kort (shuffle)
+
+### Fase
+* 5 faser
+* Snu programkort
+* 1 programkort per fase
+* utføre bevegelse
+* ekspressbånd
+* aktivering av elementer
+* lasere
+* registrere flagg
 
 
 
+## Deloppgave 3: Velg og tilpass en prosess for laget 
+Vi har valgt Extreme Programming som vår prosjektmetodikk, med tanke på at vi har god mulighet med å parprogrammere, sette poeng på oppgavene slik at vi får en oversikt over hvor mange poeng vi kan få til på en iterasjon. Poeng på oppgavene vil også gi hver person i teamet en oversikt om hvor mye de kan få til på en iterasjon og gjøre det letter å velge oppgaver for iterasjonene fremover. Vi har fokys på å ha gode og hyppige commits alle får en oversikt over hva som har skjedd. 
 
-## Deloppgave 3: Velg og tilpass en prosess for laget X
-* Extreme Programming enn så lenge.
-* Prosjektmetodikker
-* Parprogrammering
-* Iterasjoner
-* Splitte oppgaver i poeng.
-* Møtes hver uke.
-* Teamet planlegger å benytte seg av Extreme Programming metodikken og splitte oppgavene basert på poeng og * deretter fordele oppgavene i laget. Til å begynne med er planen å møte hver onsdag (iterasjon) og ha en gjennomgang.
-
-
+Oraganiseringen av av prosjektet, planlegger vi å møte 1-2 ganger i uken utenom gruppetimen. i starten blir planen onsdag fra 08:15 og utover. Vi tenker å kjere å ha en jevn oppfølging av prosjektet og sprint på 2 uker.
 
 
 ## Deloppgave 4: Kode
 * Begynne å jobbe med brukerhistorier for å vise et brett og plassere en brikke på brettet.
 
 ### Brukerhistorie:
-* Lage et brett og kunne visualisere det.
-* Minst ett element på brettet.
+* Som spiller trenger jeg en visuell representasjon av brettet slik at jeg kan spille og vite hvor forslkellge elemnter ligger.
+
+Akseptansekriterier:
+* Størrelse og antall ruter
+* Vise et brett uten elementer
+* Vie et brett med elementer
+* Grafisk fremsilling av brett
+
+Arbeidoppgaver
+* Koble forettningslogikken til libgdx
+* Opprett et brett som kan bestå av forskjellige objekter
 
 
+### Brukerhistorie 2
+Som spiller trenger eg en robot, slik at jeg kan bevege den rundt på brettet
 
-### Lage Board class. 10
-* Kunne plassere elementer, for eks. board.place(robot, x , y)
-* Hente størrelse
+Akseptansekriterier:
+* En robot
+* Roboten skal se ut som en robot
+* Den skal være på brettet
+* Den skal kunne bevege seg rundt på brettet
 
-
-### Lage element class. 10
-* interface
-
+Arbeidsoppgaver:
+* Finne modell til robot
+* Styring av robot ved hjelp av piltastene
 
 
 ## Oppsummering:
