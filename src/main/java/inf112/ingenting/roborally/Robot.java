@@ -7,7 +7,7 @@ public class Robot extends Object {
 
     private int xPosition;
     private int yPosition;
-    private int HP = 3;
+    private int health = 3;
     private boolean isActive = true;
 
     /**
@@ -28,15 +28,12 @@ public class Robot extends Object {
         return yPosition;
     }
 
-    public int getHP(){
-        return HP;
+    public int getHealth(){
+        return health;
     }
 
     public boolean isActive(){
-        if(HP <= 0){
-            return false;
-        }
-        return true;
+        return health > 0;
     }
 
 
