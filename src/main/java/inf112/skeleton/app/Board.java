@@ -1,5 +1,9 @@
 package inf112.skeleton.app;
 
+import inf112.skeleton.app.object.IObject;
+import inf112.skeleton.app.object.Object;
+import inf112.skeleton.app.object.ObjectType;
+
 import java.util.ArrayList;
 
 public class Board  {

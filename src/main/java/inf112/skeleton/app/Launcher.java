@@ -6,63 +6,72 @@ import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.maps.MapObject;
+import com.badlogic.gdx.maps.tiled.*;
+import com.badlogic.gdx.maps.tiled.renderers.OrthogonalTiledMapRenderer;
+
+import java.util.ArrayList;
+import java.util.Map;
 
 public class Launcher extends ApplicationAdapter {
+    private OrthogonalTiledMapRenderer mapRenderer;
     private OrthographicCamera camera;
-    private Board board;
+
+    private TiledMap map;
+    private TiledMapTileLayer boardLayer;
+    private TiledMapTileLayer objectLayer;
+
     private SpriteBatch batch;
 
+    private ArrayList<TiledMapTileLayer.Cell> floorCells;
+    private ArrayList<TiledMapTileLayer.Cell> interactableCells;
 
-    /**
-     * Textures to be added.
-     */
-    private Texture tileTexture;
-    private Texture flagTexture;
-    private Texture robotTexture;
 
     @Override
     public void create() {
-        //LOAD TEXTURES
-        tileTexture = new Texture(Gdx.files.internal("tile.png"));
-        flagTexture = new Texture(Gdx.files.internal("flag.png"));
+        //LOAD TILE MAP
+        map = new TmxMapLoader().load("mainMap.tmx");
+
+        //LAYERS
+        boardLayer = (TiledMapTileLayer) map.getLayers().get("board");
+        objectLayer = (TiledMapTileLayer) map.getLayers().get("interactables");
 
         camera = new OrthographicCamera();
-        camera.setToOrtho(false, board.getWidth(), board.getHeight());
-        board = new Board();
-        batch = new SpriteBatch();
+        camera.setToOrtho(false, 12, 12);
+        camera.zoom = 1f; // To be added when cards are added.
+        camera.update();
+
+        mapRenderer = new OrthogonalTiledMapRenderer(map, (float) 1/64);
+        mapRenderer.setView(camera);
+
+
+        //GET REFERENCE TO EVERY SINGLE CELL
+        floorCells = new ArrayList<TiledMapTileLayer.Cell>();
+        interactableCells = new ArrayList<TiledMapTileLayer.Cell>();
+        for(int x = 0; x < boardLayer.getWidth(); x++){
+            for(int y = 0; y < boardLayer.getHeight(); y++){
+                TiledMapTileLayer.Cell floorCell = boardLayer.getCell(x, y);
+                TiledMapTileLayer.Cell objectCell = objectLayer.getCell(x, y);
+                floorCells.add(floorCell);
+                interactableCells.add(objectCell);
+            }
+        }
+    }
+
+    @Override
+    public void resize(int width, int height) {
     }
 
     @Override
     public void render() {
-        Gdx.gl.glClearColor(0,0,0.2f,1);
+        Gdx.gl.glClearColor(1, 1, 1, 1);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
-        camera.update();
-        batch.setProjectionMatrix(camera.combined);
-        batch.begin();
-
-        for (IObject drawable: board.gameObjects()){
-            Texture texture = objectFactory(drawable.getTexture());
-            batch.draw(texture, drawable.getX(), drawable.getY());
-        }
-        batch.end();
+        mapRenderer.render();
     }
 
     @Override
     public void dispose() {
-        tileTexture.dispose();
-        batch.dispose();
-    }
-
-    private Texture objectFactory(ObjectType type) {
-        switch(type){
-            case ROBOT:
-                return robotTexture;
-            case TILE:
-                return tileTexture;
-            case FLAG:
-                return flagTexture;
-        }
-        return null;
+        mapRenderer.dispose();
+        map.dispose();
     }
 }
-
