@@ -1,4 +1,4 @@
-#Obligatorisk oppgave 1: Prosjekt RoboRally - oppstart
+# Obligatorisk oppgave 1: Prosjekt RoboRally - oppstart
 
 ## Deloppgave 1: Organiser teamet. X
 Gruppenavn: Team Ingenting
