@@ -10,8 +10,8 @@ public class Main {
     public static void main(String[] args) {
         LwjglApplicationConfiguration cfg = new LwjglApplicationConfiguration();
         cfg.title = "RoboRally la Ingenting";
-        cfg.width = 640;
-        cfg.height = 640;
+        cfg.width = 800;
+        cfg.height = 800;
         Game game = new Game();
         new LwjglApplication(new HelloWorld(), cfg);
     }
