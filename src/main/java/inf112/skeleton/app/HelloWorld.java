@@ -44,7 +44,7 @@ public class HelloWorld implements ApplicationListener {
         wallLayer = (TiledMapTileLayer) map.getLayers().get("wall");
         holeLayer = (TiledMapTileLayer) map.getLayers().get("hole");
         playerStartLayer = (TiledMapTileLayer) map.getLayers().get("player_start");
-
+        
         camera = new OrthographicCamera();
         camera.setToOrtho(false, 10, 10);
         camera.position.x = 5;
