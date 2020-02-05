@@ -53,6 +53,7 @@ public class HelloWorld implements ApplicationListener {
         mapRenderer = new OrthogonalTiledMapRenderer(map, (float) 1/64);
         mapRenderer.setView(camera);
     }
+
     @Override
     public void render() {
         Gdx.gl.glClearColor(1, 1, 1, 1);
