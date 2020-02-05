@@ -33,7 +33,7 @@ public class Robot extends Object {
         if(HP <= 0){
             return false;
         }
-        retrun true;
+        return true;
     }
 
 
