@@ -50,7 +50,7 @@ public class HelloWorld implements ApplicationListener {
         camera.position.x = 5;
         camera.update();
 
-        mapRenderer = new OrthogonalTiledMapRenderer(map, (float) 1/300);
+        mapRenderer = new OrthogonalTiledMapRenderer(map, (float) 1/64);
         mapRenderer.setView(camera);
     }
     @Override

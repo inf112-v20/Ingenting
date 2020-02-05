@@ -25,11 +25,6 @@ public class Launcher2 extends ApplicationAdapter {
 
     private ArrayList<TiledMapTileLayer.Cell> cellsInScene;
 
-    private Map<String, TiledMapTile> tiles;
-
-    private TiledMapTileSet tiledMapTileSet;
-
-
 
     @Override
     public void create() {
@@ -38,6 +33,7 @@ public class Launcher2 extends ApplicationAdapter {
 
         //LAYERS
         boardLayer = (TiledMapTileLayer) map.getLayers().get("Board");
+
 
         camera = new OrthographicCamera();
         camera.setToOrtho(false, 10, 10);
