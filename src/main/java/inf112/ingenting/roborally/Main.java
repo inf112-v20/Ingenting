@@ -1,4 +1,4 @@
-package inf112.skeleton.app;
+package inf112.ingenting.roborally;
 
 import com.badlogic.gdx.backends.lwjgl.LwjglApplication;
 import com.badlogic.gdx.backends.lwjgl.LwjglApplicationConfiguration;

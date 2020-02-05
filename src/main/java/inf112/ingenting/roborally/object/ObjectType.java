@@ -1,4 +1,4 @@
-package inf112.skeleton.app.object;
+package inf112.ingenting.roborally.object;
 
 public enum ObjectType {
     ROBOT,

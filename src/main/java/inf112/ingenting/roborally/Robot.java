@@ -1,7 +1,7 @@
-package inf112.skeleton.app;
+package inf112.ingenting.roborally;
 
-import inf112.skeleton.app.object.Object;
-import inf112.skeleton.app.object.ObjectType;
+import inf112.ingenting.roborally.object.Object;
+import inf112.ingenting.roborally.object.ObjectType;
 
 public class Robot extends Object {
 

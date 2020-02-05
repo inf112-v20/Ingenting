@@ -1,9 +1,9 @@
-package inf112.skeleton.app.board;
+package inf112.ingenting.roborally.board;
 
 import com.badlogic.gdx.maps.tiled.TiledMapTileLayer;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.utils.Array;
-import inf112.skeleton.app.object.Object;
+import inf112.ingenting.roborally.object.Object;
 
 public interface IBoard {
 	/**

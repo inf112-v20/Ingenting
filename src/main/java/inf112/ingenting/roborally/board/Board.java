@@ -1,4 +1,4 @@
-package inf112.skeleton.app.board;
+package inf112.ingenting.roborally.board;
 
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.maps.MapObject;
@@ -8,7 +8,7 @@ import com.badlogic.gdx.maps.tiled.TmxMapLoader;
 import com.badlogic.gdx.maps.tiled.renderers.OrthogonalTiledMapRenderer;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.utils.Array;
-import inf112.skeleton.app.object.Object;
+import inf112.ingenting.roborally.object.Object;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -18,12 +18,15 @@ import java.util.Map;
  * Implementation of <code>IBoard</code>.
  *
  * @author Jakob S
- * @see inf112.skeleton.app.board.IBoard
+ * @see IBoard
  */
 public class Board implements IBoard {
 	private TiledMap map;
 	private Map<BoardLayerType, TiledMapTileLayer> layers;
 	private OrthogonalTiledMapRenderer mapRenderer;
+
+	private final String LAYER_NAME_FLOOR			= "floor";
+	private final String LAYER_NAME_INTERACTABLE	= "interactable";
 
 	/**
 	 * Player layer.
@@ -55,8 +58,8 @@ public class Board implements IBoard {
 		map = new TmxMapLoader().load(filename);
 
 		layers = new HashMap<>();
-		layers.put(BoardLayerType.FLOOR,		(TiledMapTileLayer) map.getLayers().get("floor"));
-		layers.put(BoardLayerType.INTERACTABLE,	(TiledMapTileLayer) map.getLayers().get("interactable"));
+		layers.put(BoardLayerType.FLOOR,		(TiledMapTileLayer) map.getLayers().get(LAYER_NAME_FLOOR));
+		layers.put(BoardLayerType.INTERACTABLE,	(TiledMapTileLayer) map.getLayers().get(LAYER_NAME_INTERACTABLE));
 
 		TiledMapTileLayer players = (TiledMapTileLayer) map.getLayers().get("players");
 		if (players != null) {
