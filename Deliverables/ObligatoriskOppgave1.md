@@ -4,10 +4,10 @@
 Gruppenavn: Team Ingenting
 
 Navn: Ørjan Skårnes:
-Rolle: Programmerer
-Kompetanse:
-IT og IT 2
-4 semester på Datateknologi
+⋅⋅⋅Rolle: Programmerer
+⋅⋅⋅Kompetanse: 
+⋅⋅⋅IT og IT 2
+⋅⋅⋅4 semester på Datateknologi
 
 
 Navn: Sigurd Aleksander Sagstad
@@ -18,30 +18,30 @@ Freelance videoproduksjon
 
 
 Navn:  Jakob Snorrason
-Rolle: Software Tester
-Kompetanse:
-Går 4. semester i datateknologi bachelor på UiB
-Kan programmering
-Har skrevet minst en test før
+⋅⋅⋅Rolle: Software Tester
+⋅⋅⋅Kompetanse:
+⋅⋅⋅Går 4. semester i datateknologi bachelor på UiB
+⋅⋅⋅Kan programmering
+⋅⋅⋅Har skrevet minst en test før
 
 
 Navn: Ayoub Tammaoui
-Rolle: Prosjektleder
-Kompetanse:
-4 Semester på datateknologi.
-Webutvikling på kvarteret og en del fritidsprosjekt.
+⋅⋅⋅Rolle: Prosjektleder 
+⋅⋅⋅Kompetanse:
+⋅⋅⋅4 Semester på datateknologi.
+⋅⋅⋅Webutvikling på kvarteret og en del fritidsprosjekt.
 
 Navn: Marcus Teigene
-Rolle: Konsulent
-Kompetanse:
-50% student på datateknologi.
-100% driftskoordinator i Airlift.
+⋅⋅⋅Rolle: Konsulent
+⋅⋅⋅Kompetanse:
+⋅⋅⋅50% student på datateknologi.
+⋅⋅⋅100% driftskoordinator i Airlift.
 
 
 ## Deloppgave 2: Oversikt over forventet produkt
 Lage spesifikasjon som inneholder:
-Kort beskrivelse av overordnede målet for applikasjonen.
-Krav til spillet:
+⋅⋅⋅Kort beskrivelse av overordnede målet for applikasjonen.
+⋅⋅⋅Krav til spillet:
 ### Spiller
 * Miste liv
 * Programmere kort
@@ -116,10 +116,10 @@ Krav til spillet:
 Hva gikk bra? Hva fungerte dårlig?
 
 
-Vurderingskriterier og vekting Innleveringsfrist: 7. februar, klokken 16:00.
+⋅⋅⋅Vurderingskriterier og vekting Innleveringsfrist: 7. februar, klokken 16:00.
 
 For å få oppgaven godkjent må gruppen:
-● Opprettet en repo-struktur som beskrevet i deloppgave 1.
-● Skrive fornuftige commit meldinger når endringer lastes opp i gruppens repo.
-● Laste opp de etterspurte resultatene i repo.
-● Laste opp leveransen til github i markdown-format.
+* Opprettet en repo-struktur som beskrevet i deloppgave 1.
+* Skrive fornuftige commit meldinger når endringer lastes opp i gruppens repo.
+* Laste opp de etterspurte resultatene i repo.
+* Laste opp leveransen til github i markdown-format.
