@@ -1,6 +1,5 @@
 package inf112.skeleton.app.board;
 
-import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.maps.tiled.TiledMapTileLayer;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.utils.Array;
@@ -8,23 +7,16 @@ import inf112.skeleton.app.object.Object;
 
 public interface IBoard {
 	/**
-	 * Renders the entire board using a SpriteBatch.
-	 *
-	 * The layers of the board are rendered from bottom to top.
-	 *
-	 * @param batch The SpriteBatch to render with
+	 * Renders the board.
 	 */
-	void Render(SpriteBatch batch);
+	void render();
 
 	/**
-	 * Renders a specific layer using a SpriteBatch.
+	 * Renders a specific layer.
 	 *
-	 *
-	 *
-	 * @param batch	The SpriteBatch to render with
 	 * @param layer	The layer to render
 	 */
-	void Render(SpriteBatch batch, BoardLayerType layer);
+	void render(BoardLayerType layer);
 
 	/**
 	 * Returns the contents of a given tile.
@@ -79,6 +71,17 @@ public interface IBoard {
 	boolean moveElement(Object elem, MoveType direction);
 
 	/**
+	 * Attempts to place an element using it's internal position.
+	 *
+	 * If there is already an element in the given tile of the same type, the element cannot be placed.
+	 *
+	 * @param elem	The element to place
+	 * @return		<code>true</code> if the element could be placed,
+	 * 				<code>false</code> otherwise
+	 */
+	boolean setElement(Object elem);
+
+	/**
 	 * Attempts to place an element in a given position.
 	 *
 	 * If there is already an element in the given tile of the same type, the element cannot be placed.
@@ -102,4 +105,9 @@ public interface IBoard {
 	 * 				<code>false</code> otherwise
 	 */
 	boolean setElement(Object elem, int x, int y);
+
+	/**
+	 * Disposes of internal libglx classes
+	 */
+	void dispose();
 }
