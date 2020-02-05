@@ -12,6 +12,6 @@ public interface IObject {
 
     int getRotation();
 
-    ObjectType getTexture();
+    ObjectType getType();
 
 }
