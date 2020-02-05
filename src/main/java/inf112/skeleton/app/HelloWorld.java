@@ -12,13 +12,9 @@ import com.badlogic.gdx.maps.tiled.renderers.OrthogonalTiledMapRenderer;
 public class HelloWorld implements ApplicationListener {
     private TiledMap map;
     private TiledMapTileLayer boardLayer;
-    private TiledMapTileLayer blueLayer;
-    private TiledMapTileLayer yellowLayer;
-    private TiledMapTileLayer flagLayer;
-    private TiledMapTileLayer repairLayer;
     private TiledMapTileLayer wallLayer;
-    private TiledMapTileLayer holeLayer;
-    private TiledMapTileLayer playerStartLayer;
+    private TiledMapTileLayer interactLayer;
+    private TiledMapTileLayer playerStart;
 
     OrthogonalTiledMapRenderer mapRenderer;
     OrthographicCamera camera;
@@ -31,23 +27,18 @@ public class HelloWorld implements ApplicationListener {
         TmxMapLoader mapLoader = new TmxMapLoader();
 
         //Test map
-        map = mapLoader.load(auxMap);
+        //map = mapLoader.load(auxMap);
 
         //Main map
-        //map = mapLoader.load(inputMap);
+        map = mapLoader.load(inputMap);
 
         boardLayer = (TiledMapTileLayer) map.getLayers().get("board");
-        blueLayer = (TiledMapTileLayer) map.getLayers().get("blue");
-        yellowLayer = (TiledMapTileLayer) map.getLayers().get("yellow");
-        flagLayer = (TiledMapTileLayer) map.getLayers().get("flag");
-        repairLayer = (TiledMapTileLayer) map.getLayers().get("repair");
         wallLayer = (TiledMapTileLayer) map.getLayers().get("wall");
-        holeLayer = (TiledMapTileLayer) map.getLayers().get("hole");
-        playerStartLayer = (TiledMapTileLayer) map.getLayers().get("player_start");
+        interactLayer = (TiledMapTileLayer) map.getLayers().get("interactables");
+        wallLayer = (TiledMapTileLayer) map.getLayers().get("player_start");
         
         camera = new OrthographicCamera();
-        camera.setToOrtho(false, 10, 10);
-        camera.position.x = 5;
+        camera.setToOrtho(false, 12, 12);
         camera.update();
 
         mapRenderer = new OrthogonalTiledMapRenderer(map, (float) 1/64);
