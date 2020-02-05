@@ -40,8 +40,18 @@ public class Object implements IObject {
 
 
     @Override
+    public void setX(int x) {
+        this.x = x;
+    }
+
+    @Override
     public int getX() {
         return  x;
+    }
+
+    @Override
+    public void setY(int y) {
+        this.y = y;
     }
 
     @Override
@@ -50,8 +60,18 @@ public class Object implements IObject {
     }
 
     @Override
+    public void setWidth(int width) {
+        this.width = width;
+    }
+
+    @Override
     public int getWidth() {
         return width;
+    }
+
+    @Override
+    public void setHeight(int height) {
+        this.height = height;
     }
 
     @Override
@@ -60,8 +80,18 @@ public class Object implements IObject {
     }
 
     @Override
+    public void setRotation(int rot) {
+        this.rotation = rot;
+    }
+
+    @Override
     public int getRotation() {
         return rotation;
+    }
+
+    @Override
+    public void setTexture(ObjectType type) {
+        this.type = type;
     }
 
     @Override
