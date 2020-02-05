@@ -1,5 +1,8 @@
 package inf112.skeleton.app;
 
+import inf112.skeleton.app.object.Object;
+import inf112.skeleton.app.object.ObjectType;
+
 public class Robot extends Object {
 
     private int xPosition;
@@ -33,7 +36,7 @@ public class Robot extends Object {
         if(HP <= 0){
             return false;
         }
-        retrun true;
+        return true;
     }
 
 
