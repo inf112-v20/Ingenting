@@ -1,9 +1,9 @@
 package inf112.ingenting.roborally;
 
-import inf112.ingenting.roborally.object.Object;
-import inf112.ingenting.roborally.object.ObjectType;
+import inf112.ingenting.roborally.element.Element;
+import inf112.ingenting.roborally.element.ElementType;
 
-public class Robot extends Object {
+public class Robot extends Element {
 
     private int xPosition;
     private int yPosition;
@@ -16,7 +16,7 @@ public class Robot extends Object {
      * @param y positon
      * @param type of the object for example ROBOT.
      */
-    public Robot(int x, int y, ObjectType type) {
+    public Robot(int x, int y, ElementType type) {
         super(x, y, type);
     }
 

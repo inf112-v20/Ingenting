@@ -1,10 +1,10 @@
-package inf112.ingenting.roborally.object;
+package inf112.ingenting.roborally.element;
 
-public class Object implements IObject {
+public class Element implements IElement {
     private int width = 64;
     private int height = 64;
     private int rotation = 0;
-    private ObjectType type;
+    private ElementType type;
     private int x;
     private int y;
 
@@ -17,7 +17,7 @@ public class Object implements IObject {
      * @param x position of the object.
      * @param y position of the object.
      */
-    public Object(int width, int height, int rotation, ObjectType type, int x, int y){
+    public Element(int width, int height, int rotation, ElementType type, int x, int y){
         this.width = width;
         this.height = height;
         this.rotation = rotation;
@@ -32,7 +32,7 @@ public class Object implements IObject {
      * @param y positon
      * @param type of the object for example ROBOT.
      */
-    public Object(int x, int y, ObjectType type) {
+    public Element(int x, int y, ElementType type) {
         this.x = x;
         this.y = y;
         this.type = type;
@@ -90,12 +90,12 @@ public class Object implements IObject {
     }
 
     @Override
-    public void setTexture(ObjectType type) {
+    public void setTexture(ElementType type) {
         this.type = type;
     }
 
     @Override
-    public ObjectType getTexture() {
+    public ElementType getTexture() {
         return type;
     }
 }

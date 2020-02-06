@@ -1,6 +1,6 @@
-package inf112.ingenting.roborally.object;
+package inf112.ingenting.roborally.element;
 
-public interface IObject {
+public interface IElement {
     void setX(int x);
     int getX();
 
@@ -16,6 +16,6 @@ public interface IObject {
     void setRotation(int rot);
     int getRotation();
 
-    void setTexture(ObjectType type);
-    ObjectType getTexture();
+    void setTexture(ElementType type);
+    ElementType getTexture();
 }
