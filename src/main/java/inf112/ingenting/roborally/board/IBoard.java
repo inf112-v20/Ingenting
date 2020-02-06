@@ -3,7 +3,7 @@ package inf112.ingenting.roborally.board;
 import com.badlogic.gdx.maps.tiled.TiledMapTileLayer;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.utils.Array;
-import inf112.ingenting.roborally.object.Object;
+import inf112.ingenting.roborally.element.Element;
 
 public interface IBoard {
 	/**
@@ -44,7 +44,7 @@ public interface IBoard {
 	 * @return		<code>Object</code> if an element is found,
 	 * 				<code>null</code> otherwise
 	 */
-	Object getElement(Vector2 pos);
+	Element getElement(Vector2 pos);
 
 	/**
 	 * Returns the element in the given position.
@@ -56,7 +56,7 @@ public interface IBoard {
 	 * @return	<code>Object</code> if an element is found,
 	 * 			<code>null</code> otherwise
 	 */
-	Object getElement(int x, int y);
+	Element getElement(int x, int y);
 
 	/**
 	 * Attempts to move a given element.
@@ -68,7 +68,7 @@ public interface IBoard {
 	 * @return			<code>true</code> if moving the element succeeds,
 	 * 					<code>false</code> otherwise
 	 */
-	boolean moveElement(Object elem, MoveType direction);
+	boolean moveElement(Element elem, MoveType direction);
 
 	/**
 	 * Attempts to place an element using it's internal position.
@@ -79,7 +79,7 @@ public interface IBoard {
 	 * @return		<code>true</code> if the element could be placed,
 	 * 				<code>false</code> otherwise
 	 */
-	boolean setElement(Object elem);
+	boolean setElement(Element elem);
 
 	/**
 	 * Attempts to place an element in a given position.
@@ -91,7 +91,7 @@ public interface IBoard {
 	 * @return		<code>true</code> if the element could be placed,
 	 * 				<code>false</code> otherwise
 	 */
-	boolean setElement(Object elem, Vector2 pos);
+	boolean setElement(Element elem, Vector2 pos);
 
 	/**
 	 * Attempts to place an element in a  given position.
@@ -104,7 +104,7 @@ public interface IBoard {
 	 * @return		<code>true</code> if the element could be placed,
 	 * 				<code>false</code> otherwise
 	 */
-	boolean setElement(Object elem, int x, int y);
+	boolean setElement(Element elem, int x, int y);
 
 	/**
 	 * Disposes of internal libglx classes

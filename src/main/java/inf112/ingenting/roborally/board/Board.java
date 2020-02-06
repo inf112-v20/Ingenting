@@ -8,7 +8,7 @@ import com.badlogic.gdx.maps.tiled.TmxMapLoader;
 import com.badlogic.gdx.maps.tiled.renderers.OrthogonalTiledMapRenderer;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.utils.Array;
-import inf112.ingenting.roborally.object.Object;
+import inf112.ingenting.roborally.element.Element;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -36,7 +36,7 @@ public class Board implements IBoard {
 	 *
 	 * 	This layer includes flags and respawn points.
 	 */
-	private ArrayList<Object> playerElements;
+	private ArrayList<Element> playerElements;
 
 	/**
 	 * Creates a board based on a Tiled (*.tmx) file.
@@ -108,13 +108,13 @@ public class Board implements IBoard {
 	}
 
 	@Override
-	public Object getElement(Vector2 pos) {
+	public Element getElement(Vector2 pos) {
 		return this.getElement((int) pos.x, (int) pos.y);
 	}
 
 	@Override
-	public Object getElement(int x, int y) {	// TODO: Get a better solution than this
-		for (Object o : playerElements) {
+	public Element getElement(int x, int y) {	// TODO: Get a better solution than this
+		for (Element o : playerElements) {
 			if (o.getX() == x && o.getY() == y)
 				return o;
 		}
@@ -123,7 +123,7 @@ public class Board implements IBoard {
 	}
 
 	@Override
-	public boolean moveElement(Object elem, MoveType direction) {	// TODO: Setup logic for moving elements
+	public boolean moveElement(Element elem, MoveType direction) {	// TODO: Setup logic for moving elements
 		if (playerElements.contains(elem)) {
 			return false;
 		}
@@ -132,8 +132,8 @@ public class Board implements IBoard {
 	}
 
 	@Override
-	public boolean setElement(Object elem) {
-		for (Object o : playerElements) {
+	public boolean setElement(Element elem) {
+		for (Element o : playerElements) {
 			if (o.getX() == elem.getX() && o.getY() == elem.getY())
 				return false;
 		}
@@ -144,7 +144,7 @@ public class Board implements IBoard {
 	}
 
 	@Override
-	public boolean setElement(Object elem, Vector2 pos) {
+	public boolean setElement(Element elem, Vector2 pos) {
 		elem.setX((int) pos.x);
 		elem.setY((int) pos.y);
 
@@ -152,7 +152,7 @@ public class Board implements IBoard {
 	}
 
 	@Override
-	public boolean setElement(Object elem, int x, int y) {
+	public boolean setElement(Element elem, int x, int y) {
 		elem.setX(x);
 		elem.setY(y);
 
