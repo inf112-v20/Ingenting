@@ -60,6 +60,7 @@ public class Board implements IBoard {
 		layers = new HashMap<>();
 		layers.put(BoardLayerType.FLOOR,		(TiledMapTileLayer) map.getLayers().get(LAYER_NAME_FLOOR));
 		layers.put(BoardLayerType.INTERACTABLE,	(TiledMapTileLayer) map.getLayers().get(LAYER_NAME_INTERACTABLE));
+		//TODO: Add wall layer and player start.
 
 		TiledMapTileLayer players = (TiledMapTileLayer) map.getLayers().get("players");
 		if (players != null) {
