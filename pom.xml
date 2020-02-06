@@ -51,14 +51,14 @@
     <resources>
       <resource>
         <directory>
-          ${basedir}/Assets
+          ${basedir}/assets
         </directory>
       </resource>
     </resources>
     <testResources>
       <testResource>
         <directory>
-          ${basedir}/Assets
+          ${basedir}/assets
         </directory>
       </testResource>
     </testResources>
