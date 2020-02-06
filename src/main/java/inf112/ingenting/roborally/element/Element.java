@@ -1,3 +1,10 @@
+/**
+ * Implementation of <code>IElement</code>.
+ *
+ * @author Ayoub Tammaoui
+ * @see IElement
+ */
+
 package inf112.ingenting.roborally.element;
 
 public class Element implements IElement {
@@ -27,7 +34,7 @@ public class Element implements IElement {
     }
 
     /**
-     * Create a drawable object with a default width and height of 64.
+     * Create a drawable element with a default width and height of 64.
      * @param x position
      * @param y positon
      * @param type of the object for example ROBOT.
@@ -90,12 +97,12 @@ public class Element implements IElement {
     }
 
     @Override
-    public void setTexture(ElementType type) {
+    public void setType(ElementType type) {
         this.type = type;
     }
 
     @Override
-    public ElementType getTexture() {
+    public ElementType getType() {
         return type;
     }
 }

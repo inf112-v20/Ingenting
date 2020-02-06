@@ -16,6 +16,7 @@ public interface IElement {
     void setRotation(int rot);
     int getRotation();
 
-    void setTexture(ElementType type);
-    ElementType getTexture();
+    void setType(ElementType type);
+
+    ElementType getType();
 }
