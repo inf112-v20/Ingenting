@@ -17,9 +17,6 @@ import java.util.Iterator;
 
 public class Launcher extends ApplicationAdapter {
     private OrthographicCamera camera;
-	private SpriteBatch batch;
-    private Sprite sprite;
-    private Texture player1;
     private Board gameBoard;
 
     @Override
@@ -28,11 +25,7 @@ public class Launcher extends ApplicationAdapter {
         camera.setToOrtho(false, 12, 12);
         camera.zoom = 1f; // To be added when cards are added.
         camera.update();
-        gameBoard = new Board("mainMap.tmx", (float) 1 / 64, camera);
-
-        batch = new SpriteBatch();
-        player1 = new Texture(Gdx.files.internal("player.png"));
-        sprite = new Sprite(player1);
+        gameBoard = new Board("testMap.tmx", (float) 1 / 64, camera);
 
 
     }
@@ -47,10 +40,6 @@ public class Launcher extends ApplicationAdapter {
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
         camera.update();
         gameBoard.render();
-
-        batch.begin();
-        sprite.draw(batch);
-        batch.end();
     }
 
     @Override
