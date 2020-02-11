@@ -5,21 +5,14 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
-import com.badlogic.gdx.graphics.Texture;
-import com.badlogic.gdx.graphics.g2d.Sprite;
-import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.maps.tiled.TiledMapTileLayer;
-import com.badlogic.gdx.maps.tiled.TiledMapTileSet;
-import com.badlogic.gdx.math.Vector2;
 import inf112.ingenting.roborally.board.Board;
 import inf112.ingenting.roborally.board.BoardLayerType;
 import inf112.ingenting.roborally.board.MoveType;
-import inf112.ingenting.roborally.element.ElementType;
+import inf112.ingenting.roborally.cards.CardType;
 import inf112.ingenting.roborally.player.Player;
 import inf112.ingenting.roborally.player.Robot;
 
-import java.io.File;
-import java.util.Iterator;
 
 public class Launcher extends ApplicationAdapter {
     private OrthographicCamera camera;
@@ -35,10 +28,11 @@ public class Launcher extends ApplicationAdapter {
 
         Board board = new Board("testMap.tmx", (float) 1 / 64, camera);
         Player[] players = new Player[]{new Player(), new Player()};
+
         game = new Game(board, players);
 
-        //TiledMapTileLayer.Cell cell =  gameBoard.getTile(0,0).get(1);
-        //robot = new Robot(0, 0, gameBoard, cell, BoardLayerType.INTERACTABLE);
+        TiledMapTileLayer.Cell cell =  game.getBoard().getTile(0,0).get(1);
+        robot = new Robot(0, 0, game.getBoard(), cell, BoardLayerType.INTERACTABLE);
 
     }
 
@@ -52,12 +46,22 @@ public class Launcher extends ApplicationAdapter {
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
         camera.update();
 
-        game.gameRound();
+        game.round();
+
 
         if(Gdx.input.isKeyJustPressed(Input.Keys.W)){
-            robot.move(MoveType.FORWARD);
-            System.out.println("Should move.");
+            robot.move(CardType.MOVE_3);
         }
+        if(Gdx.input.isKeyJustPressed(Input.Keys.D)){
+            robot.move(CardType.MOVE_1_P1);
+        }
+        if(Gdx.input.isKeyJustPressed(Input.Keys.A)){
+            robot.move(CardType.MOVE_1_P1);
+        }
+        if(Gdx.input.isKeyJustPressed(Input.Keys.S)){
+            robot.move(CardType.MOVE_1_P1);
+        }
+
 
 
     }

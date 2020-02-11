@@ -9,6 +9,7 @@ import com.badlogic.gdx.maps.tiled.renderers.OrthogonalTiledMapRenderer;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.utils.Array;
 import inf112.ingenting.roborally.element.Element;
+import inf112.ingenting.roborally.player.Robot;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -27,6 +28,7 @@ public class Board implements IBoard {
 
 	private final String LAYER_NAME_FLOOR			= "floor";
 	private final String LAYER_NAME_INTERACTABLE	= "interactable";
+	private final String LAYER_NAME_PLAYER 			= "player";
 
 	/**
 	 * Player layer.
@@ -60,6 +62,7 @@ public class Board implements IBoard {
 		layers = new HashMap<>();
 		layers.put(BoardLayerType.FLOOR,		(TiledMapTileLayer) map.getLayers().get(LAYER_NAME_FLOOR));
 		layers.put(BoardLayerType.INTERACTABLE,	(TiledMapTileLayer) map.getLayers().get(LAYER_NAME_INTERACTABLE));
+		layers.put(BoardLayerType.PLAYER,		(TiledMapTileLayer) map.getLayers().get(LAYER_NAME_PLAYER));
 		//TODO: Add wall layer and player start.
 
 		TiledMapTileLayer players = (TiledMapTileLayer) map.getLayers().get("players");
@@ -123,15 +126,31 @@ public class Board implements IBoard {
 	}
 
 	@Override
-	public boolean moveElement(Element elem, MoveType direction, BoardLayerType layerType) {	// TODO: Setup logic for moving elements
-		TiledMapTileLayer.Cell cell =  elem.getCell();
-		TiledMapTileLayer.Cell new_cell = new TiledMapTileLayer.Cell();
+	public boolean moveRobot(Robot robot, MoveType move) {	// TODO: Setup logic for moving elements
+		TiledMapTileLayer.Cell player_tile =  robot.getCell();
+		TiledMapTileLayer.Cell empty_tile = new TiledMapTileLayer.Cell();
 
-		switch (direction){
+		switch (move){
 			case FORWARD:
-				layers.get(layerType).setCell(elem.getX(),elem.getY(), new_cell);
-				layers.get(layerType).setCell(elem.getX() + 1, elem.getY(), cell);
-				return true;
+				layers.get(robot.getLayer()).setCell(robot.getX(),robot.getY(), empty_tile);
+				switch (robot.getDirection()){
+					case NORTH:
+						layers.get(robot.getLayer()).setCell(robot.getX(), robot.getY() + 1, player_tile);
+						robot.setY(robot.getY() + 1);
+						return true;
+					case EAST:
+						layers.get(robot.getLayer()).setCell(robot.getX() + 1, robot.getY(), player_tile);
+						robot.setX(robot.getX() + 1);
+						return true;
+					case WEST:
+						layers.get(robot.getLayer()).setCell(robot.getX() -1, robot.getY(), player_tile);
+						robot.setX(robot.getX() - 1);
+						return true;
+					case SOUTH:
+						layers.get(robot.getLayer()).setCell(robot.getX(), robot.getY() - 1, player_tile);
+						robot.setY(robot.getY() - 1);
+				}
+
 		}
 
 		//if (playerElements.contains(elem)) {

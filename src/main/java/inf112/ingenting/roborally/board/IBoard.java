@@ -4,6 +4,7 @@ import com.badlogic.gdx.maps.tiled.TiledMapTileLayer;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.utils.Array;
 import inf112.ingenting.roborally.element.Element;
+import inf112.ingenting.roborally.player.Robot;
 
 public interface IBoard {
 	/**
@@ -63,12 +64,12 @@ public interface IBoard {
 	 *
 	 * If there is something obstructing the element, it cannot move and will fail.
 	 *
-	 * @param elem		The element to move
-	 * @param direction	The direction in which to move the element
-	 * @return			<code>true</code> if moving the element succeeds,
+	 * @param robot		The robot to move
+	 * @param move	The move in which the robot should execute.
+	 * @return			<code>true</code> if executing the move succeeds,
 	 * 					<code>false</code> otherwise
 	 */
-	boolean moveElement(Element elem, MoveType direction, BoardLayerType layerType);
+	boolean moveRobot(Robot robot, MoveType move);
 
 	/**
 	 * Attempts to place an element using it's internal position.
