@@ -5,8 +5,8 @@ import inf112.ingenting.roborally.board.Board;
 import inf112.ingenting.roborally.player.Player;
 
 public class Game {
-    private Board board; // Game board.
-    private Player[] players; //Active players in game.
+    private Board board;        // Game board.
+    private Player[] players;   // Active players in game.
 
     public Game(Board board, Player[] players){
         this.board = board;
@@ -21,7 +21,7 @@ public class Game {
         return players;
     }
 
-    public void gameRound(){
+    public void round(){
         board.render();
         // TODO: Add round logic.
         board.render();
