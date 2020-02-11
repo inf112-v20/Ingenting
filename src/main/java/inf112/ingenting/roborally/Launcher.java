@@ -8,8 +8,7 @@ import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.maps.tiled.TiledMapTileLayer;
 import inf112.ingenting.roborally.board.Board;
 import inf112.ingenting.roborally.board.BoardLayerType;
-import inf112.ingenting.roborally.board.MoveType;
-import inf112.ingenting.roborally.cards.CardType;
+import inf112.ingenting.roborally.cards.ProgrammingCardType;
 import inf112.ingenting.roborally.player.Player;
 import inf112.ingenting.roborally.player.Robot;
 
@@ -50,16 +49,16 @@ public class Launcher extends ApplicationAdapter {
 
 
         if(Gdx.input.isKeyJustPressed(Input.Keys.W)){
-            robot.move(CardType.MOVE_3);
+            robot.move(ProgrammingCardType.MOVE_3);
         }
         if(Gdx.input.isKeyJustPressed(Input.Keys.D)){
-            robot.move(CardType.MOVE_1_P1);
+            robot.move(ProgrammingCardType.MOVE_1_P1);
         }
         if(Gdx.input.isKeyJustPressed(Input.Keys.A)){
-            robot.move(CardType.MOVE_1_P1);
+            robot.move(ProgrammingCardType.MOVE_1_P1);
         }
         if(Gdx.input.isKeyJustPressed(Input.Keys.S)){
-            robot.move(CardType.MOVE_1_P1);
+            robot.move(ProgrammingCardType.MOVE_1_P1);
         }
 
 
