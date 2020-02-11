@@ -1,5 +1,8 @@
 package inf112.ingenting.roborally.element;
 
+import com.badlogic.gdx.maps.tiled.TiledMapTileLayer;
+import inf112.ingenting.roborally.board.BoardLayerType;
+
 public interface IElement {
     void setX(int x);
     int getX();
@@ -19,4 +22,8 @@ public interface IElement {
     void setType(ElementType type);
 
     ElementType getType();
+
+    BoardLayerType getLayer();
+
+    TiledMapTileLayer.Cell getCell();
 }

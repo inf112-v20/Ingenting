@@ -123,10 +123,20 @@ public class Board implements IBoard {
 	}
 
 	@Override
-	public boolean moveElement(Element elem, MoveType direction) {	// TODO: Setup logic for moving elements
-		if (playerElements.contains(elem)) {
-			return false;
+	public boolean moveElement(Element elem, MoveType direction, BoardLayerType layerType) {	// TODO: Setup logic for moving elements
+		TiledMapTileLayer.Cell cell =  elem.getCell();
+		TiledMapTileLayer.Cell new_cell = new TiledMapTileLayer.Cell();
+
+		switch (direction){
+			case FORWARD:
+				layers.get(layerType).setCell(elem.getX(),elem.getY(), new_cell);
+				layers.get(layerType).setCell(elem.getX() + 1, elem.getY(), cell);
+				return true;
 		}
+
+		//if (playerElements.contains(elem)) {
+		//	return false;
+		//}
 
 		return false;
 	}
@@ -139,7 +149,6 @@ public class Board implements IBoard {
 		}
 
 		playerElements.add(elem);
-
 		return true;
 	}
 

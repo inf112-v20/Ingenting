@@ -68,7 +68,7 @@ public interface IBoard {
 	 * @return			<code>true</code> if moving the element succeeds,
 	 * 					<code>false</code> otherwise
 	 */
-	boolean moveElement(Element elem, MoveType direction);
+	boolean moveElement(Element elem, MoveType direction, BoardLayerType layerType);
 
 	/**
 	 * Attempts to place an element using it's internal position.

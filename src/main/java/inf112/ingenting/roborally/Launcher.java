@@ -2,6 +2,7 @@ package inf112.ingenting.roborally;
 
 import com.badlogic.gdx.ApplicationAdapter;
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.Input;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
@@ -11,16 +12,18 @@ import com.badlogic.gdx.maps.tiled.TiledMapTileLayer;
 import com.badlogic.gdx.maps.tiled.TiledMapTileSet;
 import com.badlogic.gdx.math.Vector2;
 import inf112.ingenting.roborally.board.Board;
+import inf112.ingenting.roborally.board.BoardLayerType;
+import inf112.ingenting.roborally.board.MoveType;
+import inf112.ingenting.roborally.element.ElementType;
+import inf112.ingenting.roborally.player.Robot;
 
 import java.io.File;
 import java.util.Iterator;
 
 public class Launcher extends ApplicationAdapter {
     private OrthographicCamera camera;
-	private SpriteBatch batch;
-    private Sprite sprite;
-    private Texture player1;
     private Board gameBoard;
+    private Robot robot;
 
     @Override
     public void create() {
@@ -28,11 +31,10 @@ public class Launcher extends ApplicationAdapter {
         camera.setToOrtho(false, 12, 12);
         camera.zoom = 1f; // To be added when cards are added.
         camera.update();
-        gameBoard = new Board("mainMap.tmx", (float) 1 / 64, camera);
+        gameBoard = new Board("testMap.tmx", (float) 1 / 64, camera);
 
-        batch = new SpriteBatch();
-        player1 = new Texture(Gdx.files.internal("player.png"));
-        sprite = new Sprite(player1);
+        TiledMapTileLayer.Cell cell =  gameBoard.getTile(0,0).get(1);
+        robot = new Robot(0, 0, gameBoard, cell, BoardLayerType.INTERACTABLE);
 
 
     }
@@ -48,9 +50,11 @@ public class Launcher extends ApplicationAdapter {
         camera.update();
         gameBoard.render();
 
-        batch.begin();
-        sprite.draw(batch);
-        batch.end();
+        if(Gdx.input.isKeyJustPressed(Input.Keys.D)){
+            robot.move(MoveType.FORWARD);
+            System.out.println("Should move.");
+        }
+
     }
 
     @Override
