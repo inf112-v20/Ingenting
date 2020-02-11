@@ -10,7 +10,6 @@ import inf112.ingenting.roborally.element.ElementType;
 public class Robot extends Element {
 
     private Board board;
-
     private boolean isActive = true;
     private int health = 3;
 
@@ -28,14 +27,12 @@ public class Robot extends Element {
 
     public void move(MoveType dir){
         // TODO: Add movement logic.
-
         switch (dir){
             case FORWARD:
                 board.moveElement(this, dir, getLayer());
                 this.setX(getX() + 1);
         }
     }
-
 
 
     public int getHealth(){

@@ -15,6 +15,7 @@ import inf112.ingenting.roborally.board.Board;
 import inf112.ingenting.roborally.board.BoardLayerType;
 import inf112.ingenting.roborally.board.MoveType;
 import inf112.ingenting.roborally.element.ElementType;
+import inf112.ingenting.roborally.player.Player;
 import inf112.ingenting.roborally.player.Robot;
 
 import java.io.File;
@@ -22,7 +23,7 @@ import java.util.Iterator;
 
 public class Launcher extends ApplicationAdapter {
     private OrthographicCamera camera;
-    private Board gameBoard;
+    private Game game;
     private Robot robot;
 
     @Override
@@ -31,11 +32,13 @@ public class Launcher extends ApplicationAdapter {
         camera.setToOrtho(false, 12, 12);
         camera.zoom = 1f; // To be added when cards are added.
         camera.update();
-        gameBoard = new Board("testMap.tmx", (float) 1 / 64, camera);
 
-        TiledMapTileLayer.Cell cell =  gameBoard.getTile(0,0).get(1);
-        robot = new Robot(0, 0, gameBoard, cell, BoardLayerType.INTERACTABLE);
+        Board board = new Board("testMap.tmx", (float) 1 / 64, camera);
+        Player[] players = new Player[]{new Player(), new Player()};
+        game = new Game(board, players);
 
+        //TiledMapTileLayer.Cell cell =  gameBoard.getTile(0,0).get(1);
+        //robot = new Robot(0, 0, gameBoard, cell, BoardLayerType.INTERACTABLE);
 
     }
 
@@ -48,17 +51,19 @@ public class Launcher extends ApplicationAdapter {
         Gdx.gl.glClearColor(1, 1, 1, 1);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
         camera.update();
-        gameBoard.render();
 
-        if(Gdx.input.isKeyJustPressed(Input.Keys.D)){
+        game.gameRound();
+
+        if(Gdx.input.isKeyJustPressed(Input.Keys.W)){
             robot.move(MoveType.FORWARD);
             System.out.println("Should move.");
         }
+
 
     }
 
     @Override
     public void dispose() {
-        gameBoard.dispose();
+        game.getBoard().dispose();
     }
 }
