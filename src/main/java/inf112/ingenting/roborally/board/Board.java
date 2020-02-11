@@ -9,6 +9,7 @@ import com.badlogic.gdx.maps.tiled.renderers.OrthogonalTiledMapRenderer;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.utils.Array;
 import inf112.ingenting.roborally.element.Element;
+import inf112.ingenting.roborally.player.PlayerDirection;
 import inf112.ingenting.roborally.player.Robot;
 
 import java.util.ArrayList;
@@ -126,12 +127,13 @@ public class Board implements IBoard {
 	}
 
 	@Override
-	public boolean moveRobot(Robot robot, MoveType move) {	// TODO: Setup logic for moving elements
-		TiledMapTileLayer.Cell player_tile =  robot.getCell();
-		TiledMapTileLayer.Cell empty_tile = new TiledMapTileLayer.Cell();
+	public boolean moveRobot(Robot robot, MoveType move) {	// TODO: Setup logic for moving robots
+		TiledMapTileLayer.Cell player_tile 	= robot.getCell();
+		TiledMapTileLayer.Cell empty_tile 	= new TiledMapTileLayer.Cell();
 
 		switch (move){
 			case FORWARD:
+				System.out.println(layers.get(robot.getLayer()));
 				layers.get(robot.getLayer()).setCell(robot.getX(),robot.getY(), empty_tile);
 				switch (robot.getDirection()){
 					case NORTH:
@@ -149,14 +151,41 @@ public class Board implements IBoard {
 					case SOUTH:
 						layers.get(robot.getLayer()).setCell(robot.getX(), robot.getY() - 1, player_tile);
 						robot.setY(robot.getY() - 1);
+						return true;
 				}
-
+				return true;
+			case ROTATE_LEFT:
+				switch (robot.getDirection()){
+					case NORTH:
+						robot.setDirection(PlayerDirection.WEST);
+						return true;
+					case WEST:
+						robot.setDirection(PlayerDirection.SOUTH);
+						return true;
+					case SOUTH:
+						robot.setDirection(PlayerDirection.EAST);
+						return true;
+					case EAST:
+						robot.setDirection(PlayerDirection.NORTH);
+						return true;
+				}
+				return true;
+			case ROTATE_RIGHT:
+				switch (robot.getDirection()){
+					case NORTH:
+						robot.setDirection(PlayerDirection.EAST);
+						return true;
+					case EAST:
+						robot.setDirection(PlayerDirection.SOUTH);
+						return true;
+					case SOUTH:
+						robot.setDirection(PlayerDirection.WEST);
+						return true;
+					case WEST:
+						robot.setDirection(PlayerDirection.NORTH);
+						return true;
+				}
 		}
-
-		//if (playerElements.contains(elem)) {
-		//	return false;
-		//}
-
 		return false;
 	}
 
@@ -166,7 +195,6 @@ public class Board implements IBoard {
 			if (o.getX() == elem.getX() && o.getY() == elem.getY())
 				return false;
 		}
-
 		playerElements.add(elem);
 		return true;
 	}

@@ -24,24 +24,6 @@ public class Element implements IElement {
     private int y;
 
     /**
-     * Create a drawable object that will be drawn on the board.
-     * @param width of the object. Default is 64.
-     * @param height of the object Default is 64.
-     * @param rotation of the object. Default is 0.
-     * @param type of the object, for example Wall.
-     * @param x position of the object.
-     * @param y position of the object.
-     */
-    public Element(int width, int height, int rotation, ElementType type, int x, int y){
-        this.width = width;
-        this.height = height;
-        this.rotation = rotation;
-        this.type = type;
-        this.x = x;
-        this.y = y;
-    }
-
-    /**
      * Create a drawable element with a default width and height of 64.
      * @param x position
      * @param y positon
@@ -55,6 +37,12 @@ public class Element implements IElement {
         this.layer = layer;
     }
 
+    public Element(int x, int y, ElementType type, BoardLayerType layer){
+        this.x = x;
+        this.y = y;
+        this.type = type;
+        this.layer = layer;
+    }
 
     @Override
     public void setX(int x) {
@@ -124,5 +112,9 @@ public class Element implements IElement {
     @Override
     public TiledMapTileLayer.Cell getCell() {
         return cell;
+    }
+
+    public void setCell(TiledMapTileLayer.Cell cell) {
+        this.cell = cell;
     }
 }

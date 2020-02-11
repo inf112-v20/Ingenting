@@ -1,6 +1,5 @@
 package inf112.ingenting.roborally;
 
-import com.badlogic.gdx.utils.Timer;
 import inf112.ingenting.roborally.board.Board;
 import inf112.ingenting.roborally.player.Player;
 
@@ -21,10 +20,13 @@ public class Game {
         return players;
     }
 
-    public void round(){
+    public void round() {
         board.render();
-        // TODO: Add round logic.
+        for (Player player: getPlayers()) {
+            if(!player.getCards().isEmpty()){
+                player.executeProgram(board);
+            }
+        }
         board.render();
     }
-
 }

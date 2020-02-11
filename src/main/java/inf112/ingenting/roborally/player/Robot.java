@@ -10,25 +10,25 @@ import inf112.ingenting.roborally.element.ElementType;
 
 public class Robot extends Element {
 
-    private Board board;
     private boolean isActive = true;
     private int health = 3;
-    private PlayerDirection direction;
+    private PlayerDirection direction = PlayerDirection.NORTH;
 
     /**
      * Create a Robot with a default width and height of 64.
      * @param x position
      * @param y positon
-     * @param board game where player can move around and interact with objects.
      */
-    public Robot(int x, int y, Board board, TiledMapTileLayer.Cell cell, BoardLayerType layer)
+    public Robot(int x, int y, TiledMapTileLayer.Cell cell, BoardLayerType layer)
     {
         super(x, y, ElementType.ROBOT, cell, layer);
-        this.board = board;
-        this.direction = PlayerDirection.NORTH;
     }
 
-    public void move(CardType card){
+    public Robot(){
+        super(0, 0, ElementType.ROBOT, BoardLayerType.INTERACTABLE);
+    }
+
+    public void move(CardType card, Board board){
         // TODO: Add movement logic.
         for (MoveType move: card.getMoves()) {
             board.moveRobot(this, move);
@@ -50,5 +50,9 @@ public class Robot extends Element {
 
     public PlayerDirection getDirection() {
         return direction;
+    }
+
+    public void setDirection(PlayerDirection direction) {
+        this.direction = direction;
     }
 }

@@ -27,13 +27,8 @@ public class Launcher extends ApplicationAdapter {
         camera.update();
 
         Board board = new Board("testMap.tmx", (float) 1 / 64, camera);
-        Player[] players = new Player[]{new Player(), new Player()};
-
+        Player[] players = new Player[]{new Player(board)};
         game = new Game(board, players);
-
-        TiledMapTileLayer.Cell cell =  game.getBoard().getTile(0,0).get(1);
-        robot = new Robot(0, 0, game.getBoard(), cell, BoardLayerType.INTERACTABLE);
-
     }
 
     @Override
@@ -48,20 +43,18 @@ public class Launcher extends ApplicationAdapter {
 
         game.round();
 
-
         if(Gdx.input.isKeyJustPressed(Input.Keys.W)){
-            robot.move(CardType.MOVE_3);
+            robot.move(CardType.MOVE_1_P1, game.getBoard());
         }
         if(Gdx.input.isKeyJustPressed(Input.Keys.D)){
-            robot.move(CardType.MOVE_1_P1);
+            robot.move(CardType.ROTATE_RIGHT_P1, game.getBoard());
         }
         if(Gdx.input.isKeyJustPressed(Input.Keys.A)){
-            robot.move(CardType.MOVE_1_P1);
+            robot.move(CardType.ROTATE_LEFT_P1, game.getBoard());
         }
         if(Gdx.input.isKeyJustPressed(Input.Keys.S)){
-            robot.move(CardType.MOVE_1_P1);
+            robot.move(CardType.MOVE_1_P1, game.getBoard());
         }
-
 
 
     }
