@@ -14,7 +14,7 @@ import static inf112.ingenting.roborally.board.MoveType.FORWARD;
  * in a later version of the program, but for now it is used for
  * testing purposes.
  */
-public enum CardType {
+public enum ProgrammingCardType {
 	MOVE_1_P1(FORWARD, 630),
 	MOVE_1_P2(FORWARD, 550),
 	MOVE_2(new MoveType[]{FORWARD, FORWARD}, 740),
@@ -29,12 +29,12 @@ public enum CardType {
 	private final MoveType[] moves;
 	private final int priority;
 
-	CardType(MoveType move, int priority) {
+	ProgrammingCardType(MoveType move, int priority) {
 		this.moves = new MoveType[]{move};
 		this.priority = priority;
 	}
 
-	CardType(MoveType[] moves, int priority) {
+	ProgrammingCardType(MoveType[] moves, int priority) {
 		this.moves = moves;
 		this.priority = priority;
 	}

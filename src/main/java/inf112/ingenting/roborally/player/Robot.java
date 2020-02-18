@@ -4,7 +4,7 @@ import com.badlogic.gdx.maps.tiled.TiledMapTileLayer;
 import inf112.ingenting.roborally.board.Board;
 import inf112.ingenting.roborally.board.BoardLayerType;
 import inf112.ingenting.roborally.board.MoveType;
-import inf112.ingenting.roborally.cards.CardType;
+import inf112.ingenting.roborally.cards.ProgrammingCardType;
 import inf112.ingenting.roborally.element.Element;
 import inf112.ingenting.roborally.element.ElementType;
 
@@ -28,7 +28,7 @@ public class Robot extends Element {
         this.direction = RobotDirection.NORTH;
     }
 
-    public void move(CardType card){
+    public void move(ProgrammingCardType card){
         // TODO: Add movement logic.
         for (MoveType move: card.getMoves()) {
             board.moveRobot(this, move);
