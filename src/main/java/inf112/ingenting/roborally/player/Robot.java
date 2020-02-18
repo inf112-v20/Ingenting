@@ -11,8 +11,6 @@ import inf112.ingenting.roborally.element.ElementType;
 public class Robot extends Element {
 
     private Board board;
-    private boolean isActive = true;
-    private int health = 3;
     private RobotDirection direction;
 
     /**
@@ -33,19 +31,6 @@ public class Robot extends Element {
         for (MoveType move: card.getMoves()) {
             board.moveRobot(this, move);
         }
-    }
-
-
-    public int getHealth(){
-        return health;
-    }
-
-    public boolean isAlive(){
-        return health > 0;
-    }
-
-    public boolean isActive() {
-        return isActive;
     }
 
     public RobotDirection getDirection() {

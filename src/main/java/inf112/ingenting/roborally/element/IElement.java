@@ -4,24 +4,13 @@ import com.badlogic.gdx.maps.tiled.TiledMapTileLayer;
 import inf112.ingenting.roborally.board.BoardLayerType;
 
 public interface IElement {
-    void setX(int x);
-    int getX();
+    void setXPosition(int x);
 
-    void setY(int y);
-    int getY();
+    int getXPosition();
 
-    void setWidth(int width);
-    int getWidth();
+    void setYPosition(int y);
 
-    void setHeight(int height);
-    int getHeight();
-
-    void setRotation(int rot);
-    int getRotation();
-
-    void setType(ElementType type);
-
-    ElementType getType();
+    int getYPosition();
 
     BoardLayerType getLayer();
 
