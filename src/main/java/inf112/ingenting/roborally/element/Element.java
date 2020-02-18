@@ -18,15 +18,17 @@ public class Element implements IElement {
     private int xPosition;
     private int yPosition;
 
-
     /**
-     * Create a drawable element with a default width and height of 64.
+     * Create a element that exists on map.
+     * Every element as a position, cell and a layer.
      * @param x position
-     * @param y positon
+     * @param y position
+     * @param cell Represents a position on the map.
+     * @param layer Layer that element is in.
      */
     public Element(int x, int y, TiledMapTileLayer.Cell cell, BoardLayerType layer) {
-        this.xPosition = x;
         this.yPosition = y;
+        this.xPosition = x;
         this.cell = cell;
         this.layer = layer;
     }

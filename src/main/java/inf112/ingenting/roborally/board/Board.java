@@ -118,7 +118,7 @@ public class Board implements IBoard {
 	@Override
 	public Element getElement(int x, int y) {	// TODO: Get a better solution than this
 		for (Element o : playerElements) {
-			if (o.getX() == x && o.getY() == y)
+			if (o.getXPosition() == x && o.getYPosition() == y)
 				return o;
 		}
 
@@ -134,23 +134,23 @@ public class Board implements IBoard {
 
 		switch (move){
 			case FORWARD:
-				layers.get(robot.getLayer()).setCell(robot.getX(),robot.getY(), empty_tile);
+				layers.get(robot.getLayer()).setCell(robot.getXPosition(),robot.getYPosition(), empty_tile);
 				switch (robot.getDirection()){
 					case NORTH:
-						playerLayer.setCell(robot.getX(), robot.getY() + 1, player_tile);
-						robot.setY(robot.getY() + 1);
+						playerLayer.setCell(robot.getXPosition(), robot.getYPosition() + 1, player_tile);
+						robot.setYPosition(robot.getYPosition() + 1);
 						return true;
 					case EAST:
-						playerLayer.setCell(robot.getX() + 1, robot.getY(), player_tile);
-						robot.setX(robot.getX() + 1);
+						playerLayer.setCell(robot.getXPosition() + 1, robot.getYPosition(), player_tile);
+						robot.setXPosition(robot.getXPosition() + 1);
 						return true;
 					case WEST:
-						playerLayer.setCell(robot.getX() - 1, robot.getY(), player_tile);
-						robot.setX(robot.getX() - 1);
+						playerLayer.setCell(robot.getXPosition() - 1, robot.getYPosition(), player_tile);
+						robot.setXPosition(robot.getXPosition() - 1);
 						return true;
 					case SOUTH:
-						playerLayer.setCell(robot.getX(), robot.getY() - 1, player_tile);
-						robot.setY(robot.getY() - 1);
+						playerLayer.setCell(robot.getXPosition(), robot.getYPosition() - 1, player_tile);
+						robot.setYPosition(robot.getYPosition() - 1);
 						return true;
 				}
 		}
@@ -160,7 +160,7 @@ public class Board implements IBoard {
 	@Override
 	public boolean setElement(Element elem) {
 		for (Element o : playerElements) {
-			if (o.getX() == elem.getX() && o.getY() == elem.getY())
+			if (o.getXPosition() == elem.getXPosition() && o.getYPosition() == elem.getYPosition())
 				return false;
 		}
 
@@ -170,16 +170,16 @@ public class Board implements IBoard {
 
 	@Override
 	public boolean setElement(Element elem, Vector2 pos) {
-		elem.setX((int) pos.x);
-		elem.setY((int) pos.y);
+		elem.setXPosition((int) pos.x);
+		elem.setYPosition((int) pos.y);
 
 		return setElement(elem);
 	}
 
 	@Override
 	public boolean setElement(Element elem, int x, int y) {
-		elem.setX(x);
-		elem.setY(y);
+		elem.setXPosition(x);
+		elem.setYPosition(y);
 
 		return setElement(elem);
 	}
