@@ -129,34 +129,31 @@ public class Board implements IBoard {
 	public boolean moveRobot(Robot robot, MoveType move) {	// TODO: Setup logic for moving elements
 		TiledMapTileLayer.Cell player_tile =  robot.getCell();
 		TiledMapTileLayer.Cell empty_tile = new TiledMapTileLayer.Cell();
+		TiledMapTileLayer playerLayer = layers.get(robot.getLayer());
+
 
 		switch (move){
 			case FORWARD:
 				layers.get(robot.getLayer()).setCell(robot.getX(),robot.getY(), empty_tile);
 				switch (robot.getDirection()){
 					case NORTH:
-						layers.get(robot.getLayer()).setCell(robot.getX(), robot.getY() + 1, player_tile);
+						playerLayer.setCell(robot.getX(), robot.getY() + 1, player_tile);
 						robot.setY(robot.getY() + 1);
 						return true;
 					case EAST:
-						layers.get(robot.getLayer()).setCell(robot.getX() + 1, robot.getY(), player_tile);
+						playerLayer.setCell(robot.getX() + 1, robot.getY(), player_tile);
 						robot.setX(robot.getX() + 1);
 						return true;
 					case WEST:
-						layers.get(robot.getLayer()).setCell(robot.getX() -1, robot.getY(), player_tile);
+						playerLayer.setCell(robot.getX() - 1, robot.getY(), player_tile);
 						robot.setX(robot.getX() - 1);
 						return true;
 					case SOUTH:
-						layers.get(robot.getLayer()).setCell(robot.getX(), robot.getY() - 1, player_tile);
+						playerLayer.setCell(robot.getX(), robot.getY() - 1, player_tile);
 						robot.setY(robot.getY() - 1);
+						return true;
 				}
-
 		}
-
-		//if (playerElements.contains(elem)) {
-		//	return false;
-		//}
-
 		return false;
 	}
 

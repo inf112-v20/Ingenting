@@ -13,7 +13,7 @@ public class Robot extends Element {
     private Board board;
     private boolean isActive = true;
     private int health = 3;
-    private PlayerDirection direction;
+    private RobotDirection direction;
 
     /**
      * Create a Robot with a default width and height of 64.
@@ -25,7 +25,7 @@ public class Robot extends Element {
     {
         super(x, y, ElementType.ROBOT, cell, layer);
         this.board = board;
-        this.direction = PlayerDirection.NORTH;
+        this.direction = RobotDirection.NORTH;
     }
 
     public void move(CardType card){
@@ -48,7 +48,7 @@ public class Robot extends Element {
         return isActive;
     }
 
-    public PlayerDirection getDirection() {
+    public RobotDirection getDirection() {
         return direction;
     }
 }
