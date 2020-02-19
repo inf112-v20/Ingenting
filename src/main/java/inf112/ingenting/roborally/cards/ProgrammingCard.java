@@ -4,7 +4,7 @@ import inf112.ingenting.roborally.board.MoveType;
 
 import java.util.Random;
 
-public class ProgrammingCard implements IProgrammingCard {
+public class ProgrammingCard {
 	private ProgrammingCardType type;
 	private int priority;
 
@@ -40,27 +40,48 @@ public class ProgrammingCard implements IProgrammingCard {
 		this.priority = priority;
 	}
 
-	@Override
+	/**
+	 * Returns the <code>ProgrammingCardType</code>
+	 *
+	 * @return The card type
+	 */
 	public ProgrammingCardType getCardType() {
 		return type;
 	}
 
-	@Override
+	/**
+	 * Sets the card type
+	 *
+	 * @param type The card type
+	 */
 	public void setCardType(ProgrammingCardType type) {
 		this.type = type;
 	}
 
-	@Override
+	/**
+	 * Returns a list of moves associated with the card type
+	 *
+	 * @return A list of moveTypes
+	 */
 	public MoveType[] getMoves() {
 		return type.getMoves();
 	}
 
-	@Override
+	/**
+	 * Returns the card's priority
+	 *
+	 * @return The priority in integer format
+	 */
 	public int getPriority() {
 		return priority;
 	}
 
-	@Override
+
+	/**
+	 * Sets the card's priority
+	 *
+	 * @param priority The priority to set the card to
+	 */
 	public void setPriority(int priority) {
 		this.priority = priority;
 	}
