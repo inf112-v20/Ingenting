@@ -21,7 +21,7 @@ public class Robot extends Element {
      */
     public Robot(int x, int y, Board board, TiledMapTileLayer.Cell cell, BoardLayerType layer)
     {
-        super(x, y, ElementType.ROBOT, cell, layer);
+        super(x, y, cell, layer);
         this.board = board;
         this.direction = RobotDirection.NORTH;
     }
