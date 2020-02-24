@@ -1,6 +1,6 @@
 package inf112.ingenting.roborally.player;
 
-public enum PlayerDirection {
+public enum RobotDirection {
 	NORTH,
 	SOUTH,
 	EAST,

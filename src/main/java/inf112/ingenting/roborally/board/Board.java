@@ -9,7 +9,6 @@ import com.badlogic.gdx.maps.tiled.renderers.OrthogonalTiledMapRenderer;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.utils.Array;
 import inf112.ingenting.roborally.element.Element;
-import inf112.ingenting.roborally.player.PlayerDirection;
 import inf112.ingenting.roborally.player.Robot;
 
 import java.util.ArrayList;
@@ -119,7 +118,7 @@ public class Board implements IBoard {
 	@Override
 	public Element getElement(int x, int y) {	// TODO: Get a better solution than this
 		for (Element o : playerElements) {
-			if (o.getX() == x && o.getY() == y)
+			if (o.getXPosition() == x && o.getYPosition() == y)
 				return o;
 		}
 
@@ -127,62 +126,31 @@ public class Board implements IBoard {
 	}
 
 	@Override
-	public boolean moveRobot(Robot robot, MoveType move) {	// TODO: Setup logic for moving robots
-		TiledMapTileLayer.Cell player_tile 	= robot.getCell();
-		TiledMapTileLayer.Cell empty_tile 	= new TiledMapTileLayer.Cell();
+	public boolean moveRobot(Robot robot, MoveType move) {	// TODO: Setup logic for moving elements
+		TiledMapTileLayer.Cell player_tile =  robot.getCell();
+		TiledMapTileLayer.Cell empty_tile = new TiledMapTileLayer.Cell();
+		TiledMapTileLayer playerLayer = layers.get(robot.getLayer());
+
 
 		switch (move){
 			case FORWARD:
-				System.out.println(layers.get(robot.getLayer()));
-				layers.get(robot.getLayer()).setCell(robot.getX(),robot.getY(), empty_tile);
+				layers.get(robot.getLayer()).setCell(robot.getXPosition(),robot.getYPosition(), empty_tile);
 				switch (robot.getDirection()){
 					case NORTH:
-						layers.get(robot.getLayer()).setCell(robot.getX(), robot.getY() + 1, player_tile);
-						robot.setY(robot.getY() + 1);
+						playerLayer.setCell(robot.getXPosition(), robot.getYPosition() + 1, player_tile);
+						robot.setYPosition(robot.getYPosition() + 1);
 						return true;
 					case EAST:
-						layers.get(robot.getLayer()).setCell(robot.getX() + 1, robot.getY(), player_tile);
-						robot.setX(robot.getX() + 1);
+						playerLayer.setCell(robot.getXPosition() + 1, robot.getYPosition(), player_tile);
+						robot.setXPosition(robot.getXPosition() + 1);
 						return true;
 					case WEST:
-						layers.get(robot.getLayer()).setCell(robot.getX() -1, robot.getY(), player_tile);
-						robot.setX(robot.getX() - 1);
+						playerLayer.setCell(robot.getXPosition() - 1, robot.getYPosition(), player_tile);
+						robot.setXPosition(robot.getXPosition() - 1);
 						return true;
 					case SOUTH:
-						layers.get(robot.getLayer()).setCell(robot.getX(), robot.getY() - 1, player_tile);
-						robot.setY(robot.getY() - 1);
-						return true;
-				}
-				return true;
-			case ROTATE_LEFT:
-				switch (robot.getDirection()){
-					case NORTH:
-						robot.setDirection(PlayerDirection.WEST);
-						return true;
-					case WEST:
-						robot.setDirection(PlayerDirection.SOUTH);
-						return true;
-					case SOUTH:
-						robot.setDirection(PlayerDirection.EAST);
-						return true;
-					case EAST:
-						robot.setDirection(PlayerDirection.NORTH);
-						return true;
-				}
-				return true;
-			case ROTATE_RIGHT:
-				switch (robot.getDirection()){
-					case NORTH:
-						robot.setDirection(PlayerDirection.EAST);
-						return true;
-					case EAST:
-						robot.setDirection(PlayerDirection.SOUTH);
-						return true;
-					case SOUTH:
-						robot.setDirection(PlayerDirection.WEST);
-						return true;
-					case WEST:
-						robot.setDirection(PlayerDirection.NORTH);
+						playerLayer.setCell(robot.getXPosition(), robot.getYPosition() - 1, player_tile);
+						robot.setYPosition(robot.getYPosition() - 1);
 						return true;
 				}
 		}
@@ -192,25 +160,26 @@ public class Board implements IBoard {
 	@Override
 	public boolean setElement(Element elem) {
 		for (Element o : playerElements) {
-			if (o.getX() == elem.getX() && o.getY() == elem.getY())
+			if (o.getXPosition() == elem.getXPosition() && o.getYPosition() == elem.getYPosition())
 				return false;
 		}
+
 		playerElements.add(elem);
 		return true;
 	}
 
 	@Override
 	public boolean setElement(Element elem, Vector2 pos) {
-		elem.setX((int) pos.x);
-		elem.setY((int) pos.y);
+		elem.setXPosition((int) pos.x);
+		elem.setYPosition((int) pos.y);
 
 		return setElement(elem);
 	}
 
 	@Override
 	public boolean setElement(Element elem, int x, int y) {
-		elem.setX(x);
-		elem.setY(y);
+		elem.setXPosition(x);
+		elem.setYPosition(y);
 
 		return setElement(elem);
 	}

@@ -12,96 +12,45 @@ import com.badlogic.gdx.maps.tiled.TiledMapTileLayer;
 import inf112.ingenting.roborally.board.BoardLayerType;
 
 public class Element implements IElement {
-    private int width = 64;
-    private int height = 64;
-    private int rotation = 0;
-
     private BoardLayerType layer;
-    private ElementType type;
     private TiledMapTileLayer.Cell cell;
 
-    private int x;
-    private int y;
+    private int xPosition;
+    private int yPosition;
 
     /**
-     * Create a drawable element with a default width and height of 64.
+     * Create a element that exists on map.
+     * Every element as a position, cell and a layer.
      * @param x position
-     * @param y positon
-     * @param type of the object for example ROBOT.
+     * @param y position
+     * @param cell Represents a position on the map.
+     * @param layer Layer that element is in.
      */
-    public Element(int x, int y, ElementType type, TiledMapTileLayer.Cell cell, BoardLayerType layer) {
-        this.x = x;
-        this.y = y;
-        this.type = type;
+    public Element(int x, int y, TiledMapTileLayer.Cell cell, BoardLayerType layer) {
+        this.yPosition = y;
+        this.xPosition = x;
         this.cell = cell;
         this.layer = layer;
     }
 
-    public Element(int x, int y, ElementType type, BoardLayerType layer){
-        this.x = x;
-        this.y = y;
-        this.type = type;
-        this.layer = layer;
+    @Override
+    public void setXPosition(int x) {
+        this.xPosition = x;
     }
 
     @Override
-    public void setX(int x) {
-        this.x = x;
+    public int getXPosition() {
+        return xPosition;
     }
 
     @Override
-    public int getX() {
-        return  x;
+    public void setYPosition(int y) {
+        this.yPosition = y;
     }
 
     @Override
-    public void setY(int y) {
-        this.y = y;
-    }
-
-    @Override
-    public int getY() {
-        return y;
-    }
-
-    @Override
-    public void setWidth(int width) {
-        this.width = width;
-    }
-
-    @Override
-    public int getWidth() {
-        return width;
-    }
-
-    @Override
-    public void setHeight(int height) {
-        this.height = height;
-    }
-
-    @Override
-    public int getHeight() {
-        return height;
-    }
-
-    @Override
-    public void setRotation(int rot) {
-        this.rotation = rot;
-    }
-
-    @Override
-    public int getRotation() {
-        return rotation;
-    }
-
-    @Override
-    public void setType(ElementType type) {
-        this.type = type;
-    }
-
-    @Override
-    public ElementType getType() {
-        return type;
+    public int getYPosition() {
+        return yPosition;
     }
 
     @Override
@@ -112,9 +61,5 @@ public class Element implements IElement {
     @Override
     public TiledMapTileLayer.Cell getCell() {
         return cell;
-    }
-
-    public void setCell(TiledMapTileLayer.Cell cell) {
-        this.cell = cell;
     }
 }
