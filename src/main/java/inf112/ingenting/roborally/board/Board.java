@@ -134,7 +134,7 @@ public class Board implements IBoard {
 
 		switch (move){
 			case FORWARD:
-				layers.get(robot.getLayer()).setCell(robot.getXPosition(),robot.getYPosition(), empty_tile);
+				playerLayer.setCell(robot.getXPosition(),robot.getYPosition(), empty_tile);
 				switch (robot.getDirection()){
 					case NORTH:
 						playerLayer.setCell(robot.getXPosition(), robot.getYPosition() + 1, player_tile);
