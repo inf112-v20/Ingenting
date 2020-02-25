@@ -29,3 +29,6 @@ mvn-app.iml
 hs_err_pid*
 .DS_Store
 Assets/.DS_Store
+mvn-app.iml
+*.plantuml
+mvn-app.iml
