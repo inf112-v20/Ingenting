@@ -1,9 +1,5 @@
 package inf112.ingenting.roborally.board;
 
-import com.badlogic.gdx.maps.tiled.TiledMapTileLayer;
-import com.badlogic.gdx.math.Vector2;
-import com.badlogic.gdx.utils.Array;
-import inf112.ingenting.roborally.element.Element;
 import inf112.ingenting.roborally.player.Robot;
 
 public interface IBoard {
@@ -13,102 +9,40 @@ public interface IBoard {
 	void render();
 
 	/**
-	 * Renders a specific layer.
-	 *
-	 * @param layer	The layer to render
-	 */
-	void render(BoardLayerType layer);
-
-	/**
-	 * Returns the contents of a given tile.
-	 *
-	 * @param pos	The tile to return
-	 * @return 		An array containing all layers of the given position
-	 */
-	Array<TiledMapTileLayer.Cell> getTile(Vector2 pos);
-
-	/**
-	 * Returns the contents of a given tile.
-	 *
-	 * @param x	The x-coordinate of the tile to return
-	 * @param y	The y-coordinate of the tile to return
-	 * @return	An array containing all layers of the given position
-	 */
-	Array<TiledMapTileLayer.Cell> getTile(int x, int y);
-
-	/**
-	 * Returns the element in the given position.
-	 *
-	 * If there is no element in the given position, returns null.
-	 *
-	 * @param pos	The position to return
-	 * @return		<code>Object</code> if an element is found,
-	 * 				<code>null</code> otherwise
-	 */
-	Element getElement(Vector2 pos);
-
-	/**
-	 * Returns the element in the given position.
-	 *
-	 * If there is no element in the given position, returns null.
-	 *
-	 * @param x	The x-coordinate of the position to return
-	 * @param y	The y-coordinate of the position to return
-	 * @return	<code>Object</code> if an element is found,
-	 * 			<code>null</code> otherwise
-	 */
-	Element getElement(int x, int y);
-
-	/**
-	 * Attempts to move a given element.
-	 *
-	 * If there is something obstructing the element, it cannot move and will fail.
-	 *
-	 * @param robot		The robot to move
-	 * @param move	The move in which the robot should execute.
-	 * @return			<code>true</code> if executing the move succeeds,
-	 * 					<code>false</code> otherwise
-	 */
-	boolean moveRobot(Robot robot, MoveType move);
-
-	/**
-	 * Attempts to place an element using it's internal position.
-	 *
-	 * If there is already an element in the given tile of the same type, the element cannot be placed.
-	 *
-	 * @param elem	The element to place
-	 * @return		<code>true</code> if the element could be placed,
-	 * 				<code>false</code> otherwise
-	 */
-	boolean setElement(Element elem);
-
-	/**
-	 * Attempts to place an element in a given position.
-	 *
-	 * If there is already an element in the given tile of the same type, the element cannot be placed.
-	 *
-	 * @param elem	The element to place
-	 * @param pos	The position in which to place the element
-	 * @return		<code>true</code> if the element could be placed,
-	 * 				<code>false</code> otherwise
-	 */
-	boolean setElement(Element elem, Vector2 pos);
-
-	/**
-	 * Attempts to place an element in a  given position.
-	 *
-	 * If there is already an element in the given tile of the same type, the element cannot be placed.
-	 *
-	 * @param elem	The element to place
-	 * @param x		The x-coordinate of the position in which to place the element
-	 * @param y		The y-coordinate of the position in which to place the element
-	 * @return		<code>true</code> if the element could be placed,
-	 * 				<code>false</code> otherwise
-	 */
-	boolean setElement(Element elem, int x, int y);
-
-	/**
-	 * Disposes of internal libglx classes
+	 * Disposes of LibGDX objects.
 	 */
 	void dispose();
+
+	/**
+	 * Adds a robot to the board.
+	 *
+	 * @param robot	The robot to add
+	 * @return		<code>true</code> if robot could be added
+	 * 				<code>false</code> if there is already another robot in the
+	 * 				new robot's board position
+	 */
+	boolean addRobot(Robot robot);
+
+	/**
+	 * Sets a robot in the given index / id.
+	 *
+	 * @param index	The index to add the robot to
+	 * @param robot	The robot to add
+	 * @return		<code>true</code> if robot could be added
+	 * 				<code>false</code> if there is already another robot in the
+	 * 				new robot's board position
+	 */
+	boolean setRobot(int index, Robot robot);
+
+	/**
+	 * Removes the robot in the given index.
+	 *
+	 * @param index The index of the robot to remove
+	 */
+	void removeRobot(int index);
+
+	/**
+	 * Moves all robots using internal Programming Cards.
+	 */
+	void moveRobots();
 }

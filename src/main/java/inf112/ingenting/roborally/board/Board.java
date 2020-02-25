@@ -1,192 +1,259 @@
 package inf112.ingenting.roborally.board;
 
 import com.badlogic.gdx.graphics.OrthographicCamera;
-import com.badlogic.gdx.maps.MapObject;
+import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.maps.tiled.TiledMap;
 import com.badlogic.gdx.maps.tiled.TiledMapTileLayer;
 import com.badlogic.gdx.maps.tiled.TmxMapLoader;
 import com.badlogic.gdx.maps.tiled.renderers.OrthogonalTiledMapRenderer;
-import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.utils.Array;
-import inf112.ingenting.roborally.element.Element;
 import inf112.ingenting.roborally.player.Robot;
+import inf112.ingenting.roborally.player.RobotDirection;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Map;
+import java.util.PriorityQueue;
 
-/**
- * Implementation of <code>IBoard</code>.
- *
- * @author Jakob S
- * @see IBoard
- */
 public class Board implements IBoard {
+	public static final int LAYER_FLOOR = 0, LAYER_INTERACTABLE = 1;
+
 	private TiledMap map;
-	private Map<BoardLayerType, TiledMapTileLayer> layers;
+	private TiledMapTileLayer[] layers;
+	private OrthographicCamera camera;
 	private OrthogonalTiledMapRenderer mapRenderer;
 
-	private final String LAYER_NAME_FLOOR			= "floor";
-	private final String LAYER_NAME_INTERACTABLE	= "interactable";
-	private final String LAYER_NAME_PLAYER 			= "player";
+	private Array<Robot> robots;
 
-	/**
-	 * Player layer.
-	 *
-	 * The player layer should not be a <code>TiledMapTileLayer</code> due to the playable elements needing
-	 * 	a different datastructure to the base tiles (things that can move).
-	 *
-	 * 	This layer includes flags and respawn points.
-	 */
-	private ArrayList<Element> playerElements;
+	public Board(String fileName, float unitScale, OrthographicCamera camera) {
+		map = new TmxMapLoader().load(fileName);
 
-	/**
-	 * Creates a board based on a Tiled (*.tmx) file.
-	 *
-	 * The constructor will attempt to use three layers, named:
-	 * 	'floor',
-	 * 	'interactable',
-	 * 	'player'.
-	 *
-	 * The class will use tile type-names for gameplay-logic.
-	 *
-	 * @param filename	The name of the Tiled map to load
-	 * @param unitScale	The per-tile pixel scaling to be used
-	 *
-	 * @throws IncorrectMapFormatException	If the Tiled map does not have the correct layer & tileset format.
-	 */
-	public Board(String filename, float unitScale, OrthographicCamera camera) throws IncorrectMapFormatException
-	{
-		map = new TmxMapLoader().load(filename);
+		layers = new TiledMapTileLayer[] {
+				(TiledMapTileLayer) map.getLayers().get("floor"),
+				(TiledMapTileLayer) map.getLayers().get("interactable")
+		};
 
-		layers = new HashMap<>();
-		layers.put(BoardLayerType.FLOOR,		(TiledMapTileLayer) map.getLayers().get(LAYER_NAME_FLOOR));
-		layers.put(BoardLayerType.INTERACTABLE,	(TiledMapTileLayer) map.getLayers().get(LAYER_NAME_INTERACTABLE));
-		layers.put(BoardLayerType.PLAYER,		(TiledMapTileLayer) map.getLayers().get(LAYER_NAME_PLAYER));
-		//TODO: Add wall layer and player start.
+		this.camera = camera;
+		mapRenderer = new OrthogonalTiledMapRenderer(map, unitScale);
 
-		TiledMapTileLayer players = (TiledMapTileLayer) map.getLayers().get("players");
-		if (players != null) {
-			for (MapObject object : players.getObjects()) {
-				// TODO: Get player elements
-			}
-		}
+		robots = new Array<>();
 
-		/*	TODO: Redo tileset & map so that layer names & tile types are correctly formatted.
-		for (TiledMapTileLayer layer : layers.values()) {
-			if (layer == null) {
-				throw new IncorrectMapFormatException();
-			}
-		}*/
+		System.out.println("Tilesize: " + layers[0].getTileWidth() + " " + layers[0].getTileHeight());
+	}
+
+	public Board(String fileName, float unitScale, OrthographicCamera camera, Array<Robot> robots) {
+		map = new TmxMapLoader().load(fileName);
+
+		layers = new TiledMapTileLayer[] {
+				(TiledMapTileLayer) map.getLayers().get("floor"),
+				(TiledMapTileLayer) map.getLayers().get("interactable")
+		};
 
 		mapRenderer = new OrthogonalTiledMapRenderer(map, unitScale);
 		mapRenderer.setView(camera);
+
+		this.robots = robots;
 	}
 
 	@Override
 	public void render() {
+		renderTileMap();
+		renderRobots();
+	}
+
+	public void renderTileMap() {
+		mapRenderer.setView(camera);
 		mapRenderer.render();
 	}
 
-	@Override
-	public void render(BoardLayerType layer) {
-		mapRenderer.renderTileLayer(layers.get(layer));
+	public void renderTileMap(int layer) {
+		mapRenderer.renderTileLayer(layers[layer]);
 	}
 
-	@Override
-	public Array<TiledMapTileLayer.Cell> getTile(Vector2 pos) {
-		return this.getTile((int) pos.x, (int) pos.y);
-	}
+	public void renderRobots() {
+		Batch batch = mapRenderer.getBatch();
 
-	@Override
-	public Array<TiledMapTileLayer.Cell> getTile(int x, int y) {
-		Array<TiledMapTileLayer.Cell> tile = new Array<>();
-
-		tile.add(
-			layers.get(BoardLayerType.FLOOR).getCell(x, y),
-			layers.get(BoardLayerType.INTERACTABLE).getCell(x, y)
-		);
-
-		return tile;
-	}
-
-	@Override
-	public Element getElement(Vector2 pos) {
-		return this.getElement((int) pos.x, (int) pos.y);
-	}
-
-	@Override
-	public Element getElement(int x, int y) {	// TODO: Get a better solution than this
-		for (Element o : playerElements) {
-			if (o.getXPosition() == x && o.getYPosition() == y)
-				return o;
+		batch.begin();
+		for (Robot robot : robots) {
+			robot.render(batch);
 		}
+		batch.end();
+	}
 
-		return null;
+	public Robot getRobot(int index) {
+		return robots.get(index);
 	}
 
 	@Override
-	public boolean moveRobot(Robot robot, MoveType move) {	// TODO: Setup logic for moving elements
-		TiledMapTileLayer.Cell player_tile =  robot.getCell();
-		TiledMapTileLayer.Cell empty_tile = new TiledMapTileLayer.Cell();
-		TiledMapTileLayer playerLayer = layers.get(robot.getLayer());
-
-
-		switch (move){
-			case FORWARD:
-				layers.get(robot.getLayer()).setCell(robot.getXPosition(),robot.getYPosition(), empty_tile);
-				switch (robot.getDirection()){
-					case NORTH:
-						playerLayer.setCell(robot.getXPosition(), robot.getYPosition() + 1, player_tile);
-						robot.setYPosition(robot.getYPosition() + 1);
-						return true;
-					case EAST:
-						playerLayer.setCell(robot.getXPosition() + 1, robot.getYPosition(), player_tile);
-						robot.setXPosition(robot.getXPosition() + 1);
-						return true;
-					case WEST:
-						playerLayer.setCell(robot.getXPosition() - 1, robot.getYPosition(), player_tile);
-						robot.setXPosition(robot.getXPosition() - 1);
-						return true;
-					case SOUTH:
-						playerLayer.setCell(robot.getXPosition(), robot.getYPosition() - 1, player_tile);
-						robot.setYPosition(robot.getYPosition() - 1);
-						return true;
-				}
-		}
-		return false;
-	}
-
-	@Override
-	public boolean setElement(Element elem) {
-		for (Element o : playerElements) {
-			if (o.getXPosition() == elem.getXPosition() && o.getYPosition() == elem.getYPosition())
+	public boolean addRobot(Robot robot) {
+		for (Robot r : robots) {
+			if (robot.getPosition() == r.getPosition())
 				return false;
 		}
 
-		playerElements.add(elem);
+		robots.add(robot);
+
 		return true;
 	}
 
 	@Override
-	public boolean setElement(Element elem, Vector2 pos) {
-		elem.setXPosition((int) pos.x);
-		elem.setYPosition((int) pos.y);
+	public boolean setRobot(int index, Robot robot) {
+		for (Robot r : robots) {
+			if (robot.getPosition() == r.getPosition())
+				return false;
+		}
 
-		return setElement(elem);
+		robots.set(index, robot);
+
+		return true;
 	}
 
 	@Override
-	public boolean setElement(Element elem, int x, int y) {
-		elem.setXPosition(x);
-		elem.setYPosition(y);
-
-		return setElement(elem);
+	public void removeRobot(int index) {
+		robots.removeIndex(index);
 	}
 
-	@Override
+	public Array<Robot> getRobots() {
+		return robots;
+	}
+
+	public void setRobots(Array<Robot> robots) {
+		this.robots = robots;
+	}
+
+	public boolean setTileCell(int x, int y, TiledMapTileLayer.Cell tile, int layer) {
+		if (layer < 0 || layer > 1)
+			return false;
+
+		layers[layer].setCell(x, y, tile);
+
+		return true;
+	}
+
+	public boolean setTileCell(int x, int y, TiledMapTileLayer.Cell[] tile) {
+		if (tile.length != 2)
+			return false;
+
+		layers[0].setCell(x, y, tile[0]);
+		layers[1].setCell(x, y, tile[1]);
+
+		return true;
+	}
+
+	public TiledMapTileLayer.Cell[] getTileCells(int x, int y) {
+		return new TiledMapTileLayer.Cell[] { layers[0].getCell(x, y), layers[1].getCell(x, y) };
+	}
+
 	public void dispose() {
 		mapRenderer.dispose();
 		map.dispose();
+
+		for (Robot robot : robots) {
+			robot.dispose();
+		}
+	}
+
+	private void moveRobot(Robot robot) {
+		// If the robot does not have a programming card, return
+		if (robot.getMove() == null)
+			return;
+
+		for (MoveType move : robot.getMove().getMoves()) {
+			switch (move) {
+				case FORWARD:
+					switch (robot.getDirection()) {
+						case NORTH:
+							robot.setRelativePosition(0, 1);
+							break;
+						case SOUTH:
+							robot.setRelativePosition(0, -1);
+							break;
+						case EAST:
+							robot.setRelativePosition(1, 0);
+							break;
+						case WEST:
+							robot.setRelativePosition(-1, 0);
+							break;
+						default:
+							break;
+					}
+					break;
+				case ROTATE_LEFT:
+					switch (robot.getDirection()) {
+						case NORTH:
+							robot.setDirection(RobotDirection.WEST);
+							break;
+						case SOUTH:
+							robot.setDirection(RobotDirection.EAST);
+							break;
+						case EAST:
+							robot.setDirection(RobotDirection.NORTH);
+							break;
+						case WEST:
+							robot.setDirection(RobotDirection.SOUTH);
+							break;
+						default:
+							break;
+					}
+					break;
+				case ROTATE_RIGHT:
+					switch (robot.getDirection()) {
+						case NORTH:
+							robot.setDirection(RobotDirection.EAST);
+							break;
+						case SOUTH:
+							robot.setDirection(RobotDirection.WEST);
+							break;
+						case EAST:
+							robot.setDirection(RobotDirection.SOUTH);
+							break;
+						case WEST:
+							robot.setDirection(RobotDirection.NORTH);
+							break;
+						default:
+							break;
+					}
+					break;
+				case BACKUP:
+					switch (robot.getDirection()) {
+						case NORTH:
+							robot.setRelativePosition(0, -1);
+							break;
+						case SOUTH:
+							robot.setRelativePosition(0, 1);
+							break;
+						case EAST:
+							robot.setRelativePosition(-1, 0);
+							break;
+						case WEST:
+							robot.setRelativePosition(1, 0);
+							break;
+						default:
+							break;
+					}
+					break;
+				default:
+					break;
+			}
+		}
+	}
+
+	@Override
+	public void moveRobots() {
+		// Lambda comparator to sort the robots based on priority
+		PriorityQueue<Robot> robotMoveQueue = new PriorityQueue<>((r1, r2) -> {
+			return Integer.compare(r1.getMove().getPriority(), r2.getMove().getPriority());
+		});
+
+		for (Robot r : robots) {
+			robotMoveQueue.add(r);
+		}
+
+		// If there are no robots, return before NullPtrException
+		if (robotMoveQueue.size() == 0)
+			return;
+
+		moveRobot(robotMoveQueue.poll());
+	}
+
+	public Batch getMapRendererBatch() {
+		return mapRenderer.getBatch();
 	}
 }
