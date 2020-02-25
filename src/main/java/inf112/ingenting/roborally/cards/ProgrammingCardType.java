@@ -15,35 +15,21 @@ import static inf112.ingenting.roborally.board.MoveType.FORWARD;
  * testing purposes.
  */
 public enum ProgrammingCardType {
-	MOVE_1_P1(FORWARD, 630),
-	MOVE_1_P2(FORWARD, 550),
-	MOVE_2(new MoveType[]{FORWARD, FORWARD}, 740),
-	MOVE_3(new MoveType[]{FORWARD, FORWARD, FORWARD}, 840),
-	ROTATE_RIGHT_P1(MoveType.ROTATE_RIGHT, 400),
-	ROTATE_RIGHT_P2(MoveType.ROTATE_RIGHT, 260),
-	ROTATE_RIGHT_P3(MoveType.ROTATE_RIGHT, 120),
-	ROTATE_LEFT_P1(MoveType.ROTATE_LEFT, 300),
-	ROTATE_LEFT_P2(MoveType.ROTATE_LEFT, 240),
-	ROTATE_LEFT_P3(MoveType.ROTATE_LEFT, 100);
+	MOVE_1(FORWARD),
+	MOVE_2(FORWARD, FORWARD),
+	MOVE_3(FORWARD, FORWARD, FORWARD),
+	ROTATE_RIGHT(MoveType.ROTATE_RIGHT),
+	ROTATE_LEFT(MoveType.ROTATE_LEFT),
+	BACKUP(MoveType.BACKUP),
+	AGAIN;
 
 	private final MoveType[] moves;
-	private final int priority;
 
-	ProgrammingCardType(MoveType move, int priority) {
-		this.moves = new MoveType[]{move};
-		this.priority = priority;
-	}
-
-	ProgrammingCardType(MoveType[] moves, int priority) {
+	ProgrammingCardType(MoveType ... moves) {
 		this.moves = moves;
-		this.priority = priority;
 	}
 
 	public MoveType[] getMoves() {
 		return moves;
-	}
-
-	public int getPriority() {
-		return priority;
 	}
 }
