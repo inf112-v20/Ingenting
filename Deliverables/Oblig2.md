@@ -12,11 +12,13 @@ IT-Strateg: Oppdage og viderutvikle sjefens visjon og tar seg av møterefferat o
 
 UI/Design: Står for å ta seg av designe på brettet og robotene. 
 
-Etter å ha sett tilbake på det som ble gjort i forrige iterasjon ser vi at vi ikke har vært de beste på å konkluderer hva vi skal gjøre og fordele oppgaver. Fremover har vi bestemmt oss for å bli flinkere til å gi poeng til oppgavene som skal bli gjort. Vi skal fokuserer mer på å refaktorere koden og legge ting i backloggen. Vi skal gå mot lage mindre og bedrer oppgaver og forholde oss til ting som skal bli gjort med en gang i stedet for ting som skal være ferdig langt i fremtiden. 
+Etter å ha sett tilbake på det som ble gjort i forrige iterasjon ser vi at vi ikke har vært de beste på å konkluderer hva vi skal gjøre og fordele oppgaver, noe vi skulle ha gjort med tanke på at vi skal følger XP metodikken. XP metodikken tillater oss å gjøre store endringer på kort tid.
+
+ Fremover har vi bestemmt oss for å bli flinkere til å gi poeng til oppgavene som skal bli gjort. Vi skal fokuserer mer på å refaktorere koden og legge ting i backloggen. Vi skal gå mot lage mindre og bedrer oppgaver og forholde oss til ting som skal bli gjort med en gang i stedet for ting som skal være ferdig langt i fremtiden. 
 
 Gruppe dynamikken i Ingenting har vært ganske god. Vi har hatt diskusjoner der vi har løst problmer fint og effektivt. Alle har vært flinke og møtt opp som planlagt.
 
-Kommunikasjonen innad i teamet flyter svært bra og vi er flinke til å si hva vi mener. Vi har også ukentlig brief noe som også er en del av XP programmering der vi snakker om hvilke utfordringer den enkelte har møtt på og hvordan de har blitt løst.
+Kommunikasjonen innad i teamet flyter svært bra og vi er flinke til å si hva vi mener. Vi har også ukentlig brief noe som også er en del av XP programmering der vi snakker om hvilke utfordringer den enkelte har møtt på og hvordan de har blitt løst. Vi prøver også å aktivet bruke parprogrammering.
 
 Som nevnt litt lengre opp så skal vi fremover fokusere på å poengtere og fordele oppgaver. Dette gjør vi fordi vi hadde en uoversiktlig start, der noen slet med å finne ut hva de skulle gjøre. 
 
@@ -28,7 +30,7 @@ Som nevnt litt lengre opp så skal vi fremover fokusere på å poengtere og ford
 ---
 ## Deloppgave 2: Krav
 
-Denne iterasjonen har vi prioritert bevegelse å få roboten til å bevege seg. Dette har vi valgt å prioritere ettersom at dette er noe som er med i MVP. En annen grunn til at vi har prioritert bevegelse er fordi at det kan føre til store endringer i nåværende kode (presentasjon av brett osv).
+Denne iterasjonen har vi prioritert bevegelse å få roboten til å bevege seg. Dette har vi valgt å prioritere ettersom at dette er noe som er med i MVP(Det som hører til MVP finner dere på projectboardet med tag MVP). En annen grunn til at vi har prioritert bevegelse er fordi at det kan føre til store endringer i nåværende kode (presentasjon av brett osv).
 Dette har det også ført til og vi har endret store deler av nåværende kode for å innføre bevegelse.
 
 Brukerhistoriene har også blitt prioritert i gitt rekkefølge, fordi at roboten skal kunne bevege seg ved å bruke programmeringskort.
@@ -61,14 +63,8 @@ Som spiller trenger jeg en robot, slik at jeg kan bevege den rundt på brettet
 * Styring av robot ved å bruke programmeringskort som er kodet inn i koden.
 * Styring av robot ved hjelp av programmering logikken
 
-### Brukerhistorie: nettverk
-Som spiller vil jeg spille med andre, slik at det blir en sosial opplevelse
+---
+## Manuell testing
+Bevegelse:
 
-**Akseptansekriterier**
-* To spiller skal kunne spille over samme nettverk.
-* Spillere som spiller i lag skal kunne se samme brett.
-* 
-
-**Arbeidsoppgaver**
-* Implimentere 
-* Få 
+Brett:
