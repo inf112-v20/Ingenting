@@ -7,7 +7,6 @@
 
 package inf112.ingenting.roborally.element;
 
-import com.badlogic.gdx.maps.tiled.TiledMap;
 import com.badlogic.gdx.maps.tiled.TiledMapTileLayer;
 import inf112.ingenting.roborally.board.BoardLayerType;
 
