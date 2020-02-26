@@ -63,7 +63,7 @@
     </resources>
     <testResources>
       <testResource>
-        <directory>
+        <directory >
           ${basedir}/assets
         </directory>
       </testResource>
