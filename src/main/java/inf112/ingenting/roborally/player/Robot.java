@@ -2,7 +2,6 @@ package inf112.ingenting.roborally.player;
 
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Batch;
-import com.badlogic.gdx.math.Vector;
 import com.badlogic.gdx.math.Vector2;
 import inf112.ingenting.roborally.cards.ProgrammingCard;
 import inf112.ingenting.roborally.cards.ProgrammingCardType;
@@ -17,6 +16,11 @@ public class Robot {
 	public Robot(String texturePath, Vector2 position) {
 		robotTexture = new Texture(texturePath);
 
+		this.position = position;
+		direction = RobotDirection.WEST;
+	}
+
+	public Robot(Vector2 position) {
 		this.position = position;
 		direction = RobotDirection.WEST;
 	}
