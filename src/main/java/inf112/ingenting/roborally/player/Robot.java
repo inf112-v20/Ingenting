@@ -1,39 +1,72 @@
 package inf112.ingenting.roborally.player;
 
-import com.badlogic.gdx.maps.tiled.TiledMapTileLayer;
-import inf112.ingenting.roborally.board.Board;
-import inf112.ingenting.roborally.board.BoardLayerType;
-import inf112.ingenting.roborally.board.MoveType;
+import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.g2d.Batch;
+import com.badlogic.gdx.math.Vector2;
+import inf112.ingenting.roborally.cards.ProgrammingCard;
 import inf112.ingenting.roborally.cards.ProgrammingCardType;
-import inf112.ingenting.roborally.element.Element;
-import inf112.ingenting.roborally.element.ElementType;
 
-public class Robot extends Element {
+public class Robot {
+	private Vector2 position;
+	private RobotDirection direction;
+	private ProgrammingCard lastCard;
 
-    private Board board;
-    private RobotDirection direction;
+	private Texture robotTexture;
 
-    /**
-     * Create a Robot with a default width and height of 64.
-     * @param x position
-     * @param y positon
-     * @param board game where player can move around and interact with objects.
-     */
-    public Robot(int x, int y, Board board, TiledMapTileLayer.Cell cell, BoardLayerType layer)
-    {
-        super(x, y, cell, layer);
-        this.board = board;
-        this.direction = RobotDirection.NORTH;
-    }
+	public Robot(String texturePath, Vector2 position) {
+		robotTexture = new Texture(texturePath);
 
-    public void move(ProgrammingCardType card){
-        // TODO: Add movement logic.
-        for (MoveType move: card.getMoves()) {
-            board.moveRobot(this, move);
-        }
-    }
+		this.position = position;
+		direction = RobotDirection.WEST;
+	}
 
-    public RobotDirection getDirection() {
-        return direction;
-    }
+	public Robot(Vector2 position) {
+		this.position = position;
+		direction = RobotDirection.WEST;
+	}
+
+	public void render(Batch batch) {
+		batch.draw(robotTexture, position.x, position.y, 1f, 1f);
+	}
+
+	public Vector2 getPosition() {
+		return position;
+	}
+
+	public void setPosition(Vector2 position) {
+		this.position = position;
+	}
+
+	public void setRelativePosition(Vector2 position) {
+		this.position.x += position.x;
+		this.position.y += position.y;
+	}
+
+	public void setRelativePosition(int x, int y) {
+		position.x += x;
+		position.y += y;
+	}
+
+	public void registerMove(ProgrammingCard card) {
+		if (card == null || card.getCardType() == ProgrammingCardType.AGAIN)
+			return;
+
+		lastCard = card;
+	}
+
+	public ProgrammingCard getMove() {
+		return lastCard;
+	}
+
+	public RobotDirection getDirection() {
+		return direction;
+	}
+
+	public void setDirection(RobotDirection direction) {
+		this.direction = direction;
+	}
+
+	public void dispose() {
+		robotTexture.dispose();
+	}
 }

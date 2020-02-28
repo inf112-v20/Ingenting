@@ -2,5 +2,6 @@
 
 Digital implementation of the classic board game Roborally.
 
-# Install
+## Install
+
 Download maven dependencies & run
