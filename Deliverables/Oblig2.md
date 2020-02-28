@@ -76,5 +76,4 @@ Som spiller trenger jeg en robot, slik at jeg kan bevege den rundt på brettet
 ## Manuell testing
 
 Bevegelse:
-
-Brett:
+Vi har lagt til i launcher at roboten skal utføre et tilfeldig programmeringskort for å bekrefte visuelt at roboten kan bevege seg.
