@@ -34,8 +34,6 @@ public class Board implements IBoard {
 		mapRenderer = new OrthogonalTiledMapRenderer(map, unitScale);
 
 		robots = new Array<>();
-
-		System.out.println("Tilesize: " + layers[0].getTileWidth() + " " + layers[0].getTileHeight());
 	}
 
 	public Board(String fileName, float unitScale, OrthographicCamera camera, Array<Robot> robots) {
@@ -50,6 +48,10 @@ public class Board implements IBoard {
 		mapRenderer.setView(camera);
 
 		this.robots = robots;
+	}
+
+	public Board() {
+		this.robots = new Array<>();
 	}
 
 	@Override

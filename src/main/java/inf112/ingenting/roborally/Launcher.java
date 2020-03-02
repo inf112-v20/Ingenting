@@ -6,6 +6,8 @@ import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.math.Vector2;
 import inf112.ingenting.roborally.board.Board;
+import inf112.ingenting.roborally.cards.ProgrammingCard;
+import inf112.ingenting.roborally.cards.ProgrammingCardType;
 import inf112.ingenting.roborally.player.Robot;
 
 public class Launcher extends ApplicationAdapter {
@@ -13,10 +15,10 @@ public class Launcher extends ApplicationAdapter {
 	private Robot robot;
 	private Board board;
 
-    /*
+
     private float deltaTime;
     private float moveRobotExample;
-     */
+
 
 	@Override
 	public void create() {
@@ -30,7 +32,7 @@ public class Launcher extends ApplicationAdapter {
 		robot = new Robot("player_1.png", new Vector2(5f, 5f));
 		board.addRobot(robot);
 
-		//moveRobotExample = 0;
+		moveRobotExample = 0;
 	}
 
 	@Override
@@ -45,7 +47,6 @@ public class Launcher extends ApplicationAdapter {
 		board.render();
 
 		// Visual test to see if robot moves
-        /*
         deltaTime = Gdx.graphics.getDeltaTime();
         if (moveRobotExample > 2) {
             moveRobotExample = 0;
@@ -56,7 +57,6 @@ public class Launcher extends ApplicationAdapter {
             System.out.println("Moving: " + test.getCardType());
         } else
             moveRobotExample += deltaTime;
-        */
 	}
 
 	@Override
