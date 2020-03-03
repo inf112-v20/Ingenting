@@ -2,6 +2,7 @@ package inf112.ingenting.roborally.player;
 
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Batch;
+import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.Vector2;
 import inf112.ingenting.roborally.cards.ProgrammingCard;
 import inf112.ingenting.roborally.cards.ProgrammingCardType;
@@ -12,6 +13,7 @@ public class Robot {
 	private ProgrammingCard lastCard;
 
 	private Texture robotTexture;
+	//private TextureRegion textureRegion = new TextureRegion(robotTexture);
 
 	public Robot(String texturePath, Vector2 position) {
 		robotTexture = new Texture(texturePath);
@@ -26,7 +28,22 @@ public class Robot {
 	}
 
 	public void render(Batch batch) {
-		batch.draw(robotTexture, position.x, position.y, 1f, 1f);
+		switch (this.direction) {
+			case SOUTH:
+				batch.draw(new TextureRegion(robotTexture), position.x, position.y, 0.5f, 0.5f, 1f, 1f, 1f, 1f, 180);
+				break;
+			case EAST:
+				batch.draw(new TextureRegion(robotTexture), position.x, position.y, 0.5f, 0.5f, 1f, 1f, 1f, 1f, 270);
+				break;
+			case WEST:
+				batch.draw(new TextureRegion(robotTexture), position.x, position.y, 0.5f, 0.5f, 1f, 1f, 1f, 1f, 90);
+				break;
+			case NORTH:
+				batch.draw(new TextureRegion(robotTexture), position.x, position.y, 0.5f, 0.5f, 1f, 1f, 1f, 1f, 0);
+				break;
+			default:
+				break;
+		}
 	}
 
 	public Vector2 getPosition() {
