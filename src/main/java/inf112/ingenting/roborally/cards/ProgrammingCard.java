@@ -1,12 +1,18 @@
 package inf112.ingenting.roborally.cards;
 
+import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.g2d.Sprite;
+import com.badlogic.gdx.scenes.scene2d.Actor;
 import inf112.ingenting.roborally.board.MoveType;
 
 import java.util.Random;
 
-public class ProgrammingCard {
+public class ProgrammingCard extends Actor {
 	private ProgrammingCardType type;
 	private int priority;
+	float width, height;
+	Sprite cardSprite;
 
 	/**
 	 * Constructs class and randomly chooses a Programming Card Type & priority
@@ -27,6 +33,12 @@ public class ProgrammingCard {
 	public ProgrammingCard(ProgrammingCardType type) {
 		this.type = type;
 		this.priority = new Random().nextInt(500) + 100;
+
+		// Testing to get the image to each programming card
+		System.out.println(type.name() + ".png");
+		cardSprite = new Sprite(new Texture(Gdx.files.internal(type.name() + ".png")));
+		this.width = cardSprite.getWidth();
+		this.height = cardSprite.getHeight();
 	}
 
 	/**
