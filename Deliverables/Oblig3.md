@@ -1,7 +1,17 @@
 # Obligatorisk oppgave 3
-## Deloppgave 1:
-## Deloppgave 2:
-## Deloppgave 3:
+## Deloppgave 1: Team og prosjekt
+* Møterefferat ligger vedlagt i møterefferat.md i Deliveries
+* Rollene i gruppen fungerer veldig fint. En merker at vi er inne i ny tid
+  nå som korona viruset har kommet. Dette har ført til at vi ikke får møte fysisk,
+  men samtidig får vi teste hvordan teamet vårt fungerer over en distanse.
+  
+## Deloppgave 2: Krav
+## Deloppgave 3: Produktleveranse og kodekvalitet
+
+### Testing
+* Utfører en manuell test for å sjekke det er mulig å bevege roboten i retningen som vi trykker på piltastene.
+trykker jeg venstre piltast roterer roboten seg og beveger seg mot venstre
+
 
 ### Brukerhistorie: Visualisere kort
 
@@ -38,12 +48,21 @@
 * Koble til to spillere ved hjelp av Kryonet
 
 
-### Brukerhistorie: 
+### Brukerhistori: Spillere skal kunne se samme brett 
 **Akseptansekriterier:**
 * To spiller skal kunne se samme brett.
 
 **Arbeidsoppgaver:**
 * Hosten sendre samme brett til begge spillerene 
+
+### Brukerhistorie: Bevegelse med taster for å kunne teste spille enklere
+**Akseptansekriterier:**
+* Bevege spilleren med piltastene
+
+**Arbeidsoppgaver:**
+* Implementere keylistening og utføre bevegelsen i den retningen
+
+
 
 ### Brukerhistorie: 
 **Akseptansekriterier:**

@@ -46,16 +46,18 @@ public class Launcher extends ApplicationAdapter {
 		camera.update();
 		board.render();
 
+
 		// Visual test to see if robot moves
         deltaTime = Gdx.graphics.getDeltaTime();
-        if (moveRobotExample > 2) {
-            moveRobotExample = 0;
-            ProgrammingCard test = new ProgrammingCard();
+        if (moveRobotExample > 1) {
+			moveRobotExample = 0;
+            // ProgrammingCard test = new ProgrammingCard();
             //ProgrammingCard first = new ProgrammingCard(ProgrammingCardType.MOVE_3);
 
-            robot.registerMove(test);
+            // robot.registerMove(test);
             board.moveRobots();
-            System.out.println("Moving: " + test.getCardType());
+			board.moveRobotKey(robot);
+            // System.out.println("Moving: " + test.getCardType());
         } else
             moveRobotExample += deltaTime;
 	}

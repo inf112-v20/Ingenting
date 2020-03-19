@@ -1,5 +1,7 @@
 package inf112.ingenting.roborally.board;
 
+import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.Input;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.maps.tiled.TiledMap;
@@ -151,7 +153,28 @@ public class Board implements IBoard {
 			robot.dispose();
 		}
 	}
-
+	public void moveRobotKey(Robot robot) {
+		if(Gdx.input.isKeyPressed(Input.Keys.UP)) {
+			robot.setRelativePosition(0, 1);
+			robot.setDirection(RobotDirection.NORTH);
+			System.out.println("Moving to the UP");
+		}
+		if(Gdx.input.isKeyPressed(Input.Keys.RIGHT)) {
+			robot.setRelativePosition(1, 0);
+			robot.setDirection(RobotDirection.EAST);
+			System.out.println("Moving to the RIGHT");
+		}
+		if(Gdx.input.isKeyPressed(Input.Keys.LEFT)) {
+			robot.setRelativePosition(-1, 0);
+			robot.setDirection(RobotDirection.WEST);
+			System.out.println("Moving to the LEFT");
+		}
+		if(Gdx.input.isKeyPressed(Input.Keys.DOWN)) {
+			robot.setRelativePosition(0, -1);
+			robot.setDirection(RobotDirection.SOUTH);
+			System.out.println("Moving to the LEFT");
+		}
+	}
 	private void moveRobot(Robot robot) {
 		// If the robot does not have a programming card, return
 		if (robot.getMove() == null)
