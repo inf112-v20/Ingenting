@@ -51,11 +51,11 @@ public class Launcher extends ApplicationAdapter {
         if (moveRobotExample > 2) {
             moveRobotExample = 0;
             ProgrammingCard test = new ProgrammingCard();
-            ProgrammingCard first = new ProgrammingCard(ProgrammingCardType.MOVE_3);
+            //ProgrammingCard first = new ProgrammingCard(ProgrammingCardType.MOVE_3);
 
             robot.registerMove(test);
             board.moveRobots();
-            System.out.println("Moving: " + first.getCardType());
+            System.out.println("Moving: " + test.getCardType());
         } else
             moveRobotExample += deltaTime;
 	}
