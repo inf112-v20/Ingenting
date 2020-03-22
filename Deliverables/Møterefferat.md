@@ -35,3 +35,19 @@ Oppmøte: Alle
 * * Sigurd og Ørjan brukergrensesnitt (enkelt og god påvirkning)
 * * Ayoub Nettverk
 * Oppsumering
+
+
+## 3/10/20
+Oppmøte: Alle
+* Skriv ReadMe step by step guide
+* Flere små bruker historier
+* Mer om Metodologien vi bruker, litt mer nøye til kravene
+
+
+## 3/17/20
+Oppmøte: Sigurd, Tammoui, Ørjan
+* Nye brukehistrier - hull, start
+* Jacob fortsetter med nettverk
+* Ørjan Bevegelse med piltaster
+* Sigurd legger til flagg på brettet
+* Tammoui prøver seg på visualisering
