@@ -27,6 +27,7 @@ public class Launcher extends ApplicationAdapter {
 		camera.zoom = 1f;
 		camera.update();
 
+		//board = new Board("mainMap.tmx", (float) 1 / 64, camera);
 		board = new Board("testMap.tmx", (float) 1 / 64, camera);
 
 		robot = new Robot("player_1.png", new Vector2(5f, 5f));

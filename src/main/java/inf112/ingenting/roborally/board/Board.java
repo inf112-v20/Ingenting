@@ -12,6 +12,7 @@ import com.badlogic.gdx.utils.Array;
 import inf112.ingenting.roborally.player.Robot;
 import inf112.ingenting.roborally.player.RobotDirection;
 
+import java.util.ArrayList;
 import java.util.PriorityQueue;
 
 public class Board implements IBoard {
@@ -29,6 +30,8 @@ public class Board implements IBoard {
 
 		layers = new TiledMapTileLayer[] {
 				(TiledMapTileLayer) map.getLayers().get("floor"),
+				(TiledMapTileLayer) map.getLayers().get("wall"),
+				(TiledMapTileLayer) map.getLayers().get("player_start"),
 				(TiledMapTileLayer) map.getLayers().get("interactable")
 		};
 
@@ -131,18 +134,22 @@ public class Board implements IBoard {
 		return true;
 	}
 
-	public boolean setTileCell(int x, int y, TiledMapTileLayer.Cell[] tile) {
-		if (tile.length != 2)
-			return false;
+	public boolean setTileCell(int x, int y, ArrayList<TiledMapTileLayer.Cell> tile) {
 
-		layers[0].setCell(x, y, tile[0]);
-		layers[1].setCell(x, y, tile[1]);
+		for (int i = 0; i < layers.length; i++) {
+			layers[i].setCell(x, y, tile.get(i));
+		};
 
 		return true;
 	}
 
-	public TiledMapTileLayer.Cell[] getTileCells(int x, int y) {
-		return new TiledMapTileLayer.Cell[] { layers[0].getCell(x, y), layers[1].getCell(x, y) };
+	public ArrayList<TiledMapTileLayer.Cell> getTileCells(int x, int y) {
+		ArrayList<TiledMapTileLayer.Cell> cells = new ArrayList<TiledMapTileLayer.Cell>();
+		for (int i = 0; i < layers.length; i++) {
+			cells.add(layers[i].getCell(x, y));
+		};
+		return cells;
+		//return new TiledMapTileLayer.Cell[] { layers[0].getCell(x, y), layers[1].getCell(x, y) };
 	}
 
 	public void dispose() {
@@ -181,6 +188,9 @@ public class Board implements IBoard {
 			return;
 
 		for (MoveType move : robot.getMove().getMoves()) {
+			//TODO
+			//Check for flags
+			//robot.checkFlag
 			switch (move) {
 				case FORWARD:
 					switch (robot.getDirection()) {
