@@ -3,17 +3,31 @@ package inf112.ingenting.roborally.player;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
+import com.badlogic.gdx.maps.tiled.TiledMapTileLayer;
 import com.badlogic.gdx.math.Vector2;
 import inf112.ingenting.roborally.cards.ProgrammingCard;
 import inf112.ingenting.roborally.cards.ProgrammingCardType;
 
+import java.util.ArrayList;
+
 public class Robot {
+	private ArrayList<TiledMapTileLayer.Cell> flags;
 	private Vector2 position;
 	private RobotDirection direction;
 	private ProgrammingCard lastCard;
 
 	private Texture robotTexture;
+
+
+
 	//private TextureRegion textureRegion = new TextureRegion(robotTexture);
+
+	public void checkFlag(TiledMapTileLayer layer) {
+		//TODO
+		// for cell; if flag{
+		//this.flags.add(flag);
+		//}
+	}
 
 	public Robot(String texturePath, Vector2 position) {
 		robotTexture = new Texture(texturePath);
