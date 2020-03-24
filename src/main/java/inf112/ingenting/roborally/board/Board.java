@@ -154,25 +154,25 @@ public class Board implements IBoard {
 		}
 	}
 	public void moveRobotKey(Robot robot) {
-		if(Gdx.input.isKeyPressed(Input.Keys.UP)) {
+		if(Gdx.input.isKeyJustPressed(Input.Keys.UP)) {
 			robot.setRelativePosition(0, 1);
 			robot.setDirection(RobotDirection.NORTH);
-			System.out.println("Moving to the UP");
+			System.out.println("Moving UP");
 		}
-		if(Gdx.input.isKeyPressed(Input.Keys.RIGHT)) {
+		if(Gdx.input.isKeyJustPressed(Input.Keys.RIGHT)) {
 			robot.setRelativePosition(1, 0);
 			robot.setDirection(RobotDirection.EAST);
-			System.out.println("Moving to the RIGHT");
+			System.out.println("Moving RIGHT");
 		}
-		if(Gdx.input.isKeyPressed(Input.Keys.LEFT)) {
+		if(Gdx.input.isKeyJustPressed(Input.Keys.LEFT)) {
 			robot.setRelativePosition(-1, 0);
 			robot.setDirection(RobotDirection.WEST);
-			System.out.println("Moving to the LEFT");
+			System.out.println("Moving LEFT");
 		}
-		if(Gdx.input.isKeyPressed(Input.Keys.DOWN)) {
+		if(Gdx.input.isKeyJustPressed(Input.Keys.DOWN)) {
 			robot.setRelativePosition(0, -1);
 			robot.setDirection(RobotDirection.SOUTH);
-			System.out.println("Moving to the LEFT");
+			System.out.println("Moving DOWN");
 		}
 	}
 	private void moveRobot(Robot robot) {
