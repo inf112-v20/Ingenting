@@ -55,7 +55,7 @@ public class Launcher extends ApplicationAdapter {
             ProgrammingCard test = new ProgrammingCard();
             //ProgrammingCard first = new ProgrammingCard(ProgrammingCardType.MOVE_3);
 
-            // robot.registerMove(test);
+            robot.registerMove(test);
             board.moveRobots();
             System.out.println("Moving: " + test.getCardType());
         } else
