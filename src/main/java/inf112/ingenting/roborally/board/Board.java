@@ -46,6 +46,8 @@ public class Board implements IBoard {
 
 		layers = new TiledMapTileLayer[] {
 				(TiledMapTileLayer) map.getLayers().get("floor"),
+				(TiledMapTileLayer) map.getLayers().get("wall"),
+				(TiledMapTileLayer) map.getLayers().get("player_start"),
 				(TiledMapTileLayer) map.getLayers().get("interactable")
 		};
 
