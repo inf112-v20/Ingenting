@@ -166,22 +166,18 @@ public class Board implements IBoard {
 		if(Gdx.input.isKeyJustPressed(Input.Keys.UP)) {
 			robot.setRelativePosition(0, 1);
 			robot.setDirection(RobotDirection.NORTH);
-			System.out.println("Moving UP");
 		}
 		if(Gdx.input.isKeyJustPressed(Input.Keys.RIGHT)) {
 			robot.setRelativePosition(1, 0);
 			robot.setDirection(RobotDirection.EAST);
-			System.out.println("Moving RIGHT");
 		}
 		if(Gdx.input.isKeyJustPressed(Input.Keys.LEFT)) {
 			robot.setRelativePosition(-1, 0);
 			robot.setDirection(RobotDirection.WEST);
-			System.out.println("Moving LEFT");
 		}
 		if(Gdx.input.isKeyJustPressed(Input.Keys.DOWN)) {
 			robot.setRelativePosition(0, -1);
 			robot.setDirection(RobotDirection.SOUTH);
-			System.out.println("Moving DOWN");
 		}
 	}
 	private void moveRobot(Robot robot) {

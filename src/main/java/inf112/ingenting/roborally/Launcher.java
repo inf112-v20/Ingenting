@@ -2,6 +2,7 @@ package inf112.ingenting.roborally;
 
 import com.badlogic.gdx.ApplicationAdapter;
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.Input;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.math.Vector2;
@@ -11,16 +12,14 @@ import inf112.ingenting.roborally.cards.ProgrammingCardType;
 import inf112.ingenting.roborally.gui.GameConsole;
 import inf112.ingenting.roborally.player.Robot;
 
+import java.awt.*;
+import java.awt.event.KeyEvent;
+
 public class Launcher extends ApplicationAdapter {
 	private OrthographicCamera camera;
 	private Robot robot;
 	private Board board;
 	private GameConsole gameConsole;
-
-
-    private float deltaTime;
-    private float moveRobotExample;
-
 
 	@Override
 	public void create() {
@@ -35,11 +34,11 @@ public class Launcher extends ApplicationAdapter {
 		robot = new Robot("player_1.png", new Vector2(5f, 5f));
 		board.addRobot(robot);
 
-		moveRobotExample = 0;
 	}
 
 	@Override
 	public void resize(int width, int height) {
+		gameConsole.refresh();
 	}
 
 	@Override
@@ -48,20 +47,7 @@ public class Launcher extends ApplicationAdapter {
 		Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 		camera.update();
 		board.render();
-		gameConsole.draw();
-
-		// Visual test to see if robot moves
-        deltaTime = Gdx.graphics.getDeltaTime();
-        if (moveRobotExample > 2) {
-            moveRobotExample = 0;
-            ProgrammingCard test = new ProgrammingCard();
-            //ProgrammingCard first = new ProgrammingCard(ProgrammingCardType.MOVE_3);
-
-            //robot.registerMove(test);
-            //board.moveRobots();
-            //gameConsole.console.log("Moving: " + test.getCardType());
-        } else
-            moveRobotExample += deltaTime;
+		gameConsole.render();
         board.moveRobotKey(robot);
 	}
 
