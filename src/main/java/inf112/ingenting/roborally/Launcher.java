@@ -2,18 +2,12 @@ package inf112.ingenting.roborally;
 
 import com.badlogic.gdx.ApplicationAdapter;
 import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.Input;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.math.Vector2;
 import inf112.ingenting.roborally.board.Board;
-import inf112.ingenting.roborally.cards.ProgrammingCard;
-import inf112.ingenting.roborally.cards.ProgrammingCardType;
 import inf112.ingenting.roborally.gui.GameConsole;
 import inf112.ingenting.roborally.player.Robot;
-
-import java.awt.*;
-import java.awt.event.KeyEvent;
 
 public class Launcher extends ApplicationAdapter {
 	private OrthographicCamera camera;
@@ -29,7 +23,7 @@ public class Launcher extends ApplicationAdapter {
 		camera.position.set(camera.position.x, camera.position.y, 0);
 		camera.update();
 		board = new Board("testMap.tmx", (float) 1 / 64, camera);
-		gameConsole = new GameConsole();
+		gameConsole = GameConsole.getInstance();
 
 		robot = new Robot("player_1.png", new Vector2(5f, 5f));
 		board.addRobot(robot);
