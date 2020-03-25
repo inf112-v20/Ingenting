@@ -16,7 +16,7 @@ import java.util.ArrayList;
 import java.util.PriorityQueue;
 
 public class Board implements IBoard {
-	public static final int LAYER_FLOOR = 0, LAYER_INTERACTABLE = 1;
+	public static final int LAYER_FLOOR = 0, LAYER_WALL = 1, LAYER_PLAYER_START = 2, LAYER_INTERACTABLE = 3;
 
 	private TiledMap map;
 	private TiledMapTileLayer[] layers;
