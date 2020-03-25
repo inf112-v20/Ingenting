@@ -95,11 +95,9 @@ public class ProgrammingCard extends Actor {
 		this.priority = priority;
 	}
 
-
-	/**
-	 * Return the programming card style
-	 *
-	 * @return the programmingcard style
-	 */
+	@Override
+	public String toString(){
+		return type.toString();
+	}
 
 }

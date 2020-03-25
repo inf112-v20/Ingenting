@@ -2,9 +2,6 @@ package inf112.ingenting.roborally;
 
 import com.badlogic.gdx.backends.lwjgl.LwjglApplication;
 import com.badlogic.gdx.backends.lwjgl.LwjglApplicationConfiguration;
-import inf112.ingenting.roborally.gui.GameConsole;
-
-import java.awt.*;
 
 
 public class Main {
