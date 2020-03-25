@@ -10,6 +10,7 @@ public class Launcher extends ApplicationAdapter {
 	private OrthographicCamera camera;
 	private Game game;
 
+
 	@Override
 	public void create() {
 		camera = new OrthographicCamera();

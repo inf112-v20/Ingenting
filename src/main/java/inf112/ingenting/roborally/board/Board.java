@@ -62,6 +62,10 @@ public class Board implements IBoard {
 		this.robots = new Array<>();
 	}
 
+	public TiledMapTileLayer getLayer(int layerNum) {
+		return layers[layerNum];
+	}
+
 	@Override
 	public void render() {
 		renderTileMap();
@@ -187,9 +191,9 @@ public class Board implements IBoard {
 			return;
 
 		for (MoveType move : robot.getMove().getMoves()) {
-			//TODO
-			//Check for flags
-			//robot.checkFlag
+
+			robot.checkFlag(layers[LAYER_INTERACTABLE]);
+
 			switch (move) {
 				case FORWARD:
 					switch (robot.getDirection()) {

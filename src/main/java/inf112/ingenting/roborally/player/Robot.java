@@ -3,6 +3,8 @@ package inf112.ingenting.roborally.player;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
+import com.badlogic.gdx.maps.MapObject;
+import com.badlogic.gdx.maps.MapObjects;
 import com.badlogic.gdx.maps.tiled.TiledMapTileLayer;
 import com.badlogic.gdx.math.Vector2;
 import inf112.ingenting.roborally.cards.ProgrammingCard;
@@ -23,11 +25,15 @@ public class Robot {
 	//private TextureRegion textureRegion = new TextureRegion(robotTexture);
 
 	public void checkFlag(TiledMapTileLayer layer) {
-		//TODO
-		// for cell; if flag{
-		//this.flags.add(flag);
-		//}
+		/**
+		MapObjects cellObjects = layer.getCell((int) position.x, (int) position.y).getTile().getObjects();
+		MapObject testFlag
+		for (MapObject co : cellObjects) {
+			if (co instanceof )
+		}
+		*/
 	}
+
 
 	public Robot(String texturePath, Vector2 position) {
 		robotTexture = new Texture(texturePath);
