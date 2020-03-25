@@ -51,6 +51,11 @@
           <version>RELEASE</version>
           <scope>compile</scope>
       </dependency>
+    <dependency>
+      <groupId>com.strongjoshua</groupId>
+      <artifactId>libgdx-inGameConsole</artifactId>
+      <version>1.0.0</version>
+    </dependency>
   </dependencies>
 
   <build>
