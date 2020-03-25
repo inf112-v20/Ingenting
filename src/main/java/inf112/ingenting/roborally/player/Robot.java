@@ -33,12 +33,12 @@ public class Robot {
 		robotTexture = new Texture(texturePath);
 
 		this.position = position;
-		direction = RobotDirection.WEST;
+		direction = RobotDirection.NORTH;
 	}
 
 	public Robot(Vector2 position) {
 		this.position = position;
-		direction = RobotDirection.WEST;
+		direction = RobotDirection.NORTH;
 	}
 
 	public void render(Batch batch) {

@@ -1,21 +1,25 @@
 package inf112.ingenting.roborally.gui;
 
 import com.strongjoshua.console.CommandExecutor;
+import inf112.ingenting.roborally.board.Board;
+import inf112.ingenting.roborally.board.MoveType;
 import inf112.ingenting.roborally.cards.ProgrammingCard;
+import inf112.ingenting.roborally.cards.ProgrammingCardType;
+import inf112.ingenting.roborally.player.Player;
 
 public class MyCommandExecutor extends CommandExecutor {
 
-	public void executeCard(int a, int b){
-		System.out.println("Should execute a programming card");
-		System.out.println(a);
+	Board board;
+	Player player;
+
+	public MyCommandExecutor(Board board, Player player){
+		this.board = board;
+		this.player = player;
 	}
 
-	public void connect(){
-		System.out.println("Connects two players");
-	}
 
-	public void displayCards(){
-		console.log("Ørjan");
+	public void move1(){
+		player.getCurrentRobot().registerMove(new ProgrammingCard(ProgrammingCardType.MOVE_1));
+		board.moveRobots();
 	}
-
 }
