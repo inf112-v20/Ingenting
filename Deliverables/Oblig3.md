@@ -36,6 +36,11 @@ Vi har også jobbet med andre krav som gir spillet nye funksjoner
 * Utfører en manuell test for å sjekke det er mulig å bevege roboten i retningen som vi trykker på piltastene.
 trykker jeg venstre piltast roterer roboten seg og beveger seg mot venstre
 
+* Utfører manuell test for å sjekke om roboten beveger seg gjennom riktig rekkefølge av flagg. Metoden checkFlags
+viser riktig flagId ifølge vårt TileSet (testet med printing til konsoll). Flag blir ikke markert som besøkt dersom alle
+tidligere flagg er besøkt i riktig rekkefølge. Riktig rekkefølger er 1-2-3-4. Først når alle flag er besøkt gir allFlagsVisited true. 
+Dette var testet ved å bevege roboten gjennom flaggene manuelt og printing til konsollen.
+
 
 ### Brukerhistorie: Visualisere kort
 
