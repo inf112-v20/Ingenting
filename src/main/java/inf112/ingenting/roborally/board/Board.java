@@ -192,8 +192,6 @@ public class Board implements IBoard {
 
 		for (MoveType move : robot.getMove().getMoves()) {
 
-			robot.checkFlag(layers[LAYER_INTERACTABLE]);
-
 			switch (move) {
 				case FORWARD:
 					switch (robot.getDirection()) {
@@ -271,6 +269,8 @@ public class Board implements IBoard {
 					break;
 			}
 		}
+
+		robot.checkFlag(layers[LAYER_INTERACTABLE]);
 	}
 
 	@Override

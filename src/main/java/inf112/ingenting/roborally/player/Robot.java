@@ -5,7 +5,10 @@ import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.maps.MapObject;
 import com.badlogic.gdx.maps.MapObjects;
+import com.badlogic.gdx.maps.objects.RectangleMapObject;
 import com.badlogic.gdx.maps.tiled.TiledMapTileLayer;
+import com.badlogic.gdx.math.Intersector;
+import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector2;
 import inf112.ingenting.roborally.cards.ProgrammingCard;
 import inf112.ingenting.roborally.cards.ProgrammingCardType;
@@ -25,13 +28,14 @@ public class Robot {
 	//private TextureRegion textureRegion = new TextureRegion(robotTexture);
 
 	public void checkFlag(TiledMapTileLayer layer) {
-		/**
-		MapObjects cellObjects = layer.getCell((int) position.x, (int) position.y).getTile().getObjects();
-		MapObject testFlag
-		for (MapObject co : cellObjects) {
-			if (co instanceof )
+		MapObjects objects = layer.getObjects();
+
+		for (RectangleMapObject rectangleObject : objects.getByType(RectangleMapObject.class)) {
+			Rectangle rectangle = rectangleObject.getRectangle();
+			if (position.x == rectangle.getX() && position.y == rectangle.getY()){
+				System.out.println("Collision");
+			}
 		}
-		*/
 	}
 
 
