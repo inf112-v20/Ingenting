@@ -5,6 +5,8 @@ import org.junit.Before;
 import org.junit.Test;
 
 import java.io.IOException;
+import java.net.InetAddress;
+import java.util.List;
 
 public class NetworkTest {
 	Network network;
@@ -43,7 +45,31 @@ public class NetworkTest {
 	}
 
 	@Test
-	public void connectToHostOnDefaultPortAndSendMessage() {
+	public void clientFindHosts() throws IOException {
+		NetworkTestHelper network = new NetworkTestHelper();
 
+		this.network.createHost();
+		this.network.host.setPort(Network.DEFAULT_PORT_TCP, Network.DEFAULT_PORT_UDP);
+
+		network.createClient();
+		Assert.assertNotEquals(0, network.client.findHosts(Network.DEFAULT_PORT_UDP).size());
+	}
+
+	@Test
+	public void clientConnectToHost() throws IOException {
+		NetworkTestHelper network = new NetworkTestHelper();
+
+		this.network.createHost();
+		this.network.host.setPort(Network.DEFAULT_PORT_TCP, Network.DEFAULT_PORT_UDP);
+
+		network.createClient();
+
+		List<InetAddress> hosts = network.client.findHosts(Network.DEFAULT_PORT_UDP);
+
+		Assert.assertFalse(network.client.isConnected());
+
+		network.client.connect(hosts.get(0).getHostAddress());
+
+		Assert.assertTrue(network.client.isConnected());
 	}
 }

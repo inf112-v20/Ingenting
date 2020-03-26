@@ -3,6 +3,7 @@ package inf112.ingenting.roborally.networking;
 import com.esotericsoftware.kryonet.Client;
 import com.esotericsoftware.kryonet.Connection;
 import com.esotericsoftware.kryonet.Listener;
+import com.strongjoshua.console.LogLevel;
 import inf112.ingenting.roborally.gui.GameConsole;
 
 import java.io.IOException;
@@ -16,7 +17,7 @@ public class NetworkClient {
 		client = new Client();
 		client.start();
 
-		Network.registerNetworkObjects(client);
+		Network.registerObjects(client);
 		addListeners();
 	}
 
@@ -48,6 +49,10 @@ public class NetworkClient {
 		client.sendTCP(message);
 	}
 
+	public boolean isConnected() {
+		return client.isConnected();
+	}
+
 	public void dispose() {
 		client.stop();
 	}
@@ -58,7 +63,11 @@ public class NetworkClient {
 				if (object instanceof NetworkMessage) {
 					NetworkMessage networkMessage = (NetworkMessage) object;
 
-					GameConsole.getInstance().log(networkMessage.playerName + ": " + networkMessage.chatMessage);
+					if (networkMessage.networkStatus == NetworkFlag.CHAT_MESSAGE)
+						GameConsole.getInstance().log(networkMessage.name + ": " + networkMessage.message);
+
+					if (networkMessage.networkStatus == NetworkFlag.LOG_ERROR)
+						GameConsole.getInstance().log(networkMessage.message, LogLevel.ERROR);
 				}
 			}
 		});

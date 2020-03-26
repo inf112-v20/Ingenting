@@ -69,7 +69,7 @@ public class Network {
 		return networkType;
 	}
 
-	public static void registerNetworkObjects(EndPoint endpoint) {
+	public static void registerObjects(EndPoint endpoint) {
 		Kryo kryo = endpoint.getKryo();
 		kryo.register(NetworkMessage.class);
 	}

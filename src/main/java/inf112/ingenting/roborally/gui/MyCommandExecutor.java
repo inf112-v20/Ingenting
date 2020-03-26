@@ -4,6 +4,7 @@ import com.strongjoshua.console.CommandExecutor;
 import com.strongjoshua.console.LogLevel;
 import com.strongjoshua.console.annotation.ConsoleDoc;
 import inf112.ingenting.roborally.networking.Network;
+import inf112.ingenting.roborally.networking.NetworkFlag;
 import inf112.ingenting.roborally.networking.NetworkMessage;
 
 import java.io.IOException;
@@ -23,17 +24,31 @@ public class MyCommandExecutor extends CommandExecutor {
 	}
 
 	@ConsoleDoc(description = "Creates a network host on the given TCP port.", paramDescriptions = "The TCP port to bind the host to")
-	public void host(int tcpPort) {
+	public void host(int tcp) {
 		Network network = Network.getInstance();
 		network.createHost();
 
 		try {
-			network.host.setPort(tcpPort);
+			network.host.setPort(tcp);
 		} catch (IOException e) {
-			console.log("Failed to create host on port " + tcpPort + ", Error: " + e.getMessage(), LogLevel.ERROR);
+			console.log("Failed to create host on port " + tcp + "(TCP).\n\t" + e.getMessage(), LogLevel.ERROR);
+			return;
 		}
 
-		console.log("Created host on port " + tcpPort, LogLevel.SUCCESS);
+		console.log("Created host on port " + tcp, LogLevel.SUCCESS);
+	}
+
+	public void host(int tcp, int udp) {
+		Network network = Network.getInstance();
+		network.createHost();
+
+		try {
+			network.host.setPort(tcp, udp);
+		} catch (IOException e) {
+			console.log("Failed to create host on ports " + tcp + " (TCP) & " + udp + " (UDP).\n\t" + e.getMessage(), LogLevel.ERROR);
+		}
+
+		console.log("Created host on ports " + tcp + " (TCP) & " + udp + " (UDP).", LogLevel.SUCCESS);
 	}
 
 	@ConsoleDoc(description = "Creates a network client, allowing you to connect to game hosts.")
@@ -44,17 +59,17 @@ public class MyCommandExecutor extends CommandExecutor {
 		console.log("Created network client", LogLevel.SUCCESS);
 	}
 
-	@ConsoleDoc(description = "Finds and lists all available hosts on the default TCP port " + Network.DEFAULT_PORT_TCP + ".")
+	@ConsoleDoc(description = "Finds and lists all available hosts on the default UDP port " + Network.DEFAULT_PORT_UDP + ".")
 	public void findHosts() {
-		findHosts(Network.DEFAULT_PORT_TCP, Network.DEFAULT_CLIENT_CONNECTION_TIMEOUT);
+		findHosts(Network.DEFAULT_PORT_UDP, Network.DEFAULT_CLIENT_CONNECTION_TIMEOUT);
 	}
 
-	@ConsoleDoc(description = "Finds and lists all hosts available on the given port.", paramDescriptions = "The TCP port to search on")
+	@ConsoleDoc(description = "Finds and lists all hosts available on the given port.", paramDescriptions = "The UDP port to search on")
 	public void findHosts(int port) {
 		findHosts(port, Network.DEFAULT_CLIENT_CONNECTION_TIMEOUT);
 	}
 
-	@ConsoleDoc(description = "Finds and lists all hosts available on the given port.", paramDescriptions = {"The TCP port to search on", "Time in ms to search for"})
+	@ConsoleDoc(description = "Finds and lists all hosts available on the given port.", paramDescriptions = {"The UDP port to search on", "Time in ms to search for"})
 	public void findHosts(int port, int timeout) {
 		if (Network.getInstance().networkType != Network.NetworkType.CLIENT) {
 			console.log("You must be a client to discover hosts.", LogLevel.ERROR);
@@ -90,6 +105,7 @@ public class MyCommandExecutor extends CommandExecutor {
 			network.client.connect(ip, Network.DEFAULT_PORT_TCP);
 		} catch (IOException e) {
 			console.log("Failed to connect to host " + ip + ", Error: " + e.getMessage(), LogLevel.ERROR);
+			return;
 		}
 
 		console.log("Connected to host " + ip, LogLevel.SUCCESS);
@@ -107,6 +123,7 @@ public class MyCommandExecutor extends CommandExecutor {
 			network.client.connect(ip, tcpPort);
 		} catch (IOException e) {
 			console.log("Failed to connect to host " + ip + ":" + tcpPort + ", Error: " + e.getMessage(), LogLevel.ERROR);
+			return;
 		}
 
 		console.log("Connected to host " + ip + ":" + tcpPort, LogLevel.SUCCESS);
@@ -116,9 +133,16 @@ public class MyCommandExecutor extends CommandExecutor {
 	public void say(String message) {
 		switch (Network.getInstance().networkType) {
 			case CLIENT:
-				NetworkMessage networkMessage = new NetworkMessage();
-				networkMessage.chatMessage = message;
-				Network.getInstance().client.sendMessage(networkMessage);
+				if (!Network.getInstance().client.isConnected()) {
+					console.log("You are not connected to a host.", LogLevel.ERROR);
+				}
+
+				Network.getInstance().client.sendMessage(
+					new NetworkMessage()
+						.setNetworkStatus(NetworkFlag.CHAT_MESSAGE)
+						.setMessage(message)
+				);
+
 				break;
 			case HOST:
 				break;
