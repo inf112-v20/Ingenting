@@ -22,28 +22,12 @@ Derfor har vi også laget flere kortere brukerhistorier samtidig så vi forholde
 Kommunikasjonen i laget til nå har vært svært bra. Målet har hele tiden vært at alle skal bli hørt, og kunne bidra. Dette er noe vi føler at vi har oppnådd. 
 
 ## Deloppgave 2: Krav
-Som nevnt tidligere så har vi prioritert brukergrensesnitt og nettverk. Med nettverk så har målet vært å kunne koble til to spillere. -- 
+Som nevnt tidligere så har vi prioritert brukergrensesnitt og nettverk. Med nettverk så har målet vært å kunne koble til to spillere. Dette har vi komt godt i gang med, men ikke nok til at vi ønsker å ta det med denne iterasjonen. Derfor har vi fokusert på å få et fungerende brukergrensesnitt som vi kan utvide og bruke sammen med nettverk fremover. 
 
-Vi har også jobbet med brukergrensesnitt. Målet for denne iterasjonen har vært å visualisere kortene.
+Vi 
 
 Vi har også jobbet med andre krav som gir spillet nye funksjoner
 
-#### MVP
-Dette er kravene som vi annser på som MVP
-* Spillebrett
-* Kort utdeling
-* Runde logikk
-* Start plass
-* Legge til flagg og muligheten til å vite hvilke flagg som er besøkt
-* Seier tilstand
-* Koble til to spillere
-* Robot icon på brikke
-* Robot med bevegelse
-* Programmere robot med kort
-* Spiller skal kunne ta skade
-* Velge kort som skal brukes
-* Vegger og hindringer
-* Conveyerbelts som beveger på roboten
 
 
 ## Deloppgave 3: Produktleveranse og kodekvalitet
@@ -57,16 +41,50 @@ viser riktig flagId ifølge vårt TileSet (testet med printing til konsoll). Fla
 tidligere flagg er besøkt i riktig rekkefølge. Riktig rekkefølger er 1-2-3-4. Først når alle flag er besøkt gir allFlagsVisited true. 
 Dette var testet ved å bevege roboten gjennom flaggene manuelt og printing til konsollen.
 
+### Brukerhistorie: Visualisere et brukergrensesnitt.
+Som spiller trenger jeg et brukergrensesnitt som jeg kan bruke for å påvirke spillet.
 
-### Brukerhistorie: Visualisere kort
+**Akseptansekriterier**
+* Kunne se et brukergrensesnitt.
 
-**Akseptansekriterier:**
-* Spiller må kunne se kortene
-* Kortene skal representere gyldige trekk
+### Brukerhistorie: Samhandle med brukergrenesnittet.
+Som spiller må jeg kunne samhandle med brukergrensesnittet.
 
-**Arbeidsoppgaver:**
-* Representere kortene ved hjelp av libgdx
-* 
+***Akseptansekriterer**
+* Kunne samhandle med brukergrensesnittet.
+
+### Brukerhistorie: Bevege roboten ved bruk av brukergrensesnittet.
+Som spiller vil jeg kunne bevege roboten ved å bruke brukergrensesnittet.
+
+* Kunne bevege roboten med brukergrensesnittet.
+* Få ønsket oppførsel ved å bevege roboten.
+
+### Brukerhistorie: Ha 2 roboter på samme brett.
+Brettet skal kunne vise flere roboter.
+
+**Akseptansekriterie**
+* Brettet skal ha minst 2 roboter.
+
+
+### Brukerhistorie: Visualisere flagg på brettet.
+Brettet skal ha minst 3 flagg.
+
+**Akseptansekriterier**
+* Brettet skal ha visualisere minst tre flagg.
+
+
+### Brukerhistorie: Samhandle med flagg.
+Roboten skal kunne samhandle med flagg som er på brettet og spillet
+skal registrere det.
+
+**Akseptansekriterier**
+* Spillet skal registrere når roboten har samhandlet med et flagg. 
+
+
+### Brukerhistorie: Seiertilstand
+Spillet skal avslutte når roboten har samhandlet med tre flagg.
+
+* Når roboten har samhandlet med tre flagg skal spillet avsluttes.
 
 ### Brukerhistorie: Designe kort
 **Akseptansekriterier:**
@@ -77,48 +95,11 @@ Dette var testet ved å bevege roboten gjennom flaggene manuelt og printing til 
 * Bruker adobe color til å finne behaglige farger
 * Bruker piskel får å tegne kort slik vi vil ha de
 
-### Brukerhistorie: Lage meny
-**Akseptansekriterier:**
-* Ha en meny der vi kan spille aleine eller med enn venn
-* 
-
-**Arbeidsoppgaver:**
-* Lage en meny ved fhjelp av libgdx
-
-### Brukerhistorie: Koble til to spillere
-**Akseptansekriterier:**
-* Gjøre det mulig får to spillere å spille i lag.
-
-**Arbeidsoppgaver:**
-* Koble til to spillere ved hjelp av Kryonet
-
-
-### Brukerhistori: Spillere skal kunne se samme brett 
-**Akseptansekriterier:**
-* To spiller skal kunne se samme brett.
-
-**Arbeidsoppgaver:**
-* Hosten sendre samme brett til begge spillerene 
-
 ### Brukerhistorie: Bevegelse med taster for å kunne teste spille enklere
 **Akseptansekriterier:**
 * Bevege spilleren med piltastene
 
 **Arbeidsoppgaver:**
 * Implementere keylistening og utføre bevegelsen i den retningen
-
-
-
-### Brukerhistorie: 
-**Akseptansekriterier:**
-
-**Arbeidsoppgaver:**
-
-## Deloppgave 3: Produktleveranse og kodekvalitet
-
-### Testing
-* Utfører en manuell test for å sjekke det er mulig å bevege roboten i retningen som vi trykker på piltastene.
-trykker jeg venstre piltast roterer roboten seg og beveger seg mot venstre
-
 
 
