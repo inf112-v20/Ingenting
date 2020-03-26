@@ -31,21 +31,7 @@ public class Launcher extends ApplicationAdapter {
 		Gdx.gl.glClearColor(1, 1, 1, 1);
 		Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 		camera.update();
-		board.render();
-		gameConsole.draw();
-
-		// Visual test to see if robot moves
-        deltaTime = Gdx.graphics.getDeltaTime();
-        if (moveRobotExample > 2) {
-            moveRobotExample = 0;
-            ProgrammingCard test = new ProgrammingCard();
-            //ProgrammingCard first = new ProgrammingCard(ProgrammingCardType.MOVE_3);
-            //robot.registerMove(test);
-            //board.moveRobots();
-            //System.out.println("Moving: " + test.getCardType());
-        } else
-            moveRobotExample += deltaTime;
-        board.moveRobotKey(robot);
+		game.render();
 	}
 
 	@Override
