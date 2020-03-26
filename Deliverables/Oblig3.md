@@ -22,24 +22,10 @@ Derfor har vi også laget flere kortere brukerhistorier samtidig så vi forholde
 Kommunikasjonen i laget til nå har vært svært bra. Målet har hele tiden vært at alle skal bli hørt, og kunne bidra. Dette er noe vi føler at vi har oppnådd. 
 
 ## Deloppgave 2: Krav
-Som nevnt tidligere så har vi prioritert brukergrensesnitt og nettverk. Med nettverk så har målet vært å kunne koble til to spillere. Dette har vi komt godt i gang med, men ikke nok til at vi ønsker å ta det med denne iterasjonen. Derfor har vi fokusert på å få et fungerende brukergrensesnitt som vi kan utvide og bruke sammen med nettverk fremover. 
+Som nevnt tidligere så har vi prioritert brukergrensesnitt og nettverk. Med nettverk så har målet vært å kunne koble til to spillere. Dette har vi komt godt i gang med, men ikke nok til at vi ønsker å ta det med denne iterasjonen. Derfor har vi fokusert på å få et fungerende brukergrensesnitt som vi kan utvide og bruke sammen med nettverk fremover. Fokuset har også vært å lage korte brukerhistorier 
 
-Vi 
+Vi har også jobbet med andre krav som gir spillet nye funksjoner. Dette er ikke tilfeldige krav, men krav som vi mener er MVP som for eks. å innføre en seiertilstand, legge til flag osv. 
 
-Vi har også jobbet med andre krav som gir spillet nye funksjoner
-
-
-
-## Deloppgave 3: Produktleveranse og kodekvalitet
-
-### Testing
-* Utfører en manuell test for å sjekke det er mulig å bevege roboten i retningen som vi trykker på piltastene.
-trykker jeg venstre piltast roterer roboten seg og beveger seg mot venstre
-
-* Utfører manuell test for å sjekke om roboten beveger seg gjennom riktig rekkefølge av flagg. Metoden checkFlags
-viser riktig flagId ifølge vårt TileSet (testet med printing til konsoll). Flag blir ikke markert som besøkt dersom alle
-tidligere flagg er besøkt i riktig rekkefølge. Riktig rekkefølger er 1-2-3-4. Først når alle flag er besøkt gir allFlagsVisited true. 
-Dette var testet ved å bevege roboten gjennom flaggene manuelt og printing til konsollen.
 
 ### Brukerhistorie: Visualisere et brukergrensesnitt.
 Som spiller trenger jeg et brukergrensesnitt som jeg kan bruke for å påvirke spillet.
@@ -102,4 +88,16 @@ Spillet skal avslutte når roboten har samhandlet med tre flagg.
 **Arbeidsoppgaver:**
 * Implementere keylistening og utføre bevegelsen i den retningen
 
+## Deloppgave 3: Produktleveranse og kodekvalitet
+
+### Testing
+* Utfører en manuell test for å sjekke det er mulig å bevege roboten i retningen som vi trykker på piltastene.
+trykker jeg venstre piltast roterer roboten seg og beveger seg mot venstre
+
+* Utfører manuell test for å sjekke om roboten beveger seg gjennom riktig rekkefølge av flagg. Metoden checkFlags
+viser riktig flagId ifølge vårt TileSet (testet med printing til konsoll). Flag blir ikke markert som besøkt dersom alle
+tidligere flagg er besøkt i riktig rekkefølge. Riktig rekkefølger er 1-2-3-4. Først når alle flag er besøkt gir allFlagsVisited true. 
+Dette var testet ved å bevege roboten gjennom flaggene manuelt og printing til konsollen.
+
+* For å bevege roboten gjennom brukergrensesnittet støtter den nå en kommando "move1" som beveger roboten et steg frem i den retningen den peker. 
 
