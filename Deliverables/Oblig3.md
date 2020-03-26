@@ -28,14 +28,22 @@ Vi har også jobbet med brukergrensesnitt. Målet for denne iterasjonen har vær
 
 Vi har også jobbet med andre krav som gir spillet nye funksjoner
 
-
-
-## Deloppgave 3: Produktleveranse og kodekvalitet
-
-### Testing
-* Utfører en manuell test for å sjekke det er mulig å bevege roboten i retningen som vi trykker på piltastene.
-trykker jeg venstre piltast roterer roboten seg og beveger seg mot venstre
-
+#### MVP
+Dette er kravene som vi annser på som MVP
+* Spillebrett
+* Kort utdeling
+* Runde logikk
+* Start plass
+* Legge til flagg og muligheten til å vite hvilke flagg som er besøkt
+* Seier tilstand
+* Koble til to spillere
+* Robot icon på brikke
+* Robot med bevegelse
+* Programmere robot med kort
+* Spiller skal kunne ta skade
+* Velge kort som skal brukes
+* Vegger og hindringer
+* Conveyerbelts som beveger på roboten
 
 ### Brukerhistorie: Visualisere kort
 
@@ -92,3 +100,12 @@ trykker jeg venstre piltast roterer roboten seg og beveger seg mot venstre
 **Akseptansekriterier:**
 
 **Arbeidsoppgaver:**
+
+## Deloppgave 3: Produktleveranse og kodekvalitet
+
+### Testing
+* Utfører en manuell test for å sjekke det er mulig å bevege roboten i retningen som vi trykker på piltastene.
+trykker jeg venstre piltast roterer roboten seg og beveger seg mot venstre
+
+
+
