@@ -56,4 +56,5 @@ Oppmøte: Sigurd, Tammoui, Ørjan
 ## 3/24/20
 Oppmøte: Alle
 * Går igjennom ny kode
-* Jobbe mot oblig
+* Snakker om hvordan vi skal gjøre siste innspurt mot oblig
+* Tildeler nye oppgaver
