@@ -4,6 +4,7 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.g2d.Batch;
+import com.badlogic.gdx.maps.MapObjects;
 import com.badlogic.gdx.maps.tiled.TiledMap;
 import com.badlogic.gdx.maps.tiled.TiledMapTileLayer;
 import com.badlogic.gdx.maps.tiled.TmxMapLoader;
@@ -18,6 +19,7 @@ import java.util.PriorityQueue;
 
 public class Board implements IBoard {
 	public static final int LAYER_FLOOR = 0, LAYER_WALL = 1, LAYER_PLAYER_START = 2, LAYER_INTERACTABLE = 3;
+	public static final int FLAG_1 = 55, FLAG_2 = 63, FLAG_3 = 71, FLAG_4 = 79;
 
 	private TiledMap map;
 	private TiledMapTileLayer[] layers;
@@ -40,6 +42,7 @@ public class Board implements IBoard {
 		mapRenderer = new OrthogonalTiledMapRenderer(map, unitScale);
 
 		robots = new Array<>();
+
 	}
 
 	public Board(String fileName, float unitScale, OrthographicCamera camera, Array<Robot> robots) {
@@ -60,6 +63,10 @@ public class Board implements IBoard {
 
 	public Board() {
 		this.robots = new Array<>();
+	}
+
+	public TiledMapTileLayer getLayer(int layerNum) {
+		return layers[layerNum];
 	}
 
 	@Override
@@ -129,13 +136,14 @@ public class Board implements IBoard {
 	}
 
 	public boolean setTileCell(int x, int y, TiledMapTileLayer.Cell tile, int layer) {
-		if (layer < 0 || layer > 1)
+		if (layer < 0 || layer > 3)
 			return false;
 
 		layers[layer].setCell(x, y, tile);
 
 		return true;
 	}
+
 
 	public boolean setTileCell(int x, int y, ArrayList<TiledMapTileLayer.Cell> tile) {
 
@@ -146,13 +154,19 @@ public class Board implements IBoard {
 		return true;
 	}
 
+	public int getTileIdFromLayer(int x, int y, int layerID){
+		if (layers[layerID].getCell(x,y) == null) {
+			return 0;
+		}
+		return layers[layerID].getCell(x,y).getTile().getId();
+	}
+
 	public ArrayList<TiledMapTileLayer.Cell> getTileCells(int x, int y) {
 		ArrayList<TiledMapTileLayer.Cell> cells = new ArrayList<TiledMapTileLayer.Cell>();
 		for (int i = 0; i < layers.length; i++) {
 			cells.add(layers[i].getCell(x, y));
 		};
 		return cells;
-		//return new TiledMapTileLayer.Cell[] { layers[0].getCell(x, y), layers[1].getCell(x, y) };
 	}
 
 	public void dispose() {
@@ -181,15 +195,14 @@ public class Board implements IBoard {
 			robot.setDirection(RobotDirection.SOUTH);
 		}
 	}
+
 	private void moveRobot(Robot robot) {
 		// If the robot does not have a programming card, return
 		if (robot.getMove() == null)
 			return;
 
 		for (MoveType move : robot.getMove().getMoves()) {
-			//TODO
-			//Check for flags
-			//robot.checkFlag
+
 			switch (move) {
 				case FORWARD:
 					switch (robot.getDirection()) {
@@ -266,6 +279,30 @@ public class Board implements IBoard {
 				default:
 					break;
 			}
+		}
+		//Check current tile robot is standing on is a flag.
+		int id = getTileIdFromLayer((int) robot.getPosition().x, (int) robot.getPosition().y, LAYER_INTERACTABLE);
+		if (id == FLAG_1 || id == FLAG_2 || id == FLAG_3 || id == FLAG_4){
+			robotCheckCurrentFlag(robot,id);
+		}
+	}
+
+	public void robotCheckCurrentFlag(Robot robot, int id) {
+		switch (id) {
+			case FLAG_1:
+				robot.checkFlags("flag1");
+				break;
+			case FLAG_2:
+				robot.checkFlags("flag2");
+				break;
+			case FLAG_3:
+				robot.checkFlags("flag3");
+				break;
+			case FLAG_4:
+				robot.checkFlags("flag4");
+				break;
+			default:
+				break;
 		}
 	}
 
