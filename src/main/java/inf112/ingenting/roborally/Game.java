@@ -38,6 +38,7 @@ public class Game {
 	public void render(){
 		board.render();
 		currentConsole.render();
+		board.moveRobotKey(players[0].getCurrentRobot());
 	}
 
 	public void dispose(){
