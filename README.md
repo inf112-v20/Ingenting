@@ -18,4 +18,4 @@ Clone the repo from github to you computer then:
 Open the repo and go to src/main/java/inf112/skeleton/app/Main.java and run main function.
 
 ## UML
-![UML](Deliverables/UML/RoborallyUML3.png)
+![UML](Deliverables/UML/Roborally_UML3.png)
