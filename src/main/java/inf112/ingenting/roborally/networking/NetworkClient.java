@@ -22,23 +22,23 @@ public class NetworkClient {
 	}
 
 	public void connect(String ip) throws IOException {
-		client.connect(Network.DEFAULT_CLIENT_CONNECTION_TIMEOUT, ip, Network.DEFAULT_PORT_TCP);
+		client.connect(Network.DEFAULT_CLIENT_CONNECTION_TIMEOUT, ip, Network.DEFAULT_PORT_TCP, Network.DEFAULT_PORT_UDP);
 	}
 
 	public void connect(String ip, int tcpPort) throws IOException {
-		client.connect(Network.DEFAULT_CLIENT_CONNECTION_TIMEOUT, ip, tcpPort);
+		client.connect(Network.DEFAULT_CLIENT_CONNECTION_TIMEOUT, ip, tcpPort, Network.DEFAULT_PORT_UDP);
 	}
 
 	public List<InetAddress> findHosts() {
-		return client.discoverHosts(Network.DEFAULT_PORT_TCP, Network.DEFAULT_CLIENT_CONNECTION_TIMEOUT);
+		return findHosts(Network.DEFAULT_PORT_UDP, Network.DEFAULT_CLIENT_CONNECTION_TIMEOUT);
 	}
 
-	public List<InetAddress> findHosts(int port) {
-		return client.discoverHosts(port, Network.DEFAULT_CLIENT_CONNECTION_TIMEOUT);
+	public List<InetAddress> findHosts(int udp) {
+		return findHosts(udp, Network.DEFAULT_CLIENT_CONNECTION_TIMEOUT);
 	}
 
-	public List<InetAddress> findHosts(int port, int timeout) {
-		return client.discoverHosts(port, timeout);
+	public List<InetAddress> findHosts(int udp, int timeout) {
+		return client.discoverHosts(udp, timeout);
 	}
 
 	public void disconnect() {

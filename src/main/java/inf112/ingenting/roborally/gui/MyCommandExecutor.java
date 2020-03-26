@@ -105,10 +105,7 @@ public class MyCommandExecutor extends CommandExecutor {
 			network.client.connect(ip, Network.DEFAULT_PORT_TCP);
 		} catch (IOException e) {
 			console.log("Failed to connect to host " + ip + ", Error: " + e.getMessage(), LogLevel.ERROR);
-			return;
 		}
-
-		console.log("Connected to host " + ip, LogLevel.SUCCESS);
 	}
 
 	@ConsoleDoc(description = "Attempts to connect to a host with the given ip address and port.", paramDescriptions = {"The IP address to connect to", "The port to connect to"})
@@ -123,10 +120,7 @@ public class MyCommandExecutor extends CommandExecutor {
 			network.client.connect(ip, tcpPort);
 		} catch (IOException e) {
 			console.log("Failed to connect to host " + ip + ":" + tcpPort + ", Error: " + e.getMessage(), LogLevel.ERROR);
-			return;
 		}
-
-		console.log("Connected to host " + ip + ":" + tcpPort, LogLevel.SUCCESS);
 	}
 
 	@ConsoleDoc(description = "Send a message to other players.", paramDescriptions = "The message to send")
@@ -145,6 +139,7 @@ public class MyCommandExecutor extends CommandExecutor {
 
 				break;
 			case HOST:
+				Network.getInstance().host.sendMessageToClients(message);
 				break;
 			case NONE:
 			default:

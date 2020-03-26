@@ -72,5 +72,6 @@ public class Network {
 	public static void registerObjects(EndPoint endpoint) {
 		Kryo kryo = endpoint.getKryo();
 		kryo.register(NetworkMessage.class);
+		kryo.register(NetworkFlag.class);
 	}
 }
