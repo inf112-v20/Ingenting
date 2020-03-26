@@ -12,9 +12,14 @@ import inf112.ingenting.roborally.player.Player;
 public class Game {
 
 	private Board board;
+
 	private PlayerConsole currentConsole;
-	private Player[] players;
 	private PlayerConsole[] playerConsoles;
+	private Player[] players;
+	private Player currentPlayer;
+	private Boolean gameWon = false;
+
+
 
 
 	public Game(int amountOfPlayers, OrthographicCamera camera){
@@ -24,6 +29,7 @@ public class Game {
 
 		createPlayers(amountOfPlayers);
 		currentConsole = playerConsoles[0];
+		currentPlayer = players[0];
 	}
 
 	public Game(int amountOfPlayers){
@@ -38,6 +44,11 @@ public class Game {
 	public void render(){
 		board.render();
 		currentConsole.render();
+		board.moveRobotKey(currentPlayer.getCurrentRobot());
+		if(winCondition() && !gameWon){
+			currentConsole.log("Game over!");
+			gameWon = true;
+		}
 	}
 
 	public void dispose(){
@@ -61,7 +72,7 @@ public class Game {
 		for (int i = 0; i < amountOfPlayers; i++) {
 			Vector2 position = new Vector2(i+2, 0);
 			String path = String.format("player_%x.png", i+1);
-			players[i] = new Player(1, position, path);
+			players[i] = new Player(1, position, board.getFlags(), path);
 			playerConsoles[i] = new PlayerConsole(board, players[i]);
 			board.addRobot(players[i].getCurrentRobot());
 		}
@@ -86,5 +97,14 @@ public class Game {
 
 	public Board getBoard() {
 		return board;
+	}
+
+	public Boolean winCondition(){
+		for (Player p: getPlayers()) {
+			if (p.getCurrentRobot().getFlagsVisited() >= board.getFlags().length){
+				return true;
+			}
+		}
+		return false;
 	}
 }

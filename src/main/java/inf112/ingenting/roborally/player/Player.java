@@ -1,6 +1,7 @@
 package inf112.ingenting.roborally.player;
 
 import com.badlogic.gdx.math.Vector2;
+import inf112.ingenting.roborally.element.Flag;
 import inf112.ingenting.roborally.gui.PlayerConsole;
 
 public class Player {
@@ -8,13 +9,15 @@ public class Player {
 	private int amountOfRobots;
 	private Robot[] robots;
 	private Robot currentRobot;
+	private Flag[] flags;
 
-	public Player(int amountOfRobots, Vector2 startPos, String robotFile){
+	public Player(int amountOfRobots, Vector2 startPos, Flag[] flags, String robotFile){
 		this.amountOfRobots = amountOfRobots;
 		this.robots = new Robot[amountOfRobots];
+		this.flags = flags;
 
 		for (int i = 0; i < amountOfRobots; i++) {
-			robots[i] = new Robot(robotFile, startPos);
+			robots[i] = new Robot(robotFile, startPos, flags);
 		}
 		currentRobot = robots[0];
 	}

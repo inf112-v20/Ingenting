@@ -6,64 +6,31 @@ import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.Vector2;
 import inf112.ingenting.roborally.cards.ProgrammingCard;
 import inf112.ingenting.roborally.cards.ProgrammingCardType;
+import inf112.ingenting.roborally.element.Flag;
 
 public class Robot {
-	private boolean flag1visited = false, flag2visited = false, flag3visited = false, flag4visited = false;
-	private boolean allFlagsVisited = false;
+
+	private Flag currentGoal;
+	private Flag[] flags;
+	private int flagsVisited = 0;
+
 	private Vector2 position;
 	private RobotDirection direction;
 	private ProgrammingCard lastCard;
 
 	private Texture robotTexture;
 
-	public Robot(String texturePath, Vector2 position) {
+	public Robot(String texturePath, Vector2 position, Flag[] flags) {
 		robotTexture = new Texture(texturePath);
-
+		this.flags = flags;
 		this.position = position;
-		direction = RobotDirection.NORTH;
+		this.direction = RobotDirection.NORTH;
+		this.currentGoal = flags[0];
 	}
 
 	public Robot(Vector2 position) {
 		this.position = position;
 		direction = RobotDirection.NORTH;
-	}
-
-	public void checkFlags(String flag) {
-		if (allFlagsVisited == true) {
-			return;
-		}
-
-		if (flag == "flag1") {
-			flag1visited = true;
-		} else if (flag == "flag2" && flag1visited) {
-			flag2visited = true;
-		} else if (flag == "flag3" && flag2visited) {
-			flag3visited = true;
-		} else if (flag == "flag4" && flag3visited) {
-			flag4visited = true;
-			allFlagsVisited = true;
-			System.out.println("ALL FLAGS");
-		}
-	}
-
-	public boolean hasVisitedFlag1() {
-		return hasVisitedFlag1();
-	}
-
-	public boolean hasVisitedFlag2() {
-		return hasVisitedFlag2();
-	}
-
-	public boolean hasVisitedFlag3() {
-		return hasVisitedFlag3();
-	}
-
-	public boolean hasVisitedFlag4() {
-		return hasVisitedFlag4();
-	}
-
-	public boolean hasVisitedAllFlags(){
-		return allFlagsVisited;
 	}
 
 	public void render(Batch batch) {
@@ -106,7 +73,6 @@ public class Robot {
 	public void registerMove(ProgrammingCard card) {
 		if (card == null || card.getCardType() == ProgrammingCardType.AGAIN)
 			return;
-
 		lastCard = card;
 	}
 
@@ -124,5 +90,29 @@ public class Robot {
 
 	public void dispose() {
 		robotTexture.dispose();
+	}
+
+	public Flag getCurrentGoal() {
+		return currentGoal;
+	}
+
+	public int getFlagsVisited() {
+		return flagsVisited;
+	}
+
+	public void setFlagsVisited(int flagsVisited) {
+		if(flagsVisited > flags.length){
+			this.flagsVisited = flags.length;
+		}
+		else{
+			this.flagsVisited = flagsVisited;
+		}
+	}
+
+	public void setCurrentGoal(Flag currentGoal) {
+		if (currentGoal.getLevel() <= flags.length){
+			this.currentGoal = currentGoal;
+		}
+
 	}
 }

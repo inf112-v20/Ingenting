@@ -10,6 +10,7 @@ import com.badlogic.gdx.maps.tiled.TiledMapTileLayer;
 import com.badlogic.gdx.maps.tiled.TmxMapLoader;
 import com.badlogic.gdx.maps.tiled.renderers.OrthogonalTiledMapRenderer;
 import com.badlogic.gdx.utils.Array;
+import inf112.ingenting.roborally.element.Flag;
 import inf112.ingenting.roborally.player.Robot;
 import inf112.ingenting.roborally.player.RobotDirection;
 import org.lwjgl.Sys;
@@ -25,12 +26,12 @@ public class Board implements IBoard {
 	private TiledMapTileLayer[] layers;
 	private OrthographicCamera camera;
 	private OrthogonalTiledMapRenderer mapRenderer;
+	private Flag[] flags;
 
 	private Array<Robot> robots;
 
 	public Board(String fileName, float unitScale, OrthographicCamera camera) {
 		map = new TmxMapLoader().load(fileName);
-
 		layers = new TiledMapTileLayer[] {
 				(TiledMapTileLayer) map.getLayers().get("floor"),
 				(TiledMapTileLayer) map.getLayers().get("wall"),
@@ -41,7 +42,8 @@ public class Board implements IBoard {
 		this.camera = camera;
 		mapRenderer = new OrthogonalTiledMapRenderer(map, unitScale);
 
-		robots = new Array<>();
+		this.robots = new Array<>();
+		this.flags = getFlags();
 
 	}
 
@@ -67,6 +69,28 @@ public class Board implements IBoard {
 
 	public TiledMapTileLayer getLayer(int layerNum) {
 		return layers[layerNum];
+	}
+	
+	public Flag[] getFlags(){
+		flags = new Flag[4];
+		for (int y = 0; y < 12; y++) {
+			for (int x = 0; x < 12 ; x++) {
+				int tileId = getTileIdFromLayer(x, y, LAYER_INTERACTABLE);
+				switch (tileId){
+					case FLAG_1:
+						flags[0] = new Flag(x, y, 1);
+					case FLAG_2:
+						flags[1] = new Flag(x, y, 2);
+					case FLAG_3:
+						flags[2] = new Flag(x, y, 3);
+					case FLAG_4:
+						flags[3] = new Flag(x, y, 4);
+					default:
+						continue;
+				}
+			}
+		}
+		return flags;
 	}
 
 	@Override
@@ -181,18 +205,35 @@ public class Board implements IBoard {
 		if(Gdx.input.isKeyJustPressed(Input.Keys.UP)) {
 			robot.setRelativePosition(0, 1);
 			robot.setDirection(RobotDirection.NORTH);
+			checkFlag(robot);
 		}
 		if(Gdx.input.isKeyJustPressed(Input.Keys.RIGHT)) {
 			robot.setRelativePosition(1, 0);
 			robot.setDirection(RobotDirection.EAST);
+			checkFlag(robot);
 		}
 		if(Gdx.input.isKeyJustPressed(Input.Keys.LEFT)) {
 			robot.setRelativePosition(-1, 0);
 			robot.setDirection(RobotDirection.WEST);
+			checkFlag(robot);
 		}
 		if(Gdx.input.isKeyJustPressed(Input.Keys.DOWN)) {
 			robot.setRelativePosition(0, -1);
 			robot.setDirection(RobotDirection.SOUTH);
+			checkFlag(robot);
+		}
+	}
+	
+	private void checkFlag(Robot robot){
+		for (Flag f: getFlags()) {
+			if(f.getXPosition() == robot.getPosition().x && f.getYPosition() == robot.getPosition().y){
+				if(f.getLevel() == robot.getCurrentGoal().getLevel()){
+					int newGoal = (robot.getCurrentGoal().getLevel() + 1) - 1;
+					int idx = newGoal >= flags.length ? flags.length - 1 : newGoal;
+					robot.setCurrentGoal(flags[idx]);
+					robot.setFlagsVisited(robot.getFlagsVisited() + 1);
+				}
+			}
 		}
 	}
 
@@ -280,31 +321,9 @@ public class Board implements IBoard {
 					break;
 			}
 		}
-		//Check current tile robot is standing on is a flag.
-		int id = getTileIdFromLayer((int) robot.getPosition().x, (int) robot.getPosition().y, LAYER_INTERACTABLE);
-		if (id == FLAG_1 || id == FLAG_2 || id == FLAG_3 || id == FLAG_4){
-			robotCheckCurrentFlag(robot,id);
-		}
+		checkFlag(robot);
 	}
 
-	public void robotCheckCurrentFlag(Robot robot, int id) {
-		switch (id) {
-			case FLAG_1:
-				robot.checkFlags("flag1");
-				break;
-			case FLAG_2:
-				robot.checkFlags("flag2");
-				break;
-			case FLAG_3:
-				robot.checkFlags("flag3");
-				break;
-			case FLAG_4:
-				robot.checkFlags("flag4");
-				break;
-			default:
-				break;
-		}
-	}
 
 	@Override
 	public void moveRobots() {
