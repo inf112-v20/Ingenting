@@ -19,6 +19,7 @@ public class Robot {
 	private ProgrammingCard lastCard;
 
 	private Texture robotTexture;
+	private Boolean isActive = true;
 
 	public Robot(String texturePath, Vector2 position, Flag[] flags) {
 		robotTexture = new Texture(texturePath);
@@ -66,8 +67,13 @@ public class Robot {
 	}
 
 	public void setRelativePosition(int x, int y) {
-		position.x += x;
-		position.y += y;
+		if (position.x + x < 12 && position.y + y < 12 && position.x + x >= 0 && position.y + y >= 0){
+			position.x += x;
+			position.y += y;
+		}
+		else {
+			isActive = false;
+		}
 	}
 
 	public void registerMove(ProgrammingCard card) {
