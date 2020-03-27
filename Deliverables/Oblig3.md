@@ -19,7 +19,7 @@ Tre forbedringspunkt:
 Målet vårt har hele tiden vært å ta oss av de store oppgavene som kan kreve mye endring av nåværende kode som for eks. brukergrensesnitt og nettverk. Dette har også ført til at vi blir sittende med de samme oppgavene en stund fordi at dette er store utfordringer, og krever tid.
 Derfor har vi også laget flere kortere brukerhistorier samtidig så vi forholder oss til en større og mer krevende brukerhistorie.
 
-Kommunikasjonen i laget til nå har vært svært bra. Målet har hele tiden vært at alle skal bli hørt, og kunne bidra. Dette er noe vi føler at vi har oppnådd. 
+Kommunikasjonen i laget til nå har vært svært bra. Målet har hele tiden vært at alle skal bli hørt, og kunne bidra. Dette er noe vi føler at vi har oppnådd. Vi har tidligere benyttet oss av parprogrammering for kunnskapsoverføring men pga. nåværende situasjon er det uaktuelt. Derfor har det blitt til at vi jobber sammen gjennom discord.
 
 ## Deloppgave 2: Krav
 Som nevnt tidligere så har vi prioritert brukergrensesnitt og nettverk. Med nettverk så har målet vært å kunne koble til to spillere. Dette har vi komt godt i gang med, men ikke nok til at vi ønsker å ta det med denne iterasjonen. Derfor har vi fokusert på å få et fungerende brukergrensesnitt som vi kan utvide og bruke sammen med nettverk fremover. Fokuset har også vært å lage korte brukerhistorier 
@@ -50,7 +50,6 @@ Brettet skal kunne vise flere roboter.
 
 **Akseptansekriterie**
 * Brettet skal ha minst 2 roboter.
-
 
 ### Brukerhistorie: Visualisere flagg på brettet.
 Brettet skal ha minst 3 flagg.
