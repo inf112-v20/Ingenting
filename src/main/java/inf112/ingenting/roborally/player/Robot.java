@@ -21,6 +21,12 @@ public class Robot {
 	private Texture robotTexture;
 	private Boolean active = true;
 
+	/**
+	 * Creates a robot that can move and capture flags in the game.
+	 * @param texturePath file path of of image that represents robot.
+	 * @param position where robot starts.
+	 * @param flags that robot should reach in the game.
+	 */
 	public Robot(String texturePath, Vector2 position, Flag[] flags) {
 		robotTexture = new Texture(texturePath);
 		this.flags = flags;
@@ -29,9 +35,14 @@ public class Robot {
 		this.currentGoal = flags[0];
 	}
 
+	/**
+	 * Creates a robot. Used for testing purpose.
+	 * Robot movement and flag testing is done manual.
+	 * @param position of robot.
+	 */
 	public Robot(Vector2 position) {
 		this.position = position;
-		direction = RobotDirection.NORTH;
+		this.direction = RobotDirection.NORTH;
 	}
 
 	public void render(Batch batch) {
@@ -55,15 +66,6 @@ public class Robot {
 
 	public Vector2 getPosition() {
 		return position;
-	}
-
-	public void setPosition(Vector2 position) {
-		this.position = position;
-	}
-
-	public void setRelativePosition(Vector2 position) {
-		this.position.x += position.x;
-		this.position.y += position.y;
 	}
 
 	public void setRelativePosition(int x, int y) {

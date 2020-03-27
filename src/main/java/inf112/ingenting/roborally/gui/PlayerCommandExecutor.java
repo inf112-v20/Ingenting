@@ -7,16 +7,24 @@ import inf112.ingenting.roborally.cards.ProgrammingCard;
 import inf112.ingenting.roborally.cards.ProgrammingCardType;
 import inf112.ingenting.roborally.player.Player;
 
-public class MyCommandExecutor extends CommandExecutor {
+/**
+ * PlayerCommandExecutor is a class that represents the methods that the player can execute by using
+ * the in-game console.
+ */
+public class PlayerCommandExecutor extends CommandExecutor {
 
 	Board board;
 	Player player;
 
-	public MyCommandExecutor(Board board, Player player){
+	/**
+	 * Creates a console which player can perform commands on.
+	 * @param board that commands should interact with.
+	 * @param player that interacts with the board.
+	 */
+	public PlayerCommandExecutor(Board board, Player player){
 		this.board = board;
 		this.player = player;
 	}
-
 
 	public void move1(){
 		player.getCurrentRobot().registerMove(new ProgrammingCard(ProgrammingCardType.MOVE_1));

@@ -10,7 +10,7 @@ import inf112.ingenting.roborally.player.Player;
 public class PlayerConsole {
 	private Board board;
 	private Console console;
-	private MyCommandExecutor executor; // All methods what will be used in console window.
+	private PlayerCommandExecutor executor; // All methods what will be used in console window.
 
 	/**
 	 * Creates a console for the player so that the player can interact with the game.
@@ -20,7 +20,7 @@ public class PlayerConsole {
 	public PlayerConsole(Board board, Player player) {
 		this.board = board;
 		console = new GUIConsole();
-		executor = new MyCommandExecutor(board, player);
+		executor = new PlayerCommandExecutor(board, player);
 
 		console.setCommandExecutor(executor);
 		console.setDisplayKeyID(Input.Keys.GRAVE);
@@ -33,7 +33,7 @@ public class PlayerConsole {
 	 */
 	public PlayerConsole(Board board, Player player, Boolean b){
 		this.board = board;
-		executor = new MyCommandExecutor(board, player);
+		executor = new PlayerCommandExecutor(board, player);
 	}
 
 
@@ -58,7 +58,7 @@ public class PlayerConsole {
 		console.log(s);
 	}
 
-	public MyCommandExecutor getExecutor() {
+	public PlayerCommandExecutor getExecutor() {
 		return executor;
 	}
 }

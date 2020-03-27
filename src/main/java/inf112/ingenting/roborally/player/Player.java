@@ -11,6 +11,13 @@ public class Player {
 	private Robot currentRobot;
 	private Flag[] flags;
 
+	/**
+	 * Creates a player with a skin that interacts with the board.
+	 * @param amountOfRobots player should have
+	 * @param startPos position of players robots.
+	 * @param flags that player needs to reach to win.
+	 * @param robotFile file of robot image.
+	 */
 	public Player(int amountOfRobots, Vector2 startPos, Flag[] flags, String robotFile){
 		this.amountOfRobots = amountOfRobots;
 		this.robots = new Robot[amountOfRobots];
@@ -22,6 +29,11 @@ public class Player {
 		currentRobot = robots[0];
 	}
 
+	/**
+	 * Creates a player without a skin for testing purpose.
+	 * @param amountOfRobots that player should have
+	 * @param startPos position of all player robots.
+	 */
 	public Player(int amountOfRobots, Vector2 startPos){
 		this.amountOfRobots = amountOfRobots;
 		this.robots = new Robot[amountOfRobots];
