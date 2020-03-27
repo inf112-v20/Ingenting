@@ -17,7 +17,7 @@ public class Launcher extends ApplicationAdapter {
 		camera.zoom = 1f;
 		camera.position.set(camera.position.x, camera.position.y, 0);
 		camera.update();
-		game = new Game(1, camera);
+		game = new Game(2, camera);
 	}
 
 	@Override

@@ -20,8 +20,6 @@ public class Game {
 	private Boolean gameWon = false;
 
 
-
-
 	public Game(int amountOfPlayers, OrthographicCamera camera){
 		players = new Player[amountOfPlayers];
 		playerConsoles = new PlayerConsole[amountOfPlayers];
