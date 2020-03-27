@@ -9,7 +9,7 @@ import inf112.ingenting.roborally.board.MoveType;
 
 import java.util.Random;
 
-public class ProgrammingCard extends Actor {
+public class ProgrammingCard {
 	private ProgrammingCardType type;
 	private int priority;
 
