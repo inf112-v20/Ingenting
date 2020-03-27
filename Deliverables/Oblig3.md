@@ -7,7 +7,7 @@ nå som korona viruset har kommet. Dette har ført til at vi ikke får møte fys
 men vi har tilpasset situasjonen og benytter oss av discord til møter og når det er behov for det. 
 
 Når det gjelder prosjektmetodikk, så benytter vi oss av XP. Dette har fungert bra til nå, og vi ser fremgang i posjektet. Vi har forbedret oss siden sist når det gjelder arbeidsfordeling, og
-kortere brukerhistorier. Vi opplever at mer blir gjort og ser mer progresjon i prosjektet.
+kortere brukerhistorier. Vi opplever at mer blir gjort og ser mer progresjon i prosjektet. 
 
 Det vi kan jobbe mer med videre er følgende: 
 
@@ -21,6 +21,7 @@ Derfor har vi også laget flere kortere brukerhistorier samtidig så vi forholde
 
 Kommunikasjonen i laget til nå har vært svært bra. Målet har hele tiden vært at alle skal bli hørt, og kunne bidra. Dette er noe vi føler at vi har oppnådd. Vi har tidligere benyttet oss av parprogrammering for kunnskapsoverføring men pga. nåværende situasjon er det uaktuelt. Derfor har det blitt til at vi jobber sammen gjennom discord.
 
+
 ## Deloppgave 2: Krav
 Som nevnt tidligere så har vi prioritert brukergrensesnitt og nettverk. Med nettverk så har målet vært å kunne koble til to spillere. Dette har vi komt godt i gang med, men ikke nok til at vi ønsker å ta det med denne iterasjonen. Derfor har vi fokusert på å få et fungerende brukergrensesnitt som vi kan utvide og bruke sammen med nettverk fremover. Fokuset har også vært å lage korte brukerhistorier 
 
@@ -33,29 +34,38 @@ Som spiller trenger jeg et brukergrensesnitt som jeg kan bruke for å påvirke s
 **Akseptansekriterier**
 * Kunne se et brukergrensesnitt.
 
+**Arbeidsoppgaver:**
+* Finne biblotek som skal brukes for console.
+* Legge til console til spillet, og tilpasse det slik at det ser bra ut i forhold til brettet.
+
 ### Brukerhistorie: Samhandle med brukergrenesnittet.
 Som spiller må jeg kunne samhandle med brukergrensesnittet.
 
-***Akseptansekriterer**
+**Akseptansekriterer**
 * Kunne samhandle med brukergrensesnittet.
+
+**Arbeidsoppgaver:**
+* Spilleren skal kunne skrive i console og utføre kommandoer. 
 
 ### Brukerhistorie: Bevege roboten ved bruk av brukergrensesnittet.
 Som spiller vil jeg kunne bevege roboten ved å bruke brukergrensesnittet.
 
+**Arbeidskriterier**
 * Kunne bevege roboten med brukergrensesnittet.
 * Få ønsket oppførsel ved å bevege roboten.
 
-### Brukerhistorie: Ha 2 roboter på samme brett.
-Brettet skal kunne vise flere roboter.
+**Arbeidsoppgaver:**
+* Lage en kommando som gjør at spilleren beveger seg frem.
 
-**Akseptansekriterie**
-* Brettet skal ha minst 2 roboter.
 
 ### Brukerhistorie: Visualisere flagg på brettet.
 Brettet skal ha minst 3 flagg.
 
 **Akseptansekriterier**
-* Brettet skal ha visualisere minst tre flagg.
+* Brettet skal visualisere minst tre flagg.
+
+**Arbeidsoppgaver:**
+* Legge til flagg i kartet ved bruk av tiled.
 
 
 ### Brukerhistorie: Samhandle med flagg.
@@ -65,11 +75,19 @@ skal registrere det.
 **Akseptansekriterier**
 * Spillet skal registrere når roboten har samhandlet med et flagg. 
 
+**Arbeidsoppgaver:**
+* Utvide robot slik at den til enhver tid har et mål, og flagg den skal innom.
+* Utivde Board slik at hvert brett har oversikt over hvor flaggene er. 
 
 ### Brukerhistorie: Seiertilstand
 Spillet skal avslutte når roboten har samhandlet med tre flagg.
 
+**Akseptansekriterier:**
 * Når roboten har samhandlet med tre flagg skal spillet avsluttes.
+
+**Arbeidsoppgaver:**
+* Utvide board slik at roboten sjekker etter hvert steg om han befinner seg ved et flag.
+* Roboten skal også sjekke om flagget er nåværende mål (riktig rekkefølge).
 
 ### Brukerhistorie: Designe kort
 **Akseptansekriterier:**
@@ -86,6 +104,15 @@ Spillet skal avslutte når roboten har samhandlet med tre flagg.
 
 **Arbeidsoppgaver:**
 * Implementere keylistening og utføre bevegelsen i den retningen
+
+### Brukerhistorie: Representere spiller
+En spiller skal representeres i en Player klasse og alt med spilleren skal gjøres gjennom klassen.
+
+**Akseptansekriterier:**
+* En spiller skal ha minst en robot
+
+**Arbeidsoppgaver:**
+* Lage en Player klasse som skal representere spilleren.
 
 ## Deloppgave 3: Produktleveranse og kodekvalitet
 
