@@ -125,3 +125,5 @@ Dette var testet ved å bevege roboten gjennom flaggene manuelt og printing til 
 
 * For å bevege roboten gjennom brukergrensesnittet støtter den nå en kommando "move1" som beveger roboten et steg frem i den retningen den peker. 
 
+Fordeling i commits kan være litt ujevn ettersom at Jakob har laget egen branch og jobbet med nettverk.
+Av en eller annen rar grunn så har også noen commits som andre har gjort i laget blitt "gjort" gjennom han som ikke lenger er med i laget. Vi fikk løst det ved å clone prosjektet på nytt.
