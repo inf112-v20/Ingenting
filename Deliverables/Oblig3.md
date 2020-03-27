@@ -57,14 +57,6 @@ Som spiller vil jeg kunne bevege roboten ved å bruke brukergrensesnittet.
 **Arbeidsoppgaver:**
 * Lage en kommando som gjør at spilleren beveger seg frem.
 
-### Brukerhistorie: Ha 2 roboter på samme brett.
-Brettet skal kunne vise flere roboter.
-
-**Akseptansekriterie**
-* Brettet skal ha minst 2 roboter.
-
-**Arbeidsoppgaver:**
-* Utvide eksisterende brett slik at det støtter flere roboter
 
 ### Brukerhistorie: Visualisere flagg på brettet.
 Brettet skal ha minst 3 flagg.
