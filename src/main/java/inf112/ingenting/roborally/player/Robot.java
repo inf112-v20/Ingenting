@@ -19,7 +19,7 @@ public class Robot {
 	private ProgrammingCard lastCard;
 
 	private Texture robotTexture;
-	private Boolean isActive = true;
+	private Boolean active = true;
 
 	public Robot(String texturePath, Vector2 position, Flag[] flags) {
 		robotTexture = new Texture(texturePath);
@@ -72,7 +72,7 @@ public class Robot {
 			position.y += y;
 		}
 		else {
-			isActive = false;
+			setActive(false);
 		}
 	}
 
@@ -120,5 +120,13 @@ public class Robot {
 			this.currentGoal = currentGoal;
 		}
 
+	}
+
+	public Boolean getActive() {
+		return active;
+	}
+
+	public void setActive(Boolean active) {
+		this.active = active;
 	}
 }

@@ -75,4 +75,16 @@ public class RobotTest {
 		Assert.assertEquals(startPosition, robot.getPosition());
 		Assert.assertEquals(RobotDirection.EAST, robot.getDirection());
 	}
+
+	@Test
+	public void RobotDeactivateOnMoveOutsideBoard(){
+		robot.setDirection(RobotDirection.WEST);
+		robot.registerMove(new ProgrammingCard(ProgrammingCardType.MOVE_1));
+
+		Assert.assertEquals(robot.getActive(), true);
+		board.moveRobots();
+		Assert.assertEquals(robot.getActive(), false);
+		Assert.assertEquals(robot.getPosition(), startPosition);
+	}
+
 }

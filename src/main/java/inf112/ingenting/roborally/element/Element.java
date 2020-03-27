@@ -9,8 +9,8 @@ package inf112.ingenting.roborally.element;
 
 public class Element implements IElement {
 
-	private int xPosition;
-	private int yPosition;
+	private int x;
+	private int y;
 
 	/**
 	 * Create a element that exists on map.
@@ -19,18 +19,18 @@ public class Element implements IElement {
 	 * @param y position
 	 */
 	public Element(int x, int y) {
-		this.yPosition = y;
-		this.xPosition = x;
+		this.y = y;
+		this.x = x;
 	}
 
 	@Override
 	public int getXPosition() {
-		return xPosition;
+		return x;
 	}
 
 	@Override
 	public int getYPosition() {
-		return yPosition;
+		return y;
 	}
 
 }

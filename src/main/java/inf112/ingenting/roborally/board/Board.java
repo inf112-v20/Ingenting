@@ -170,6 +170,7 @@ public class Board implements IBoard {
 
 
 	public boolean setTileCell(int x, int y, ArrayList<TiledMapTileLayer.Cell> tile) {
+
 		for (int i = 0; i < layers.length; i++) {
 			layers[i].setCell(x, y, tile.get(i));
 		};
@@ -320,7 +321,9 @@ public class Board implements IBoard {
 					break;
 			}
 		}
-		checkFlag(robot);
+		if (flags != null){
+			checkFlag(robot);
+		}
 	}
 
 
