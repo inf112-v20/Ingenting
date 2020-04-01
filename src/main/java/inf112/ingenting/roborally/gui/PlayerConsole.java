@@ -3,39 +3,31 @@ package inf112.ingenting.roborally.gui;
 import com.badlogic.gdx.Input;
 import com.strongjoshua.console.Console;
 import com.strongjoshua.console.GUIConsole;
-import inf112.ingenting.roborally.board.Board;
-import inf112.ingenting.roborally.player.Player;
-
 
 public class PlayerConsole {
-	private Board board;
 	private Console console;
 	private PlayerCommandExecutor executor; // All methods what will be used in console window.
 
+	private static PlayerConsole instance;
+
 	/**
-	 * Creates a console for the player so that the player can interact with the game.
-	 * @param board that should be interacted.
-	 * @param player that should interact with the game.
+	 * Creates a console so that users can interact with the game.
 	 */
-	public PlayerConsole(Board board, Player player) {
-		this.board = board;
+	private PlayerConsole() {
 		console = new GUIConsole();
-		executor = new PlayerCommandExecutor(board, player);
+		executor = new PlayerCommandExecutor();
 
 		console.setCommandExecutor(executor);
 		console.setDisplayKeyID(Input.Keys.GRAVE);
 		render();
 	}
 
-	/**
-	 * Similar to first constructor, but does not create a GUI.
-	 * Used for testing.
-	 */
-	public PlayerConsole(Board board, Player player, Boolean b){
-		this.board = board;
-		executor = new PlayerCommandExecutor(board, player);
-	}
+	public static PlayerConsole getInstance() {
+		if (instance == null)
+			instance = new PlayerConsole();
 
+		return instance;
+	}
 
 	public void dispose(){
 		console.dispose();
@@ -54,11 +46,7 @@ public class PlayerConsole {
 		console.refresh();
 	}
 
-	public void log(String s){
-		console.log(s);
-	}
-
-	public PlayerCommandExecutor getExecutor() {
-		return executor;
+	public void log(String message){
+		console.log(message);
 	}
 }

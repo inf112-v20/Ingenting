@@ -13,8 +13,7 @@ public class Game {
 
 	private Board board;
 
-	private PlayerConsole currentConsole;
-	private PlayerConsole[] playerConsoles;
+	private PlayerConsole gameConsole;
 	private Player[] players;
 	private Player currentPlayer;
 	private Boolean gameWon = false;
@@ -22,42 +21,36 @@ public class Game {
 
 	public Game(int amountOfPlayers, OrthographicCamera camera){
 		players = new Player[amountOfPlayers];
-		playerConsoles = new PlayerConsole[amountOfPlayers];
 		board = new Board("testMap.tmx", (float) 1 / 64, camera);
+		gameConsole = PlayerConsole.getInstance();
 
 		createPlayers(amountOfPlayers);
-		currentConsole = playerConsoles[0];
 		currentPlayer = players[0];
 	}
 
 	public Game(int amountOfPlayers){
 		players = new Player[amountOfPlayers];
-		playerConsoles = new PlayerConsole[amountOfPlayers];
 		board = new Board();
 
 		createPlayersNoSkin(amountOfPlayers);
-		currentConsole = playerConsoles[0];
 	}
 
 	public void render(){
 		board.render();
-		currentConsole.render();
+		gameConsole.render();
 		board.moveRobotKey(currentPlayer.getCurrentRobot());
 		if(winCondition() && !gameWon){
-			currentConsole.log("Game over!");
+			gameConsole.log("Game over!");
 			gameWon = true;
 		}
 	}
 
 	public void dispose(){
 		board.dispose();
-		for (PlayerConsole c: playerConsoles) {
-			c.refresh();
-		}
 	}
 
 	public void refresh(){
-		currentConsole.render();
+		gameConsole.render();
 	}
 
 	/**
@@ -71,7 +64,6 @@ public class Game {
 			Vector2 position = new Vector2(i+2, 0);
 			String path = String.format("player_%x.png", i+1);
 			players[i] = new Player(1, position, board.getFlags(), path);
-			playerConsoles[i] = new PlayerConsole(board, players[i]);
 			board.addRobot(players[i].getCurrentRobot());
 		}
 	}
@@ -80,17 +72,12 @@ public class Game {
 		for (int i = 0; i < amountOfPlayers; i++) {
 			Vector2 position = new Vector2(i+2, 0);
 			players[i] = new Player(1, position);
-			playerConsoles[i] = new PlayerConsole(board, players[i], false);
 			board.addRobot(players[i].getCurrentRobot());
 		}
 	}
 
 	public Player[] getPlayers() {
 		return players;
-	}
-
-	public PlayerConsole getConsole() {
-		return currentConsole;
 	}
 
 	public Board getBoard() {
