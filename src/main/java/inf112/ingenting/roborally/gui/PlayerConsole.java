@@ -5,24 +5,24 @@ import com.strongjoshua.console.Console;
 import com.strongjoshua.console.GUIConsole;
 import com.strongjoshua.console.LogLevel;
 
-public class GameConsole {
+public class PlayerConsole {
 	private Console console;
-	private MyCommandExecutor executor; // All methods what will be used in console window.
+	private PlayerCommandExecutor executor; // All methods what will be used in console window.
 
-	private static GameConsole instance;
+	private static PlayerConsole instance;
 
-	private GameConsole() {
+	private PlayerConsole() {
 		console = new GUIConsole();
-		executor = new MyCommandExecutor();
+		executor = new PlayerCommandExecutor();
 
 		console.setCommandExecutor(executor);
 		console.setDisplayKeyID(Input.Keys.GRAVE);
 		render();
 	}
 
-	public static GameConsole getInstance() {
+	public static PlayerConsole getInstance() {
 		if (instance == null)
-			instance = new GameConsole();
+			instance = new PlayerConsole();
 
 		return instance;
 	}

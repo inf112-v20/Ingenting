@@ -4,7 +4,7 @@ import com.esotericsoftware.kryonet.Connection;
 import com.esotericsoftware.kryonet.Listener;
 import com.esotericsoftware.kryonet.Server;
 import com.strongjoshua.console.LogLevel;
-import inf112.ingenting.roborally.gui.GameConsole;
+import inf112.ingenting.roborally.gui.PlayerConsole;
 
 import java.io.IOException;
 
@@ -38,7 +38,7 @@ public class NetworkHost {
 	private void addListeners() {
 		server.addListener(new Listener() {
 			public void connected(Connection connection) {
-				GameConsole.getInstance().log("Connection received.", LogLevel.SUCCESS);
+				PlayerConsole.getInstance().log("Connection received.", LogLevel.SUCCESS);
 
 				connection.setName("Player " + server.getConnections().length);
 
@@ -50,11 +50,11 @@ public class NetworkHost {
 				);
 
 				server.sendToAllExceptTCP(connection.getID(), connection.toString() + " connected.");
-				GameConsole.getInstance().log("Client connected from " + connection.getRemoteAddressTCP().toString());
+				PlayerConsole.getInstance().log("Client connected from " + connection.getRemoteAddressTCP().toString());
 			}
 
 			public void received(Connection connection, Object object) {
-				GameConsole.getInstance().log("Object received.", LogLevel.SUCCESS);
+				PlayerConsole.getInstance().log("Object received.", LogLevel.SUCCESS);
 
 				if (object instanceof NetworkMessage) {
 					NetworkMessage networkMessage = (NetworkMessage) object;
@@ -80,7 +80,7 @@ public class NetworkHost {
 
 			public void disconnected(Connection connection) {
 				server.sendToAllTCP(connection.toString() + " disconnected.");
-				GameConsole.getInstance().log(connection.toString() + " disconnected.");
+				PlayerConsole.getInstance().log(connection.toString() + " disconnected.");
 			}
 		});
 	}
