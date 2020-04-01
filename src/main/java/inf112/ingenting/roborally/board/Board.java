@@ -206,21 +206,25 @@ public class Board implements IBoard {
 			robot.setRelativePosition(0, 1);
 			robot.setDirection(RobotDirection.NORTH);
 			checkFlag(robot);
+			checkTile(robot);
 		}
 		if(Gdx.input.isKeyJustPressed(Input.Keys.RIGHT)) {
 			robot.setRelativePosition(1, 0);
 			robot.setDirection(RobotDirection.EAST);
 			checkFlag(robot);
+			checkTile(robot);
 		}
 		if(Gdx.input.isKeyJustPressed(Input.Keys.LEFT)) {
 			robot.setRelativePosition(-1, 0);
 			robot.setDirection(RobotDirection.WEST);
 			checkFlag(robot);
+			checkTile(robot);
 		}
 		if(Gdx.input.isKeyJustPressed(Input.Keys.DOWN)) {
 			robot.setRelativePosition(0, -1);
 			robot.setDirection(RobotDirection.SOUTH);
 			checkFlag(robot);
+			checkTile(robot);
 		}
 	}
 	
@@ -324,8 +328,42 @@ public class Board implements IBoard {
 		if (flags != null){
 			checkFlag(robot);
 		}
+		checkTile(robot);
 	}
 
+	public void checkTile(Robot robot) {
+		//TODO Add collision checker
+		int tileId = getTileIdFromLayer((int) robot.getPosition().x,(int) robot.getPosition().y, LAYER_INTERACTABLE);
+		System.out.println(tileId);
+		if (tileId == 6) {
+			//TODO
+			// Robot stepped on a hole
+		} else if (tileId == 21 || tileId == 20 || tileId == 17 || tileId == 75 || tileId == 86 || tileId == 82) {
+			// Blue conveyor DOWN
+			robot.setRelativePosition(0,-2);
+		} else if (tileId == 22 || tileId == 28 || tileId == 18 || tileId == 76 || tileId == 85 || tileId == 83) {
+			// Blue conveyor LEFT
+			robot.setRelativePosition(-2,0);
+		} else if (tileId == 19 || tileId == 14 || tileId == 25 || tileId == 74 || tileId == 78 || tileId == 81) {
+			// Blue conveyor RIGHT
+			robot.setRelativePosition(2,0);
+		} else if (tileId == 13 || tileId == 27 || tileId == 26 || tileId == 73 || tileId == 77 || tileId == 84) {
+			// Blue conveyor UP
+			robot.setRelativePosition(0,2);
+		} else if (tileId == 33 || tileId == 36 || tileId == 50 || tileId == 59 || tileId == 62 || tileId == 67) {
+			// Yellow conveyor DOWN
+			robot.setRelativePosition(0,-1);
+		} else if (tileId == 34 || tileId == 44 || tileId == 51 || tileId == 60 || tileId == 68 || tileId == 70) {
+			// Yellow conveyor LEFT
+			robot.setRelativePosition(-1,0);
+		} else if (tileId == 35 || tileId == 41 || tileId == 52 || tileId == 58 || tileId == 61 || tileId == 66) {
+			// Yellow conveyor RIGHT
+			robot.setRelativePosition(1,0);
+		} else if (tileId == 42 || tileId == 43 || tileId == 49 || tileId == 57 || tileId == 65 || tileId == 69) {
+			// Yellow conveyor UP
+			robot.setRelativePosition(0,1);
+		}
+	}
 
 	@Override
 	public void moveRobots() {
