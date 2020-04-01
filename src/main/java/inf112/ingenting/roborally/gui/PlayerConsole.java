@@ -3,28 +3,26 @@ package inf112.ingenting.roborally.gui;
 import com.badlogic.gdx.Input;
 import com.strongjoshua.console.Console;
 import com.strongjoshua.console.GUIConsole;
+import com.strongjoshua.console.LogLevel;
 
-public class PlayerConsole {
+public class GameConsole {
 	private Console console;
-	private PlayerCommandExecutor executor; // All methods what will be used in console window.
+	private MyCommandExecutor executor; // All methods what will be used in console window.
 
-	private static PlayerConsole instance;
+	private static GameConsole instance;
 
-	/**
-	 * Creates a console so that users can interact with the game.
-	 */
-	private PlayerConsole() {
+	private GameConsole() {
 		console = new GUIConsole();
-		executor = new PlayerCommandExecutor();
+		executor = new MyCommandExecutor();
 
 		console.setCommandExecutor(executor);
 		console.setDisplayKeyID(Input.Keys.GRAVE);
 		render();
 	}
 
-	public static PlayerConsole getInstance() {
+	public static GameConsole getInstance() {
 		if (instance == null)
-			instance = new PlayerConsole();
+			instance = new GameConsole();
 
 		return instance;
 	}
@@ -46,7 +44,11 @@ public class PlayerConsole {
 		console.refresh();
 	}
 
-	public void log(String message){
+	public void log(String message) {
 		console.log(message);
+	}
+
+	public void log(String message, LogLevel level) {
+		console.log(message, level);
 	}
 }
