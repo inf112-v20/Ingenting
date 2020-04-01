@@ -58,3 +58,12 @@ Oppmøte: Alle
 * Går igjennom ny kode
 * Snakker om hvordan vi skal gjøre siste innspurt mot oblig
 * Tildeler nye oppgaver
+
+## 3/31/20
+Oppmøte: Alle
+* Oppsumering av ka vi fikk gjort forrige innlevering
+* Enda kortere brukerhistorier enn det vi har hatt til nå
+* Mål: koble to spillere sammen, få brukergrensesnittet til å vise kort og muligheten til å velge kort
+* Felles gjennomgang av kode 4/1/20 klokken 9
+
+## 1/4 
