@@ -21,6 +21,9 @@ public class Robot {
 	private Texture robotTexture;
 	private Boolean active = true;
 
+	private Boolean isAlive = true;
+	private int hp = 10;
+
 	/**
 	 * Creates a robot that can move and capture flags in the game.
 	 * @param texturePath file path of of image that represents robot.
@@ -122,6 +125,28 @@ public class Robot {
 			this.currentGoal = currentGoal;
 		}
 
+	}
+
+	public void setRelativeHP(int hp) {
+		if (this.hp <= 0) {
+			setAlive(false);
+			return;
+		}
+		if (this.hp > 10) {
+			this.hp = 10;
+			return;
+		}
+		this.hp += hp;
+	}
+
+	public int getHp() { return this.hp; }
+
+	public void setAlive(Boolean alive) {
+		isAlive = alive;
+		if (alive == false) {
+			System.out.println("The Robot is dead");
+			setRelativePosition(-3,-3);
+		}
 	}
 
 	public Boolean getActive() {

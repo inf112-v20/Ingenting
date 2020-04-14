@@ -66,4 +66,12 @@ Oppmøte: Alle
 * Mål: koble to spillere sammen, få brukergrensesnittet til å vise kort og muligheten til å velge kort
 * Felles gjennomgang av kode 4/1/20 klokken 9
 
-## 1/4 
+## 4/14/20
+Oppmøte: Alle
+* Målet er å ha et ferdig spill som opfyller vår MVP
+* Skrive uke for uke iterasjon og setter mål for oss selv
+* Ha gjort de brukerhistoriene vi planlegger i dag til neste tirsdag
+* Deler oss i to lag, det ene laget legger til interactables, det andre laget tar seg av å vise kort og velge kort.
+* Ørjan og Sigurd tar interactables, Ayoub og Jacob tar seg av vise kort og velge kort
+* Vi skal legge til hull, skiftenøkkel, 
+* Møte 0830 onsdag den 15/4

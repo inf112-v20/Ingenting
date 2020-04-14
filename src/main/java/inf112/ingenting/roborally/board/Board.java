@@ -336,8 +336,23 @@ public class Board implements IBoard {
 		int tileId = getTileIdFromLayer((int) robot.getPosition().x,(int) robot.getPosition().y, LAYER_INTERACTABLE);
 		System.out.println(tileId);
 		if (tileId == 6) {
-			//TODO
-			// Robot stepped on a hole
+			// Hole
+			robot.setAlive(false);
+		} else if (tileId == 15) {
+			// Repair
+			robot.setRelativeHP(1);
+		} else if (tileId == 7) {
+			// Double Repair
+			robot.setRelativeHP(2);
+		} else if (tileId == 39 || tileId == 47){
+			// Single Laser
+			robot.setRelativeHP(-1);
+		} else if (tileId == 40 || tileId == 103 || tileId == 102){
+			// Double Laser
+			robot.setRelativeHP(-2);
+		} else if (tileId == 101) {
+			// Quadrouple Laser
+			robot.setRelativeHP(-4);
 		} else if (tileId == 21 || tileId == 20 || tileId == 17 || tileId == 75 || tileId == 86 || tileId == 82) {
 			// Blue conveyor DOWN
 			robot.setRelativePosition(0,-2);
