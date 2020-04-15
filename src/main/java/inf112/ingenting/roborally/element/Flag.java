@@ -1,5 +1,7 @@
 package inf112.ingenting.roborally.element;
 
+import com.badlogic.gdx.math.Vector2;
+
 public class Flag extends Element {
 
 	private final Integer level;
@@ -16,7 +18,11 @@ public class Flag extends Element {
 		this.level = level;
 	}
 
-	public Integer getLevel() {
+	public int getLevel() {
 		return level;
+	}
+
+	public Vector2 getPosition() {
+		return new Vector2(x, y);
 	}
 }

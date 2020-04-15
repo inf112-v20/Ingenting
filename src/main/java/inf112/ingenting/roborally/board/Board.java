@@ -4,7 +4,7 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.g2d.Batch;
-import com.badlogic.gdx.maps.MapObjects;
+import com.badlogic.gdx.maps.MapProperties;
 import com.badlogic.gdx.maps.tiled.TiledMap;
 import com.badlogic.gdx.maps.tiled.TiledMapTileLayer;
 import com.badlogic.gdx.maps.tiled.TmxMapLoader;
@@ -13,9 +13,9 @@ import com.badlogic.gdx.utils.Array;
 import inf112.ingenting.roborally.element.Flag;
 import inf112.ingenting.roborally.player.Robot;
 import inf112.ingenting.roborally.player.RobotDirection;
-import org.lwjgl.Sys;
 
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.PriorityQueue;
 
 public class Board implements IBoard {
@@ -41,6 +41,7 @@ public class Board implements IBoard {
 
 		this.camera = camera;
 		mapRenderer = new OrthogonalTiledMapRenderer(map, unitScale);
+		mapRenderer.setView(camera);
 
 		this.robots = new Array<>();
 		this.flags = getFlags();
@@ -70,7 +71,7 @@ public class Board implements IBoard {
 	public TiledMapTileLayer getLayer(int layerNum) {
 		return layers[layerNum];
 	}
-	
+
 	public Flag[] getFlags(){
 		flags = new Flag[4];
 		for (int y = 0; y < 12; y++) {
@@ -86,7 +87,7 @@ public class Board implements IBoard {
 					case FLAG_4:
 						flags[3] = new Flag(x, y, 4);
 					default:
-						continue;
+						break;
 				}
 			}
 		}
@@ -100,7 +101,6 @@ public class Board implements IBoard {
 	}
 
 	public void renderTileMap() {
-		mapRenderer.setView(camera);
 		mapRenderer.render();
 	}
 
@@ -173,7 +173,7 @@ public class Board implements IBoard {
 
 		for (int i = 0; i < layers.length; i++) {
 			layers[i].setCell(x, y, tile.get(i));
-		};
+		}
 
 		return true;
 	}
@@ -186,10 +186,11 @@ public class Board implements IBoard {
 	}
 
 	public ArrayList<TiledMapTileLayer.Cell> getTileCells(int x, int y) {
-		ArrayList<TiledMapTileLayer.Cell> cells = new ArrayList<TiledMapTileLayer.Cell>();
-		for (int i = 0; i < layers.length; i++) {
-			cells.add(layers[i].getCell(x, y));
-		};
+		ArrayList<TiledMapTileLayer.Cell> cells = new ArrayList<>();
+		for (TiledMapTileLayer layer : layers) {
+			cells.add(layer.getCell(x, y));
+		}
+
 		return cells;
 	}
 
@@ -227,7 +228,7 @@ public class Board implements IBoard {
 			checkTile(robot);
 		}
 	}
-	
+
 	private void checkFlag(Robot robot){
 		for (Flag f: getFlags()) {
 			if(f.getXPosition() == robot.getPosition().x && f.getYPosition() == robot.getPosition().y){
@@ -332,60 +333,67 @@ public class Board implements IBoard {
 	}
 
 	public void checkTile(Robot robot) {
-		//TODO Add collision checker
-		int tileId = getTileIdFromLayer((int) robot.getPosition().x,(int) robot.getPosition().y, LAYER_INTERACTABLE);
-		System.out.println(tileId);
-		if (tileId == 6) {
-			// Hole
-			robot.setAlive(false);
-		} else if (tileId == 15) {
-			// Repair
-			robot.setRelativeHP(1);
-		} else if (tileId == 7) {
-			// Double Repair
-			robot.setRelativeHP(2);
-		} else if (tileId == 39 || tileId == 47){
-			// Single Laser
-			robot.setRelativeHP(-1);
-		} else if (tileId == 40 || tileId == 103 || tileId == 102){
-			// Double Laser
-			robot.setRelativeHP(-2);
-		} else if (tileId == 101) {
-			// Quadrouple Laser
-			robot.setRelativeHP(-4);
-		} else if (tileId == 21 || tileId == 20 || tileId == 17 || tileId == 75 || tileId == 86 || tileId == 82) {
-			// Blue conveyor DOWN
-			robot.setRelativePosition(0,-2);
-		} else if (tileId == 22 || tileId == 28 || tileId == 18 || tileId == 76 || tileId == 85 || tileId == 83) {
-			// Blue conveyor LEFT
-			robot.setRelativePosition(-2,0);
-		} else if (tileId == 19 || tileId == 14 || tileId == 25 || tileId == 74 || tileId == 78 || tileId == 81) {
-			// Blue conveyor RIGHT
-			robot.setRelativePosition(2,0);
-		} else if (tileId == 13 || tileId == 27 || tileId == 26 || tileId == 73 || tileId == 77 || tileId == 84) {
-			// Blue conveyor UP
-			robot.setRelativePosition(0,2);
-		} else if (tileId == 33 || tileId == 36 || tileId == 50 || tileId == 59 || tileId == 62 || tileId == 67) {
-			// Yellow conveyor DOWN
-			robot.setRelativePosition(0,-1);
-		} else if (tileId == 34 || tileId == 44 || tileId == 51 || tileId == 60 || tileId == 68 || tileId == 70) {
-			// Yellow conveyor LEFT
-			robot.setRelativePosition(-1,0);
-		} else if (tileId == 35 || tileId == 41 || tileId == 52 || tileId == 58 || tileId == 61 || tileId == 66) {
-			// Yellow conveyor RIGHT
-			robot.setRelativePosition(1,0);
-		} else if (tileId == 42 || tileId == 43 || tileId == 49 || tileId == 57 || tileId == 65 || tileId == 69) {
-			// Yellow conveyor UP
-			robot.setRelativePosition(0,1);
+		if (layers[LAYER_INTERACTABLE].getCell((int) robot.getPosition().x,(int) robot.getPosition().y) == null) {
+			return;
+		}
+
+		MapProperties tileProperties = layers[LAYER_INTERACTABLE].getCell((int) robot.getPosition().x,(int) robot.getPosition().y).getTile().getProperties();
+
+		switch ((String) tileProperties.get("type")) {
+			case "hole":
+				robot.setAlive(false);
+				break;
+
+			case "repair":
+				if ((boolean) tileProperties.get("doubleRepair"))
+					robot.setRelativeHP(2);
+				else
+					robot.setRelativeHP(1);
+				break;
+
+			case "laser":
+				int count = (int) tileProperties.get("count");
+				boolean cross = (boolean) tileProperties.get("cross");
+
+				if (count == 1) {
+					if (cross)
+						robot.setRelativeHP(-2);
+					else
+						robot.setRelativeHP(-1);
+				} else {
+					if (cross)
+						robot.setRelativeHP(-4);
+					else
+						robot.setRelativeHP(-2);
+				}
+
+			case "conveyor":
+				int speed = (int) tileProperties.get("speed");
+
+				switch ((String) tileProperties.get("direction")) {
+					case "north":
+						robot.setRelativePosition(0, speed);
+						break;
+					case "east":
+						robot.setRelativePosition(speed, 0);
+						break;
+					case "south":
+						robot.setRelativePosition(0, -speed);
+						break;
+					case "west":
+						robot.setRelativePosition(-speed, 0);
+						break;
+					default:
+						break;
+				}
+				break;
 		}
 	}
 
 	@Override
 	public void moveRobots() {
 		// Lambda comparator to sort the robots based on priority
-		PriorityQueue<Robot> robotMoveQueue = new PriorityQueue<>((r1, r2) -> {
-			return Integer.compare(r1.getMove().getPriority(), r2.getMove().getPriority());
-		});
+		PriorityQueue<Robot> robotMoveQueue = new PriorityQueue<>(Comparator.comparingInt(r -> r.getMove().getPriority()));
 
 		for (Robot r : robots) {
 			robotMoveQueue.add(r);

@@ -1,3 +1,5 @@
+package inf112.ingenting.roborally.element;
+
 /**
  * Implementation of <code>IElement</code>.
  *
@@ -5,12 +7,9 @@
  * @see IElement
  */
 
-package inf112.ingenting.roborally.element;
-
 public class Element implements IElement {
 
-	private int x;
-	private int y;
+	protected int x, y;
 
 	/**
 	 * Create a element that exists on map.
