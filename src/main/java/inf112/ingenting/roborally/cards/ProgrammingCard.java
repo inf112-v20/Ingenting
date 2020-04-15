@@ -1,5 +1,10 @@
 package inf112.ingenting.roborally.cards;
 
+import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.scenes.scene2d.Actor;
+import com.badlogic.gdx.scenes.scene2d.ui.ImageTextButton;
+import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import inf112.ingenting.roborally.board.MoveType;
 
 import java.util.Random;
@@ -13,8 +18,6 @@ public class ProgrammingCard {
 	 */
 	public ProgrammingCard() {
 		Random rand = new Random();
-
-		// ew
 		this.type = ProgrammingCardType.values()[rand.nextInt(ProgrammingCardType.values().length)];
 		this.priority = rand.nextInt(500) + 100;
 	}
@@ -68,6 +71,12 @@ public class ProgrammingCard {
 	}
 
 	/**
+	 * Returns the sprite associated with the card type
+	 *
+	 * @return a sprite
+	 */
+
+	/**
 	 * Returns the card's priority
 	 *
 	 * @return The priority in integer format
@@ -85,4 +94,10 @@ public class ProgrammingCard {
 	public void setPriority(int priority) {
 		this.priority = priority;
 	}
+
+	@Override
+	public String toString(){
+		return type.toString();
+	}
+
 }

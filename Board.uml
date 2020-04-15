@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Diagram>
+  <ID>JAVA</ID>
+  <OriginalElement>inf112.ingenting.roborally.board.Board</OriginalElement>
+  <nodes>
+    <node x="723.0" y="0.0">inf112.ingenting.roborally.cards.ProgrammingCardType</node>
+    <node x="0.0" y="566.0">inf112.ingenting.roborally.gui.MyCommandExecutor</node>
+    <node x="486.0" y="0.0">inf112.ingenting.roborally.player.Robot</node>
+    <node x="0.0" y="686.0">inf112.ingenting.roborally.board.MoveType</node>
+    <node x="675.0" y="463.0">inf112.ingenting.roborally.player.RobotDirection</node>
+    <node x="96.0" y="0.0">inf112.ingenting.roborally.board.IBoard</node>
+    <node x="7.5" y="463.0">com.strongjoshua.console.CommandExecutor</node>
+    <node x="702.0" y="850.0">inf112.ingenting.roborally.Main</node>
+    <node x="415.0" y="850.0">inf112.ingenting.roborally.board.IncorrectMapFormatException</node>
+    <node x="150.0" y="686.0">inf112.ingenting.roborally.gui.PlayerConsole</node>
+    <node x="215.0" y="463.0">inf112.ingenting.roborally.Game</node>
+    <node x="0.0" y="850.0">inf112.ingenting.roborally.cards.ProgrammingCard</node>
+    <node x="601.0" y="686.0">inf112.ingenting.roborally.Launcher</node>
+    <node x="474.0" y="463.0">inf112.ingenting.roborally.player.Player</node>
+    <node x="335.5" y="79.0">inf112.ingenting.roborally.element.Element</node>
+    <node x="332.0" y="0.0">inf112.ingenting.roborally.element.IElement</node>
+    <node x="408.0" y="686.0">inf112.ingenting.roborally.board.BoardLayerType</node>
+    <node x="328.0" y="204.0">inf112.ingenting.roborally.element.Flag</node>
+    <node x="243.0" y="850.0">inf112.ingenting.roborally.element.ElementType</node>
+    <node x="0.0" y="79.0">inf112.ingenting.roborally.board.Board</node>
+  </nodes>
+  <notes />
+  <edges>
+    <edge source="inf112.ingenting.roborally.board.Board" target="inf112.ingenting.roborally.board.IBoard">
+      <point x="0.0" y="-169.5" />
+      <point x="0.0" y="14.5" />
+    </edge>
+    <edge source="inf112.ingenting.roborally.element.Element" target="inf112.ingenting.roborally.element.IElement">
+      <point x="0.0" y="-37.5" />
+      <point x="0.0" y="14.5" />
+    </edge>
+    <edge source="inf112.ingenting.roborally.element.Flag" target="inf112.ingenting.roborally.element.Element">
+      <point x="0.0" y="-26.5" />
+      <point x="0.0" y="37.5" />
+    </edge>
+    <edge source="inf112.ingenting.roborally.gui.MyCommandExecutor" target="com.strongjoshua.console.CommandExecutor">
+      <point x="0.0" y="-37.5" />
+      <point x="0.0" y="26.5" />
+    </edge>
+  </edges>
+  <settings layout="Hierarchic Group" zoom="0.7513227513227513" x="453.5" y="462.5" />
+  <SelectedNodes />
+  <Categories>
+    <Category>Fields</Category>
+  </Categories>
+  <SCOPE>All</SCOPE>
+  <VISIBILITY>private</VISIBILITY>
+</Diagram>
+

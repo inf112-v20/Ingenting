@@ -27,3 +27,7 @@ target
 mvn-app.iml
 hs_err_pid*
 *.plantuml
+
+# Eclipse
+.classpath
+.project
