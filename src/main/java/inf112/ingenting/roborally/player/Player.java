@@ -1,6 +1,7 @@
 package inf112.ingenting.roborally.player;
 
 import com.badlogic.gdx.math.Vector2;
+import inf112.ingenting.roborally.cards.ProgrammingCard;
 import inf112.ingenting.roborally.element.Flag;
 import inf112.ingenting.roborally.gui.PlayerConsole;
 
@@ -10,6 +11,7 @@ public class Player {
 	private Robot[] robots;
 	private Robot currentRobot;
 	private Flag[] flags;
+	private ProgrammingCard[] currentHand;
 
 	/**
 	 * Creates a player with a skin that interacts with the board.
@@ -22,6 +24,12 @@ public class Player {
 		this.amountOfRobots = amountOfRobots;
 		this.robots = new Robot[amountOfRobots];
 		this.flags = flags;
+
+		// For now; currentHand is randomly assigned, when phases are implemented this will be changed.
+		currentHand = new ProgrammingCard[5];
+		for (int i = 0; i < 5; i++) {
+			currentHand[i] = new ProgrammingCard();
+		}
 
 		for (int i = 0; i < amountOfRobots; i++) {
 			robots[i] = new Robot(robotFile, startPos, flags);
@@ -55,5 +63,18 @@ public class Player {
 
 	public int getAmountOfRobots() {
 		return amountOfRobots;
+	}
+
+	public void showCards() {
+		StringBuilder out = new StringBuilder();
+
+		for (int i = 0; i < currentHand.length; i++) {
+			out.append(i + 1).append(": ")
+					.append(currentHand[i].getCardType().toString().toLowerCase()).append("   ")
+					.append(currentHand[i].getPriority())
+					.append("\n");
+		}
+
+		PlayerConsole.getInstance().log(out.toString());
 	}
 }

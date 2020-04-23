@@ -112,12 +112,7 @@ public class Robot {
 	}
 
 	public void setFlagsVisited(int flagsVisited) {
-		if(flagsVisited > flags.length){
-			this.flagsVisited = flags.length;
-		}
-		else{
-			this.flagsVisited = flagsVisited;
-		}
+		this.flagsVisited = Math.min(flagsVisited, flags.length);
 	}
 
 	public void setCurrentGoal(Flag currentGoal) {
@@ -143,7 +138,7 @@ public class Robot {
 
 	public void setAlive(Boolean alive) {
 		isAlive = alive;
-		if (alive == false) {
+		if (alive) {
 			System.out.println("The Robot is dead");
 			setRelativePosition(-3,-3);
 		}
@@ -155,5 +150,9 @@ public class Robot {
 
 	public void setActive(Boolean active) {
 		this.active = active;
+	}
+
+	public Texture getTexture() {
+		return robotTexture;
 	}
 }

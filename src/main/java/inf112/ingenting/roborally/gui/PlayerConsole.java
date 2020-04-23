@@ -51,4 +51,8 @@ public class PlayerConsole {
 	public void log(String message, LogLevel level) {
 		console.log(message, level);
 	}
+
+	public void log(String message, Object ... args) {
+		console.log(String.format(message, args));
+	}
 }

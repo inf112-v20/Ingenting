@@ -37,6 +37,10 @@ public class Game {
 
 	public void render(){
 		board.render();
+
+		// Show Cards is temporarily kept here until phases are properly implemented
+		currentPlayer.showCards();
+
 		gameConsole.render();
 		board.moveRobotKey(currentPlayer.getCurrentRobot());
 		if(winCondition() && !gameWon){
@@ -63,7 +67,7 @@ public class Game {
 		for (int i = 0; i < amountOfPlayers; i++) {
 			Vector2 position = new Vector2(i+2, 0);
 			String path = String.format("player_%x.png", i+1);
-			players[i] = new Player(1, position, board.getFlags(), path);
+			players[i] = new Player(1, position, Board.getFlags(), path);
 			board.addRobot(players[i].getCurrentRobot());
 		}
 	}
@@ -86,7 +90,7 @@ public class Game {
 
 	public Boolean winCondition(){
 		for (Player p: getPlayers()) {
-			if (p.getCurrentRobot().getFlagsVisited() >= board.getFlags().length){
+			if (p.getCurrentRobot().getFlagsVisited() >= Board.getFlags().length){
 				return true;
 			}
 		}
