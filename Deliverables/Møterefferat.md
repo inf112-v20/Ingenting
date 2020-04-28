@@ -75,3 +75,7 @@ Oppmøte: Alle
 * Ørjan og Sigurd tar interactables, Ayoub og Jacob tar seg av vise kort og velge kort
 * Vi skal legge til hull, skiftenøkkel, 
 * Møte 0830 onsdag den 15/4
+
+## 28/04/20
+Oppmøte: Alle
+* 
