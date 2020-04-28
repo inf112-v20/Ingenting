@@ -8,7 +8,7 @@ Når det gjelder prosjekt metodikk så benytter vi oss fremdeles av XP. Vi ser f
 Et problem som vi har som vi også har hatt tidligere er arbeidsfordeling. Vi jobber med å fordele oppgavene, men nå som vi nærmer oss mål så er det ikke så mange oppgaver å fordele blant laget, og når noen først blir ferdig kan de bli sittende uten oppgaver. 
 
 -- Vurdere prosjekt med laget.
-
+Hadde vi begynt på nytt så hadde vi planlagt bedre, spesielt når det gjelder nettverk. Dette er egentlig noe vi har tenkt på tidligere, men
 
 ## Deloppgave 2: Krav
 
