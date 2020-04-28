@@ -78,4 +78,7 @@ Oppmøte: Alle
 
 ## 28/04/20
 Oppmøte: Alle
-* 
+* Vi har gått gjennom innleveringen og hvordan prosjektet ligger an med tanke på presentasjonen neste uke.
+* Ha debugget ferdig nettverksdelen til fredag.
+* Blitt enige om nye brukerhistorier.
+
