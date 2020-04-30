@@ -1,4 +1,4 @@
-package inf112.ingenting.roborally;
+package inf112.ingenting.roborally.cards;
 
 import inf112.ingenting.roborally.cards.ProgrammingCard;
 import inf112.ingenting.roborally.cards.ProgrammingCardType;
