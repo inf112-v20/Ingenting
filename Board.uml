@@ -12,7 +12,7 @@
     <node x="7.5" y="463.0">com.strongjoshua.console.CommandExecutor</node>
     <node x="702.0" y="850.0">inf112.ingenting.roborally.Main</node>
     <node x="415.0" y="850.0">inf112.ingenting.roborally.board.IncorrectMapFormatException</node>
-    <node x="150.0" y="686.0">inf112.ingenting.roborally.gui.PlayerConsole</node>
+    <node x="150.0" y="686.0">inf112.ingenting.roborally.gui.GameConsole</node>
     <node x="215.0" y="463.0">inf112.ingenting.roborally.Game</node>
     <node x="0.0" y="850.0">inf112.ingenting.roborally.cards.ProgrammingCard</node>
     <node x="601.0" y="686.0">inf112.ingenting.roborally.Launcher</node>
