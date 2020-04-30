@@ -1,9 +1,11 @@
 package inf112.ingenting.roborally.player;
 
+import com.badlogic.gdx.assets.AssetManager;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.Vector2;
+import inf112.ingenting.roborally.board.Board;
 import inf112.ingenting.roborally.cards.ProgrammingCard;
 import inf112.ingenting.roborally.cards.ProgrammingCardType;
 import inf112.ingenting.roborally.element.Flag;
@@ -18,11 +20,14 @@ public class Robot {
 	private RobotDirection direction;
 	private ProgrammingCard lastCard;
 
-	private Texture robotTexture;
+	private String texturePath;
 	private Boolean active = true;
 
 	private Boolean isAlive = true;
 	private int hp = 10;
+
+	// No-args constructor for Kryo serialization
+	public Robot() {}
 
 	/**
 	 * Creates a robot that can move and capture flags in the game.
@@ -31,10 +36,26 @@ public class Robot {
 	 * @param flags that robot should reach in the game.
 	 */
 	public Robot(String texturePath, Vector2 position, Flag[] flags) {
-		robotTexture = new Texture(texturePath);
-		this.flags = flags;
+		this.texturePath = texturePath;
+		this.flags = Board.getFlags();
 		this.position = position;
 		this.direction = RobotDirection.NORTH;
+		this.currentGoal = flags[0];
+	}
+
+	/**
+	 * Creates a robot that can move and capture flags in the game.
+	 * @param texturePath	The texture path for the robot.
+	 * @param position		The start position of the robot.
+	 */
+	public Robot(String texturePath, Vector2 position) {
+		this.texturePath = texturePath;
+		this.position = position;
+
+		flags = Board.getFlags();
+		this.direction = RobotDirection.NORTH;
+
+		// Change this so that the robot only has "Current Goal"
 		this.currentGoal = flags[0];
 	}
 
@@ -48,7 +69,13 @@ public class Robot {
 		this.direction = RobotDirection.NORTH;
 	}
 
-	public void render(Batch batch) {
+	public void render(Batch batch, AssetManager assetManager) {
+		if (!assetManager.isLoaded(texturePath)) {
+			assetManager.finishLoadingAsset(texturePath);
+		}
+
+		Texture robotTexture = assetManager.get(texturePath);
+
 		switch (this.direction) {
 			case SOUTH:
 				batch.draw(new TextureRegion(robotTexture), position.x, position.y, 0.5f, 0.5f, 1f, 1f, 1f, 1f, 180);
@@ -100,7 +127,6 @@ public class Robot {
 	}
 
 	public void dispose() {
-		robotTexture.dispose();
 	}
 
 	public Flag getCurrentGoal() {
@@ -152,7 +178,7 @@ public class Robot {
 		this.active = active;
 	}
 
-	public Texture getTexture() {
-		return robotTexture;
+	public String getTexturePath() {
+		return texturePath;
 	}
 }
