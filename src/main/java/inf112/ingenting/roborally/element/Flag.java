@@ -6,6 +6,9 @@ public class Flag extends Element {
 
 	private final Integer level;
 
+	// No-args constructor for Kryo serialization
+	public Flag() { level = 1; }
+
 	/**
 	 * Create a flag that has a level. Level represents the order
 	 * the flag should be reached in. For example: 1 => First flag to reach.

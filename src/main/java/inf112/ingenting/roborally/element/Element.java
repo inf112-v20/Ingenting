@@ -9,7 +9,11 @@ package inf112.ingenting.roborally.element;
 
 public class Element implements IElement {
 
+
 	protected int x, y;
+
+	// No-args constructor for Kryo serialization
+	public Element() {}
 
 	/**
 	 * Create a element that exists on map.
