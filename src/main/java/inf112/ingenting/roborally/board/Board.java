@@ -2,13 +2,13 @@ package inf112.ingenting.roborally.board;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
+import com.badlogic.gdx.assets.AssetManager;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.maps.MapProperties;
 import com.badlogic.gdx.maps.tiled.TiledMap;
 import com.badlogic.gdx.maps.tiled.TiledMapTile;
 import com.badlogic.gdx.maps.tiled.TiledMapTileLayer;
-import com.badlogic.gdx.maps.tiled.TmxMapLoader;
 import com.badlogic.gdx.maps.tiled.renderers.OrthogonalTiledMapRenderer;
 import com.badlogic.gdx.utils.Array;
 import inf112.ingenting.roborally.element.Flag;
@@ -20,42 +20,66 @@ import java.util.*;
 public class Board implements IBoard {
 	private TiledMap map;
 	private OrthogonalTiledMapRenderer mapRenderer;
+	private AssetManager assetManager;
 
 	enum LayerType { FLOOR, WALL, PLAYER_START, INTERACTABLE }
 	private Map<LayerType, TiledMapTileLayer> layers;
 
 	private static Array<Flag> flags;
 
-	private Array<Robot> robots;
+	private Array<Robot> robots = new Array<>();
 
-	public Board(String fileName, float unitScale, OrthographicCamera camera) {
-		map = new TmxMapLoader().load(fileName);
-		layers = createLayers();
+	/**
+	 * Default constructor for board.
+	 *
+	 * @param assetManager	The asset manager to use for map loading.
+	 * @param fileName		The file path for the map.
+	 * @param camera		The camera to use for rendering.
+	 */
+	public Board(AssetManager assetManager, String fileName, OrthographicCamera camera) {
+		this.assetManager = assetManager;
+		this.assetManager.load(fileName, TiledMap.class);
+		this.assetManager.finishLoadingAsset(fileName);
+		this.map = assetManager.get(fileName);
+		this.layers = createLayersFromMap();
 
-		mapRenderer = new OrthogonalTiledMapRenderer(map, unitScale);
-		mapRenderer.setView(camera);
+		MapProperties properties = map.getProperties();
 
-		this.robots = new Array<>();
+		float unitScale;
+		if (properties.get("orientation").equals("orthogonal"))
+			unitScale = (int) properties.get("tilewidth");
+		else
+			unitScale = Math.min((float) properties.get("tilewidth"), (float) properties.get("tileheight"));
+
+		camera.setToOrtho(
+				false,
+				layers.get(LayerType.FLOOR).getWidth() * 2,
+				layers.get(LayerType.FLOOR).getHeight()
+		);
+		this.mapRenderer = new OrthogonalTiledMapRenderer(map, (float) 1 / unitScale);
+		this.mapRenderer.setView(camera);
+
 		Board.flags = createFlagsFromMap();
 	}
 
-	public Board(String fileName, float unitScale, OrthographicCamera camera, Array<Robot> robots) {
-		map = new TmxMapLoader().load(fileName);
+	/**
+	 * Constructor that does not initialize rendering.
+	 *
+	 * @param assetManager	The asset manager to use for map loading.
+	 * @param fileName		The file path for the map.
+	 */
+	public Board(AssetManager assetManager, String fileName) {
+		this.assetManager = assetManager;
+		this.assetManager.load(fileName, TiledMap.class);
+		this.assetManager.finishLoadingAsset(fileName);
+		this.map = assetManager.get(fileName);
+		this.layers = createLayersFromMap();
 
-		layers = createLayers();
-
-		mapRenderer = new OrthogonalTiledMapRenderer(map, unitScale);
-		mapRenderer.setView(camera);
-
-		this.robots = robots;
-	}
-
-	public Board() {
-		this.robots = new Array<>();
+		Board.flags = createFlagsFromMap();
 	}
 
 	// Constructor helpers
-	private Map<LayerType, TiledMapTileLayer> createLayers() {
+	private Map<LayerType, TiledMapTileLayer> createLayersFromMap() {
 		Map<LayerType, TiledMapTileLayer> layers = new HashMap<>();
 
 		for (LayerType type : LayerType.values())
@@ -103,7 +127,7 @@ public class Board implements IBoard {
 
 		batch.begin();
 		for (Robot robot : robots) {
-			robot.render(batch);
+			robot.render(batch, assetManager);
 		}
 		batch.end();
 	}
@@ -187,6 +211,9 @@ public class Board implements IBoard {
 	private ArrayList<RobotDirection> moveBlock(Robot robot, TiledMapTileLayer.Cell nextCell) {
 		ArrayList<RobotDirection> blockedDirection = new ArrayList<>();
 		TiledMapTileLayer.Cell currentCell = layers.get(LayerType.WALL).getCell((int) robot.getPosition().x,(int) robot.getPosition().y);
+		if (currentCell == null)
+			return new ArrayList<>();
+
 		MapProperties tileProperties = currentCell.getTile().getProperties();
 
 		//TODO: Needs to check nextCell for walls.
@@ -390,6 +417,10 @@ public class Board implements IBoard {
 	@Override
 	public void removeRobot(int index) {
 		robots.removeIndex(index);
+	}
+
+	public void clearRobots() {
+		robots.clear();
 	}
 
 	public Robot getRobot(int index) {
