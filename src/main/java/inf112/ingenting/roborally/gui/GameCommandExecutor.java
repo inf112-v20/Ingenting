@@ -6,6 +6,7 @@ import com.strongjoshua.console.annotation.ConsoleDoc;
 import inf112.ingenting.roborally.networking.Network;
 import inf112.ingenting.roborally.networking.NetworkFlag;
 import inf112.ingenting.roborally.networking.NetworkMessage;
+import inf112.ingenting.roborally.screens.GameScreen;
 
 import java.io.IOException;
 import java.net.InetAddress;
@@ -15,7 +16,15 @@ import java.util.List;
  * PlayerCommandExecutor is a class that represents the methods that the player can execute by using
  * the in-game console.
  */
-public class PlayerCommandExecutor extends CommandExecutor {
+public class GameCommandExecutor extends CommandExecutor {
+	// Listener for main class
+	private GameScreen game;
+
+	public void setGameScreenListener(GameScreen listener) {
+		this.game = listener;
+	}
+
+
 	// Networking related commands
 	@ConsoleDoc(description = "Creates a network host on the default TCP port." + Network.DEFAULT_PORT_TCP + ".")
 	public void host() {
@@ -70,7 +79,7 @@ public class PlayerCommandExecutor extends CommandExecutor {
 
 	@ConsoleDoc(description = "Finds and lists all hosts available on the given port.", paramDescriptions = {"The UDP port to search on", "Time in ms to search for"})
 	public void findHosts(int port, int timeout) {
-		if (Network.getInstance().networkType != Network.NetworkType.CLIENT) {
+		if (Network.getInstance().getNetworkType() != Network.NetworkType.CLIENT) {
 			console.log("You must be a client to discover hosts.", LogLevel.ERROR);
 			return;
 		}
@@ -94,7 +103,7 @@ public class PlayerCommandExecutor extends CommandExecutor {
 
 	@ConsoleDoc(description = "Attempts to connect to a host with the given ip address.", paramDescriptions = "The IP address to connect to")
 	public void connect(String ip) {
-		if (Network.getInstance().networkType != Network.NetworkType.CLIENT) {
+		if (Network.getInstance().getNetworkType() != Network.NetworkType.CLIENT) {
 			console.log("You must be a client to connect to hosts.", LogLevel.ERROR);
 			return;
 		}
@@ -109,7 +118,7 @@ public class PlayerCommandExecutor extends CommandExecutor {
 
 	@ConsoleDoc(description = "Attempts to connect to a host with the given ip address and port.", paramDescriptions = {"The IP address to connect to", "The port to connect to"})
 	public void connect(String ip, int tcpPort) {
-		if (Network.getInstance().networkType != Network.NetworkType.CLIENT) {
+		if (Network.getInstance().getNetworkType() != Network.NetworkType.CLIENT) {
 			console.log("You must be a client to connect to hosts.", LogLevel.ERROR);
 			return;
 		}
@@ -124,7 +133,7 @@ public class PlayerCommandExecutor extends CommandExecutor {
 
 	@ConsoleDoc(description = "Send a message to other players.", paramDescriptions = "The message to send")
 	public void say(String message) {
-		switch (Network.getInstance().networkType) {
+		switch (Network.getInstance().getNetworkType()) {
 			case CLIENT:
 				if (!Network.getInstance().client.isConnected()) {
 					console.log("You are not connected to a host.", LogLevel.ERROR);
@@ -146,5 +155,18 @@ public class PlayerCommandExecutor extends CommandExecutor {
 				break;
 		}
 
+	}
+
+	@ConsoleDoc(description = "Start the game")
+	public void start() {
+		game.startGame();
+	}
+
+	@ConsoleDoc(description = "Show cards")
+	public void showCards() {
+		if (game == null)
+			console.log("Could not get cards", LogLevel.ERROR);
+		else
+			game.showCards();
 	}
 }
