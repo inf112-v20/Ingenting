@@ -184,6 +184,39 @@ public class Board implements IBoard {
 		}
 	}
 
+	private ArrayList<RobotDirection> moveBlock(Robot robot, TiledMapTileLayer.Cell nextCell) {
+		ArrayList<RobotDirection> blockedDirection = new ArrayList<>();
+		TiledMapTileLayer.Cell currentCell = layers.get(LayerType.WALL).getCell((int) robot.getPosition().x,(int) robot.getPosition().y);
+		MapProperties tileProperties = currentCell.getTile().getProperties();
+
+		//TODO: Needs to check nextCell for walls.
+
+		// Checking current cell for walls
+		switch ((String) tileProperties.get("direction")) {
+			case "west":
+				blockedDirection.add(RobotDirection.WEST);
+			case "north":
+				blockedDirection.add(RobotDirection.NORTH);
+			case "east":
+				blockedDirection.add(RobotDirection.EAST);
+			case "south":
+				blockedDirection.add(RobotDirection.SOUTH);
+			case "northwest":
+				blockedDirection.add(RobotDirection.NORTH);
+				blockedDirection.add(RobotDirection.WEST);
+			case "southwest":
+				blockedDirection.add(RobotDirection.SOUTH);
+				blockedDirection.add(RobotDirection.WEST);
+			case "southeast":
+				blockedDirection.add(RobotDirection.SOUTH);
+				blockedDirection.add(RobotDirection.EAST);
+			case "northeast":
+				blockedDirection.add(RobotDirection.NORTH);
+				blockedDirection.add(RobotDirection.EAST);
+		}
+		return blockedDirection;
+	}
+
 	// Move
 	private void moveRobot(Robot robot) {
 		// If the robot does not have a programming card, return
@@ -196,15 +229,23 @@ public class Board implements IBoard {
 				case FORWARD:
 					switch (robot.getDirection()) {
 						case NORTH:
+							if (moveBlock(robot, layers.get(LayerType.WALL).getCell((int) robot.getPosition().x,(int) robot.getPosition().y+1)).contains(RobotDirection.NORTH))
+								break;
 							robot.setRelativePosition(0, 1);
 							break;
 						case SOUTH:
+							if (moveBlock(robot, layers.get(LayerType.WALL).getCell((int) robot.getPosition().x,(int) robot.getPosition().y-1)).contains(RobotDirection.SOUTH))
+								break;
 							robot.setRelativePosition(0, -1);
 							break;
 						case EAST:
+							if (moveBlock(robot, layers.get(LayerType.WALL).getCell((int) robot.getPosition().x+1,(int) robot.getPosition().y)).contains(RobotDirection.EAST))
+								break;
 							robot.setRelativePosition(1, 0);
 							break;
 						case WEST:
+							if (moveBlock(robot, layers.get(LayerType.WALL).getCell((int) robot.getPosition().x-1,(int) robot.getPosition().y)).contains(RobotDirection.WEST))
+								break;
 							robot.setRelativePosition(-1, 0);
 							break;
 						default:
@@ -250,15 +291,23 @@ public class Board implements IBoard {
 				case BACKUP:
 					switch (robot.getDirection()) {
 						case NORTH:
+							if (moveBlock(robot, layers.get(LayerType.WALL).getCell((int) robot.getPosition().x,(int) robot.getPosition().y-1)).contains(RobotDirection.WEST))
+								break;
 							robot.setRelativePosition(0, -1);
 							break;
 						case SOUTH:
+							if (moveBlock(robot, layers.get(LayerType.WALL).getCell((int) robot.getPosition().x,(int) robot.getPosition().y+1)).contains(RobotDirection.WEST))
+								break;
 							robot.setRelativePosition(0, 1);
 							break;
 						case EAST:
+							if (moveBlock(robot, layers.get(LayerType.WALL).getCell((int) robot.getPosition().x-1,(int) robot.getPosition().y)).contains(RobotDirection.WEST))
+								break;
 							robot.setRelativePosition(-1, 0);
 							break;
 						case WEST:
+							if (moveBlock(robot, layers.get(LayerType.WALL).getCell((int) robot.getPosition().x+1,(int) robot.getPosition().y)).contains(RobotDirection.WEST))
+								break;
 							robot.setRelativePosition(1, 0);
 							break;
 						default:
