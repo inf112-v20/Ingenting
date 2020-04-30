@@ -1,4 +1,4 @@
-package inf112.ingenting.roborally;
+package inf112.ingenting.roborally.player;
 
 import com.badlogic.gdx.math.Vector2;
 import inf112.ingenting.roborally.player.Player;
@@ -18,7 +18,7 @@ public class PlayerTest {
 	public void correctAmountOfRobots(){
 		int testAmount = 4;
 		Player player = new Player(testAmount, new Vector2(0, 0));
-		Assert.assertEquals(testAmount, player.getAmountOfRobots());
+		Assert.assertEquals(testAmount, player.getRobotCount());
 	}
 
 	@Test

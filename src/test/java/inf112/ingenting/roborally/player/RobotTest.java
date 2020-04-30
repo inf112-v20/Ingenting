@@ -1,27 +1,35 @@
-package inf112.ingenting.roborally;
+package inf112.ingenting.roborally.player;
 
+import com.badlogic.gdx.assets.AssetManager;
+import com.badlogic.gdx.assets.loaders.resolvers.InternalFileHandleResolver;
+import com.badlogic.gdx.maps.tiled.TiledMap;
+import com.badlogic.gdx.maps.tiled.TmxMapLoader;
 import com.badlogic.gdx.math.Vector2;
 import inf112.ingenting.roborally.board.Board;
 import inf112.ingenting.roborally.cards.ProgrammingCard;
 import inf112.ingenting.roborally.cards.ProgrammingCardType;
-import inf112.ingenting.roborally.player.Robot;
-import inf112.ingenting.roborally.player.RobotDirection;
+import inf112.ingenting.roborally.util.GdxTestRunner;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
+import org.junit.runner.RunWith;
 
 /**
  * Class for testing expected behavior of the robot.
  */
-
+@RunWith(GdxTestRunner.class)
 public class RobotTest {
+	AssetManager assetManager;
 	Board board;
 	Robot robot;
 	Vector2 startPosition;
 
 	@Before
 	public void setup() {
-		board = new Board();
+		assetManager = new AssetManager();
+		assetManager.setLoader(TiledMap.class, new TmxMapLoader(new InternalFileHandleResolver()));
+
+		board = new Board(assetManager, "testMap.tmx");
 
 		startPosition = new Vector2(0, 0);
 		robot = new Robot(startPosition);
