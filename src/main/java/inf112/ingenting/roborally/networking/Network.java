@@ -2,6 +2,7 @@ package inf112.ingenting.roborally.networking;
 
 import com.esotericsoftware.kryo.Kryo;
 import com.esotericsoftware.kryonet.EndPoint;
+import inf112.ingenting.roborally.player.Player;
 
 public class Network {
 	public final static int DEFAULT_PORT_TCP = 54555;
@@ -17,7 +18,7 @@ public class Network {
 		CLIENT, HOST, NONE
 	}
 
-	public NetworkType networkType;
+	private NetworkType networkType;
 
 	private Network() {
 		networkType = NetworkType.NONE;
@@ -71,7 +72,10 @@ public class Network {
 
 	public static void registerObjects(EndPoint endpoint) {
 		Kryo kryo = endpoint.getKryo();
+		kryo.setRegistrationRequired(false);
+
 		kryo.register(NetworkMessage.class);
 		kryo.register(NetworkFlag.class);
+		kryo.register(Player.class);
 	}
 }

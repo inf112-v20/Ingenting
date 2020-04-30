@@ -1,10 +1,12 @@
 package inf112.ingenting.roborally.networking;
 
+import com.badlogic.gdx.utils.Array;
 import com.esotericsoftware.kryonet.Client;
 import com.esotericsoftware.kryonet.Connection;
 import com.esotericsoftware.kryonet.Listener;
 import com.strongjoshua.console.LogLevel;
-import inf112.ingenting.roborally.gui.PlayerConsole;
+import inf112.ingenting.roborally.gui.GameConsole;
+import inf112.ingenting.roborally.player.Player;
 
 import java.io.IOException;
 import java.net.InetAddress;
@@ -64,12 +66,29 @@ public class NetworkClient {
 					NetworkMessage networkMessage = (NetworkMessage) object;
 
 					if (networkMessage.networkStatus == NetworkFlag.CHAT_MESSAGE)
-						PlayerConsole.getInstance().log(networkMessage.name + ": " + networkMessage.message);
+						GameConsole.log(networkMessage.name + ": " + networkMessage.message);
 
 					if (networkMessage.networkStatus == NetworkFlag.LOG_ERROR)
-						PlayerConsole.getInstance().log(networkMessage.message, LogLevel.ERROR);
+						GameConsole.log(networkMessage.message, LogLevel.ERROR);
+				} else if (object instanceof PlayerPacket) {
+					playersReceived = ((PlayerPacket) object).players;
+					playersUpdated = true;
+
 				}
+
 			}
 		});
+	}
+
+	private boolean playersUpdated = false;
+	private Array<Player> playersReceived;
+
+	public Array<Player> getPlayers() {
+		playersUpdated = false;
+		return playersReceived;
+	}
+
+	public boolean arePlayersUpdated() {
+		return playersUpdated;
 	}
 }

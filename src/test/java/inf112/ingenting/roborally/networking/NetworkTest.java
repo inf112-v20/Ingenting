@@ -20,14 +20,14 @@ public class NetworkTest {
 	public void createClient() {
 		network.createClient();
 
-		Assert.assertEquals(Network.NetworkType.CLIENT, network.networkType);
+		Assert.assertEquals(Network.NetworkType.CLIENT, network.getNetworkType());
 	}
 
 	@Test
 	public void createHost() {
 		network.createHost();
 
-		Assert.assertEquals(Network.NetworkType.HOST, network.networkType);
+		Assert.assertEquals(Network.NetworkType.HOST, network.getNetworkType());
 	}
 
 	@Test
