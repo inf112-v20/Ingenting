@@ -208,6 +208,12 @@ public class Board implements IBoard {
 		}
 	}
 
+	/**
+	 * Collision checker
+	 *
+	 * @param robot			current robot.
+	 * @param nextCell		the cell current robot tries to move to.
+	 */
 	private ArrayList<RobotDirection> moveBlock(Robot robot, TiledMapTileLayer.Cell nextCell) {
 		ArrayList<RobotDirection> blockedDirection = new ArrayList<>();
 		TiledMapTileLayer.Cell currentCell = layers.get(LayerType.WALL).getCell((int) robot.getPosition().x,(int) robot.getPosition().y);
