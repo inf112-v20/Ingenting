@@ -76,6 +76,19 @@ Oppmøte: Alle
 * Vi skal legge til hull, skiftenøkkel, 
 * Møte 0830 onsdag den 15/4
 
+## 15/4/20
+Oppmøte: Alle
+* Vi hadde parprogrammering via Discord, der vi forsetter med å få networking til å fungere med prosjektet
+
+
+## 21/4/20
+Oppmøte: Alle
+* Går igjennom hva vi har gjort, går igjennom hva som må bli gjort
+* Kortutdeling og rundelogikk er det som gjenstår 
+* Alle er eninge om at rollene blir det samme
+
+
+
 ## 28/04/20
 Oppmøte: Alle
 * Vi har gått gjennom innleveringen og hvordan prosjektet ligger an med tanke på presentasjonen neste uke.
