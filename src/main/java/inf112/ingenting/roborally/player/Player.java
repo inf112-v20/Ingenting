@@ -32,8 +32,8 @@ public class Player {
 		this.flags = flags;
 
 		// For now; currentHand is randomly assigned, when phases are implemented this will be changed.
-		currentHand = new ProgrammingCard[5];
-		for (int i = 0; i < 5; i++) {
+		currentHand = new ProgrammingCard[9];
+		for (int i = 0; i < 9; i++) {
 			currentHand[i] = new ProgrammingCard();
 		}
 

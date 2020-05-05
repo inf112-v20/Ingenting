@@ -139,6 +139,7 @@ public class Board implements IBoard {
 			return;
 
 		MapProperties tileProperties = cell.getTile().getProperties();
+		System.out.println(tileProperties.get("type"));
 
 		switch ((String) tileProperties.get("type")) {
 			case "hole":
@@ -167,6 +168,7 @@ public class Board implements IBoard {
 					else
 						robot.setRelativeHP(-2);
 				}
+				break;
 
 			case "conveyor":
 				int speed = (int) tileProperties.get("speed");

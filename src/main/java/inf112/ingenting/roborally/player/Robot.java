@@ -39,7 +39,7 @@ public class Robot {
 		this.texturePath = texturePath;
 		this.flags = Board.getFlags();
 		this.position = position;
-		this.direction = RobotDirection.NORTH;
+		this.direction = RobotDirection.WEST;
 		this.currentGoal = flags[0];
 	}
 
@@ -53,7 +53,7 @@ public class Robot {
 		this.position = position;
 
 		flags = Board.getFlags();
-		this.direction = RobotDirection.NORTH;
+		this.direction = RobotDirection.WEST;
 
 		// Change this so that the robot only has "Current Goal"
 		this.currentGoal = flags[0];
@@ -66,7 +66,7 @@ public class Robot {
 	 */
 	public Robot(Vector2 position) {
 		this.position = position;
-		this.direction = RobotDirection.NORTH;
+		this.direction = RobotDirection.WEST;
 	}
 
 	public void render(Batch batch, AssetManager assetManager) {

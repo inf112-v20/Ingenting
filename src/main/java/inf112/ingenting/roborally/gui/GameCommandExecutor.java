@@ -157,6 +157,7 @@ public class GameCommandExecutor extends CommandExecutor {
 
 	}
 
+
 	@ConsoleDoc(description = "Start the game")
 	public void start() {
 		game.startGame();
@@ -169,4 +170,9 @@ public class GameCommandExecutor extends CommandExecutor {
 		else
 			game.showCards();
 	}
+
+	public void move() {
+		game.board.moveRobots();
+	}
+
 }

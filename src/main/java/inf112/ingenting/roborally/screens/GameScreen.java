@@ -18,7 +18,7 @@ import inf112.ingenting.roborally.player.Robot;
  */
 public class GameScreen extends ScreenAdapter {
 	private RoboRally game;
-	private Board board;
+	public Board board;
 	private GameConsole console;
 
 	// Array of all players
@@ -41,13 +41,12 @@ public class GameScreen extends ScreenAdapter {
 	 */
 	public GameScreen(RoboRally game) {
 		this.game = game;
-		this.board = this.game.createBoard("testMap.tmx");
+		this.board = this.game.createBoard("mainMap.tmx");
 		this.console = GameConsole.getInstance();
 		// Listener for certain console commands
 		this.console.setGameScreenListener(this);
-
 		this.network = Network.getInstance();
-
+		GameConsole.log("Type 'Help' for commands.");
 		this.players = new Array<>();
 	}
 
@@ -60,6 +59,9 @@ public class GameScreen extends ScreenAdapter {
 
 	@Override
 	public void render(float delta) {
+		if (players.size != 0) {
+			board.moveRobotKey(players.get(0).getCurrentRobot());
+		}
 		switch (network.getNetworkType()) {
 			case HOST:
 				break;
@@ -104,7 +106,7 @@ public class GameScreen extends ScreenAdapter {
 
 		// Host is not part of network connections and needs it's own player
 		Player host = new Player("Host", -1);
-		host.setRobot(new Robot("player_4.png", new Vector2(0, 0)));
+		host.setRobot(new Robot("player_4.png", new Vector2(11, 0)));
 		board.addRobot(host.getCurrentRobot());
 		players.add(host);
 
@@ -113,7 +115,7 @@ public class GameScreen extends ScreenAdapter {
 		int textureNum = 0;
 		for (Connection c : connections) {
 			Player p = new Player(c.toString(), c.getID());
-			p.setRobot(new Robot("player_" + textureNum++ + ".png", new Vector2(textureNum, 0)));
+			p.setRobot(new Robot("player_" + textureNum++ + ".png", new Vector2(11, textureNum)));
 			board.addRobot(p.getCurrentRobot());
 			players.add(p);
 

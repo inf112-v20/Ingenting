@@ -56,7 +56,7 @@ public class NetworkHost {
 			}
 
 			public void received(Connection connection, Object object) {
-				GameConsole.log("Object received: " + object.toString(), LogLevel.SUCCESS);
+				//GameConsole.log("Object received: " + object.toString(), LogLevel.SUCCESS);
 
 				if (object instanceof NetworkMessage) {
 					NetworkMessage networkMessage = (NetworkMessage) object;
