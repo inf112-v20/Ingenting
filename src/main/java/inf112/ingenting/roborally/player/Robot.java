@@ -10,6 +10,8 @@ import inf112.ingenting.roborally.cards.ProgrammingCard;
 import inf112.ingenting.roborally.cards.ProgrammingCardType;
 import inf112.ingenting.roborally.element.Flag;
 
+import javax.swing.text.Position;
+
 public class Robot {
 
 	private Flag currentGoal;
@@ -24,6 +26,7 @@ public class Robot {
 	private Boolean active = true;
 
 	private Boolean isAlive = true;
+	private Vector2 backupPos = new Vector2(0,0);
 	private int hp = 10;
 
 	// No-args constructor for Kryo serialization
@@ -108,6 +111,7 @@ public class Robot {
 		}
 	}
 
+
 	public void registerMove(ProgrammingCard card) {
 		if (card == null || card.getCardType() == ProgrammingCardType.AGAIN)
 			return;
@@ -139,6 +143,7 @@ public class Robot {
 
 	public void setFlagsVisited(int flagsVisited) {
 		this.flagsVisited = Math.min(flagsVisited, flags.length);
+		backupPos = new Vector2((int)getPosition().x, (int)getPosition().y);
 	}
 
 	public void setCurrentGoal(Flag currentGoal) {
@@ -164,9 +169,11 @@ public class Robot {
 
 	public void setAlive(Boolean alive) {
 		isAlive = alive;
-		if (alive) {
+		if (!alive) {
+			int xpos = ((int)backupPos.x - (int)getPosition().x);
+			int ypos = ((int)backupPos.y - (int)getPosition().y);
 			System.out.println("The Robot is dead");
-			setRelativePosition(-3,-3);
+			setRelativePosition(xpos, ypos);
 		}
 	}
 
