@@ -205,6 +205,8 @@ public class Board implements IBoard {
 		}
 	}
 
+
+
 	private void checkFlag(Robot robot){
 		for (Flag f : flags) {
 			if (f.getXPosition() == robot.getPosition().x && f.getYPosition() == robot.getPosition().y) {
@@ -213,6 +215,7 @@ public class Board implements IBoard {
 					int index = newGoal >= flags.size ? flags.size - 1 : newGoal;
 					robot.setCurrentGoal(flags.get(index));
 					robot.setFlagsVisited(robot.getFlagsVisited() + 1);
+					robot.setRelativeHP(1);
 				}
 			}
 		}

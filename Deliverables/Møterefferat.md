@@ -95,3 +95,9 @@ Oppmøte: Alle
 * Ha debugget ferdig nettverksdelen til fredag.
 * Blitt enige om nye brukerhistorier.
 
+## 05/05/20
+Oppmøte: Alle
+* Går igjennom hva som er gjort til nå og hva som skal gjøres til 08/05
+* Sigurd: Vegger
+* Ayoub: Tester og Brukerhistorier
+* Ørjan: Se over oblig

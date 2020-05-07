@@ -8,8 +8,6 @@ Vi var enige om at rollene fungerer fint og at vi ikke har noe behov for å oppd
 Når det gjelder prosjekt metodikk så benytter vi oss fremdeles av XP. Vi ser fremgang i prosjektet og forbedringer for hver iterasjon i teamet. Vi har jobbet med forbedringspunktene fra sist iterasjon, og møtene er nå mer organiserte noe som gjør at vi får mye mer ut av de enn det vi gjorde før.
 Et problem som vi har som vi også har hatt tidligere er arbeidsfordelingen. Vi jobber med å fordele oppgavene, men nå som vi nærmer oss mål så er det ikke så mange oppgaver å fordele blant laget, og når noen først blir ferdig kan de bli sittende uten oppgaver. 
 
-
--- Vurdere prosjekt med laget.
 Hadde vi begynt på nytt så hadde vi planlagt bedre, spesielt når det gjelder nettverk. Dette er egentlig noe vi har tenkt på tidligere, men vi startet litt sent og da var det ganske mye som måtte endres på. Det beste da hadde vært å få startet opp med Nettverk så fort som overhodet mulig.
 
 Gruppedynamikken og kommunikasjonen nå forgeår veldig mye via discord og facebook, der vi tar oss av meste parten av diskusjonen. I retrospektive med tanke på korona kan vi at dette har påvirket ganske mye,
@@ -69,6 +67,17 @@ Som spiller skal det ikke være mulig å gå igjennom vegger som blokkerer der j
 * Legge til en kollider som stanser roboten om den går i retning mot veggen.
 * Visste det er en vegg i nabo cellen som blokkerer inngang for roboten, skal roboten stanses.
 
+### Brukerhistorie: Random Deck of Cards.
+Som spiller vil jeg ha programmeringskort, slik at jeg kan programmere roboten min
+
+**Akseptansekriterier**
+* spiller skal få tilfeldige programeringskort.
+
+**Arbeidsoppgaver:**
+* Generer tilfeldige programmeringskort  som spiller kan bruke.
+* Spiller skal kunne se kortene som er generert.
+
+
 ### Brukerhistorie: Klient.
 
 **Akseptansekriterier**
@@ -76,9 +85,3 @@ Som spiller skal det ikke være mulig å gå igjennom vegger som blokkerer der j
 
 **Arbeidsoppgaver:**
 
-### Brukerhistorie: Random Deck of Cards.
-
-**Akseptansekriterier**
-
-
-**Arbeidsoppgaver:**
