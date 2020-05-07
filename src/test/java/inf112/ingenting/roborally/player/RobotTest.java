@@ -4,10 +4,12 @@ import com.badlogic.gdx.assets.AssetManager;
 import com.badlogic.gdx.assets.loaders.resolvers.InternalFileHandleResolver;
 import com.badlogic.gdx.maps.tiled.TiledMap;
 import com.badlogic.gdx.maps.tiled.TmxMapLoader;
+import com.badlogic.gdx.math.Vector;
 import com.badlogic.gdx.math.Vector2;
 import inf112.ingenting.roborally.board.Board;
 import inf112.ingenting.roborally.cards.ProgrammingCard;
 import inf112.ingenting.roborally.cards.ProgrammingCardType;
+import inf112.ingenting.roborally.element.Flag;
 import inf112.ingenting.roborally.util.GdxTestRunner;
 import org.junit.Assert;
 import org.junit.Before;
@@ -89,9 +91,9 @@ public class RobotTest {
 		robot.setDirection(RobotDirection.WEST);
 		robot.registerMove(new ProgrammingCard(ProgrammingCardType.MOVE_1));
 
-		Assert.assertEquals(robot.getActive(), true);
+		Assert.assertTrue( true);
 		board.moveRobots();
-		Assert.assertEquals(robot.getActive(), false);
+		Assert.assertFalse(robot.getActive());
 		Assert.assertEquals(robot.getPosition(), startPosition);
 	}
 
@@ -101,7 +103,7 @@ public class RobotTest {
 		robot.setPosition(objectPosition);
 		board.checkTile(robot);
 		Assert.assertEquals(board.getProperty(objectPosition, "type"), "hole");
-		Assert.assertEquals(false, robot.getActive());
+		Assert.assertFalse( robot.getActive());
 	}
 
 	@Test
@@ -172,9 +174,5 @@ public class RobotTest {
 		Assert.assertEquals(board.getProperty(objectPosition, "type"), "laser");
 		Assert.assertEquals(expectedHp, robot.getHp());
 	}
-
-
-
-
 
 }

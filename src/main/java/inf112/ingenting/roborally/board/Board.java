@@ -1,5 +1,6 @@
 package inf112.ingenting.roborally.board;
 
+import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
 import com.badlogic.gdx.assets.AssetManager;
@@ -13,6 +14,7 @@ import com.badlogic.gdx.maps.tiled.renderers.OrthogonalTiledMapRenderer;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.utils.Array;
 import inf112.ingenting.roborally.element.Flag;
+import inf112.ingenting.roborally.gui.GameConsole;
 import inf112.ingenting.roborally.player.Robot;
 import inf112.ingenting.roborally.player.RobotDirection;
 
@@ -207,7 +209,7 @@ public class Board implements IBoard {
 
 
 
-	private void checkFlag(Robot robot){
+	public void checkFlag(Robot robot){
 		for (Flag f : flags) {
 			if (f.getXPosition() == robot.getPosition().x && f.getYPosition() == robot.getPosition().y) {
 				if (f.getLevel() == robot.getCurrentGoal().getLevel()) {
