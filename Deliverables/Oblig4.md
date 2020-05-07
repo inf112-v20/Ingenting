@@ -48,14 +48,41 @@ Som spiller vil jeg ha muligheten til starte et spill som andre kan bli med i.
 * Legge til muligheten for en spiller å hoste et game på valgt port.
 * Spillere skal kunne bli med i spille ut i fra porten som er opprettet.
 
-### Brukerhistorie: Connect.
+### Brukerhistorie: Koble til som host
 Som spiller vil jeg ha muligheten til å bli med i noen andre sitt spill.
 
 **Akseptansekriterier**
-* Kunne connecte til gitt port
+* Være host for spillet.
 
 **Arbeidsoppgaver:**
-* Legge til muligheten for en spiller å connecte til et game på valgt port.
+* Starte en server som host, og kunne motta tilkoblinger ved hjelp av kryonet.
+
+### Brukerhistorie: Koble til som client
+Som spiller vil jeg kunne koble til andre.
+
+##Akepstansekriterier**
+* Kunne koble til en host.
+
+** Arbeidsoppgaver:**
+* Legge til at spilleren skal kunne koble til en annen host.
+
+### Brukerhistorie: Finne hosts 
+Som spiller vil jeg se hvilke hosts som er aktive.
+
+**Akseptansekriterer**
+* Spilleren skal få opp aktive hosts.
+
+**Arbeidsoppgaver:**
+* Legge til kommando som viser hosts i nettverket.
+
+### Brukerhistorie: Sende melding
+Som spiller vil jeg kunne sende melding over nettverket til andre spillere.
+
+**Akseptansekriterier**
+* Spilleren skal kunde sende en melding i spillet.
+
+**Arbeidsoppgaver:**
+* Bruke kryonet til å sende en melding over nettverket. 
 
 ### Brukerhistorie: Vegger.
 Som spiller skal det ikke være mulig å gå igjennom vegger som blokkerer der jeg vil gå.
@@ -77,11 +104,4 @@ Som spiller vil jeg ha programmeringskort, slik at jeg kan programmere roboten m
 * Generer tilfeldige programmeringskort  som spiller kan bruke.
 * Spiller skal kunne se kortene som er generert.
 
-
-### Brukerhistorie: Klient.
-
-**Akseptansekriterier**
-
-
-**Arbeidsoppgaver:**
 
