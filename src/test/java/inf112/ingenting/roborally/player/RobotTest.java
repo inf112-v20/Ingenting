@@ -95,4 +95,86 @@ public class RobotTest {
 		Assert.assertEquals(robot.getPosition(), startPosition);
 	}
 
+	@Test
+	public void RobotDeactivatesOnHole() {
+		Vector2 objectPosition = new Vector2(3 ,5);
+		robot.setPosition(objectPosition);
+		board.checkTile(robot);
+		Assert.assertEquals(board.getProperty(objectPosition, "type"), "hole");
+		Assert.assertEquals(false, robot.getActive());
+	}
+
+	@Test
+	public void RobotRepairOnWrench() {
+		Vector2 objectPosition = new Vector2(0, 0);
+		int currentHealth = robot.getHp();
+		robot.setPosition(objectPosition);
+		board.checkTile(robot);
+		Assert.assertEquals(board.getProperty(objectPosition, "type"), "repair");
+		Assert.assertEquals(currentHealth + 1, robot.getHp());
+	}
+
+	@Test
+	public void RobotMoveOnConveyorNorth() {
+		Vector2 objectPosition = new Vector2(5, 8);
+		robot.setPosition(objectPosition);
+		Vector2 currentPosition = robot.getPosition();
+		Vector2 expectedPos = new Vector2(robot.getPosition().x, robot.getPosition().y + 2);
+		board.checkTile(robot);
+		Assert.assertEquals(board.getProperty(objectPosition, "type"), "conveyor");
+		Assert.assertEquals(board.getProperty(objectPosition, "direction"), "north");
+		Assert.assertEquals(expectedPos, currentPosition);
+	}
+
+	@Test
+	public void RobotMoveOnConveyorEast() {
+		Vector2 objectPosition = new Vector2(6, 8);
+		robot.setPosition(objectPosition);
+		Vector2 currentPosition = robot.getPosition();
+		Vector2 expectedPos = new Vector2(robot.getPosition().x + 2, robot.getPosition().y);
+		board.checkTile(robot);
+		Assert.assertEquals(board.getProperty(objectPosition, "type"), "conveyor");
+		Assert.assertEquals(board.getProperty(objectPosition, "direction"), "east");
+		Assert.assertEquals(expectedPos, currentPosition);
+	}
+
+	@Test
+	public void RobotMoveOnConveyorSouth() {
+		Vector2 objectPosition = new Vector2(7, 8);
+		robot.setPosition(objectPosition);
+		Vector2 currentPosition = robot.getPosition();
+		Vector2 expectedPos = new Vector2(robot.getPosition().x, robot.getPosition().y - 2);
+		board.checkTile(robot);
+		Assert.assertEquals(board.getProperty(objectPosition, "type"), "conveyor");
+		Assert.assertEquals(board.getProperty(objectPosition, "direction"), "south");
+		Assert.assertEquals(expectedPos, currentPosition);
+	}
+
+	@Test
+	public void RobotMoveOnConveyorWest() {
+		Vector2 objectPosition = new Vector2(8, 8);
+		robot.setPosition(objectPosition);
+		Vector2 currentPosition = robot.getPosition();
+		Vector2 expectedPos = new Vector2(robot.getPosition().x - 2, robot.getPosition().y);
+		board.checkTile(robot);
+		Assert.assertEquals(board.getProperty(objectPosition, "type"), "conveyor");
+		Assert.assertEquals(board.getProperty(objectPosition, "direction"), "west");
+		Assert.assertEquals(expectedPos, currentPosition);
+	}
+
+	@Test
+	public void RobotOnLaser() {
+		Vector2 objectPosition = new Vector2(3, 2);
+		int currentHp = robot.getHp();
+		int expectedHp = currentHp - 2;
+		robot.setPosition(objectPosition);
+		board.checkTile(robot);
+		Assert.assertEquals(board.getProperty(objectPosition, "type"), "laser");
+		Assert.assertEquals(expectedHp, robot.getHp());
+	}
+
+
+
+
+
 }

@@ -41,7 +41,7 @@ public class GameScreen extends ScreenAdapter {
 	 */
 	public GameScreen(RoboRally game) {
 		this.game = game;
-		this.board = this.game.createBoard("mainMap.tmx");
+		this.board = this.game.createBoard("testMap.tmx");
 		this.console = GameConsole.getInstance();
 		// Listener for certain console commands
 		this.console.setGameScreenListener(this);

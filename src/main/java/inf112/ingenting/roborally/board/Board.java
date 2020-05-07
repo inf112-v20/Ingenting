@@ -10,6 +10,7 @@ import com.badlogic.gdx.maps.tiled.TiledMap;
 import com.badlogic.gdx.maps.tiled.TiledMapTile;
 import com.badlogic.gdx.maps.tiled.TiledMapTileLayer;
 import com.badlogic.gdx.maps.tiled.renderers.OrthogonalTiledMapRenderer;
+import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.utils.Array;
 import inf112.ingenting.roborally.element.Flag;
 import inf112.ingenting.roborally.player.Robot;
@@ -132,6 +133,14 @@ public class Board implements IBoard {
 		batch.end();
 	}
 
+	public String getProperty(Vector2 position, String property) {
+		TiledMapTileLayer.Cell cell = layers.get(LayerType.INTERACTABLE).getCell((int) position.x, (int)position.y);
+		if (cell == null)
+			return "null";
+		MapProperties tileProperties = cell.getTile().getProperties();
+		return (String) tileProperties.get(property);
+	}
+
 	// Check tile stuff
 	public void checkTile(Robot robot) {
 		TiledMapTileLayer.Cell cell = layers.get(LayerType.INTERACTABLE).getCell((int) robot.getPosition().x,(int) robot.getPosition().y);
@@ -139,11 +148,10 @@ public class Board implements IBoard {
 			return;
 
 		MapProperties tileProperties = cell.getTile().getProperties();
-		System.out.println(tileProperties.get("type"));
 
 		switch ((String) tileProperties.get("type")) {
 			case "hole":
-				robot.setAlive(false);
+				robot.setActive(false);
 				break;
 
 			case "repair":
