@@ -14,7 +14,7 @@ Gruppedynamikken og kommunikasjonen nå forgeår veldig mye via discord og faceb
 som sagt har vi ikke fått muligheten til å møtes face to face å diskutere på den måten vi gjorde før. Karantenen påvirker også hvordan folk jobber, med at noen jobber best om natten mens andre jobber på dagen.
 
 ## Deloppgave 2: Krav
-Som forrige gang ligger fremdeles fokuset i nettverk og brukergrensesnitt, siden forrige iterasjon har vi hatt ganske god progresjon på nettverk --, men et par småting som mangler--.
+Som forrige gang ligger fremdeles fokuset i nettverk og brukergrensesnitt, siden forrige iterasjon har vi hatt ganske god progresjon på nettverk, men dessverre så mangler en hoved del av MVPen, runde logikken. Hadde vi vist utfallet så hadde vi nok gått for en KUN singleplayer, men dessverre så er det forsent. Det vi ikke har fått til er å sende kortene som spilleren velger, og derfor får vi ikke lagt til rundelogikken ettersom at det er nødvendig.
 
 ### Brukerhistorie: Nettverk.
 Som spiller vil jeg kunne spille med andre lokalt.
@@ -104,4 +104,24 @@ Som spiller vil jeg ha programmeringskort, slik at jeg kan programmere roboten m
 * Generer tilfeldige programmeringskort  som spiller kan bruke.
 * Spiller skal kunne se kortene som er generert.
 
+### Brukerhistorie: Conveyor Belts
+Roboten skal bli skyvet av beltene.
+
+**Akseptansekriterier**
+* Roboten skal bli påvirket av conveyor belts i alle retninger.
+
+**Arbeidsoppgaver:**
+* Legge til conveyor belts visuelt.
+* Legge til logikk for conveyor belts.
+
+
+### Brukerhistorie: Laser
+Som spiller vil jeg at roboten skal ta skade av laseren på brettet.
+
+**Akseptansekriterier**
+* Roboten skal ta skade av laseren som er på brettet.
+
+**Arbeidsoppgaver:**
+* Legge til laser på brettet visuelt.
+* Legge til logikken for laseren slik at roboten tar skade ved kontakt.
 
