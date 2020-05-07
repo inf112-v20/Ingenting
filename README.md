@@ -21,4 +21,4 @@ Digital implementation of the classic board game Roborally.
 4. After compiling, the game will launch
 
 ## UML
-![UML](Deliverables/UML/UML3.png)
+![UML](Deliverables/UML/UML_07.05.png)
